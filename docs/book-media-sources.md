@@ -28,6 +28,16 @@ Staré neexistující adresy `/cz/katalog-sluzeb/eknihy/<název>/` i odkazy Ocea
 
 Kontrola katalogu Knihovny.cz z cloudového klienta dostala ochranu proti botům (418); nejde o důkaz neexistující knihy. Aplikace tento katalog nenabízí jako přímé stažení. Audiolibrix v cloudovém klientu neodpovídal spolehlivě a nebyl použit pro přímé soubory.
 
+## Nasazení na GitHub Pages
+
+`actions/configure-pages@v5` nepodporuje automatické úpravy `next.config.ts`: hledá jen `.js`, `.cjs` a `.mjs`, a při zapnutém `static_site_generator: next` vytvoří nový `next.config.js`. Next.js mu dá přednost před původním TypeScriptovým souborem. Chybějící `env.NEXT_PUBLIC_BASE_PATH` pak způsobí, že se e-kniha hledá na `/books/...` namísto `/app/books/...` a vrací 404, i když soubor v exportu existuje.
+
+Workflow proto používá Configure Pages pouze pro metadata, bez úprav konfigurace. Při sestavení předává `steps.pages.outputs.base_path` do `NEXT_PUBLIC_BASE_PATH` a jediný `next.config.ts` nastavuje tutéž cestu pro router i veřejná média. Podporován je i web na kořeni domény s prázdnou cestou.
+
+Po sestavení běží `npm run check:export`: ověří shodu skutečné zkompilované konfigurace s cestou Pages a přítomnost, velikosti i SHA-256 všech distribuovaných médií a přítomnost licencí v adresáři `out`. Neověřuje jen zdrojové soubory `public`. Při jakékoli neshodě se nasazení zastaví ještě před uploadem artefaktu.
+
+Regrese byla zopakována se souborem generovaným původní akcí: čtečka Božské komedie požadovala `/books/dante-bozska-komedie/book.epub` a dostala 404. Po sestavení opraveným postupem požadovala `/app/books/dante-bozska-komedie/book.epub`, dostala HTTP 200 a načetla 103 částí knihy. Tyto kontroly proběhly na místně servírovaném produkčním exportu; oprava živého webu vyžaduje sloučení větve a nové nasazení.
+
 ## Kontroly
 
 `npm test` kontroluje i identitu titulů, fyzickou přítomnost souborů, SHA-256, velikosti, licence, EPUB kontejnery a jejich pořadí kapitol, úplnost 26 MP3 i absenci falešných aplikačních odkazů. Testy běží v GitHub Actions před nasazením (Node.js 24). Žádný build nestahuje obsah z neověřených stránek.
