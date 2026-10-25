@@ -3,14 +3,15 @@
 @layer base {
   :root {
     --bg-page: #0f172a;
-    --bg-card: rgba(30, 41, 59, 0.7);
-    --bg-card-hover: rgba(51, 65, 85, 0.8);
-    --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-active: rgba(245, 184, 46, 0.4);
+    --bg-card: #1e293b;
+    --bg-card-hover: #334155;
 
     --brand-yellow: #f5b82e;
+    --brand-yellow-hover: #e0a520;
     --brand-coral: #ef6453;
+    --brand-coral-hover: #d84e3d;
     --brand-mint: #68baaa;
+    --brand-mint-hover: #52a393;
 
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
@@ -22,9 +23,10 @@
     color: #f8fafc;
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Reset button and input browser defaults */
+  /* Universal button & input styling defaults */
   button, input, select, textarea {
     font-family: inherit;
     color: inherit;
@@ -36,12 +38,14 @@
     border-style: none;
     padding: 0;
     margin: 0;
+    touch-action: manipulation;
   }
 
-  /* Focus visible accessibility outline */
+  /* Visible focus indicator for accessibility */
   button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
     outline: 2px solid #f5b82e;
     outline-offset: 2px;
+    border-radius: 6px;
   }
 }
 
