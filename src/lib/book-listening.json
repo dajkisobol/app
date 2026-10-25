@@ -1,0 +1,29 @@
+[
+  {
+    "bookId": "erben-kytice",
+    "title": "Kytice",
+    "provider": "Český rozhlas · mujRozhlas",
+    "url": "https://www.mujrozhlas.cz/karel-jaromir-erben-kytice",
+    "language": "cs",
+    "description": "Česká rozhlasová četba třinácti básní. Jednotlivé části se přehrávají na webu Českého rozhlasu.",
+    "verifiedAt": "2026-10-25"
+  },
+  {
+    "bookId": "macha-maj",
+    "title": "Máj",
+    "provider": "Český rozhlas · mujRozhlas",
+    "url": "https://www.mujrozhlas.cz/ctenarsky-denik/karel-hynek-macha-maj",
+    "language": "cs",
+    "description": "Rozhlasová četba z roku 2008, 50 minut. Čtou František Derfler, Jiří Valůšek a Erika Stárková.",
+    "verifiedAt": "2026-10-25"
+  },
+  {
+    "bookId": "nemcova-babicka",
+    "title": "Babička",
+    "provider": "Český rozhlas · mujRozhlas",
+    "url": "https://www.mujrozhlas.cz/ctenarsky-denik/bozena-nemcova-babicka",
+    "language": "cs",
+    "description": "Rozhlasová adaptace v jedenácti dílech z roku 2007. Čte Hana Kofránková.",
+    "verifiedAt": "2026-10-25"
+  }
+]

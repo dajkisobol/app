@@ -1,4 +1,5 @@
 import imported from './book-media.json';
+import listening from './book-listening.json';
 
 export interface AudioTrack { title: string; url: string; sha256?: string; bytes?: number; durationSeconds?: number }
 export interface MediaAsset {
@@ -24,6 +25,13 @@ export interface MediaAsset {
 }
 
 export const MEDIA_ASSETS: MediaAsset[] = imported as MediaAsset[];
+
+/** These recordings stay with their provider; they are not bundled media files. */
+export const EXTERNAL_RECORDINGS = listening;
+
+export function listeningForBook(bookId: string) {
+  return EXTERNAL_RECORDINGS.filter(recording => recording.bookId === bookId);
+}
 
 export function assetUrl(path: string) {
   if (/^https:\/\//.test(path)) return path;

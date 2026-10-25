@@ -96,6 +96,15 @@ export default function Home() {
 
   const [activeAudio, setActiveAudio] = useState<AudioBook | null>(null);
 
+  useEffect(() => {
+    const openAudioSection = () => {
+      if (window.location.hash === '#audioknihy') setActiveTab('resources');
+    };
+    openAudioSection();
+    window.addEventListener('hashchange', openAudioSection);
+    return () => window.removeEventListener('hashchange', openAudioSection);
+  }, []);
+
   // Initial Data Load
   useEffect(() => {
     let isMounted = true;
