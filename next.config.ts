@@ -1,17 +1,19 @@
 import type { NextConfig } from "next";
 
-const isGithubActions = process.env.GITHUB_ACTIONS || false;
 let repo = "";
-if (isGithubActions && process.env.GITHUB_REPOSITORY) {
-  repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, "");
+if (process.env.GITHUB_REPOSITORY) {
+  repo = process.env.GITHUB_REPOSITORY.split("/")[1] || "";
 }
+
+// Ensure basePath defaults to /app for production GitHub Pages build unless specified otherwise
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? (repo ? `/${repo}` : (process.env.NODE_ENV === "production" ? "/app" : ""));
 
 const nextConfig: NextConfig = {
   output: "export",
   images: {
     unoptimized: true,
   },
-  basePath: repo ? `/${repo}` : "",
+  basePath: basePath,
 };
 
 export default nextConfig;

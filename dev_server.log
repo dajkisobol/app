@@ -9,11 +9,18 @@
 ✓ Ready in 993ms
 ✓ Running next.config.ts took 76ms
 ⨯ A GET / 200 in 185ms (next.js: 9ms, application-code: 176ms)
-http://localhost:3000
-- PID:          266612
-- Dir:          /app
-- Log:          .next/dev/logs/next-development.log
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+▲ Next.js 16.4.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 683ms
+✓ Running next.config.ts took 83ms
 
-You can access the existing server at http://localhost:3000,
-or run kill 266612 to stop it and start a new one.
-[?25h
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+▲ Next.js 16.4.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 426ms
+✓ Running next.config.ts took 48ms
+
+ GET / 200 in 664ms (next.js: 300ms, application-code: 364ms)
