@@ -26,7 +26,7 @@ import {
 } from 'lucide-react';
 import AudioPlayer from '@/components/AudioPlayer';
 import { supabase } from '@/lib/supabase';
-import { BOOK_CATALOG, CERMAT_TESTS } from '@/lib/data';
+import { BOOK_CATALOG, CERMAT_TESTS, getDatabaseLinksForBook } from '@/lib/data';
 import { FREE_RESOURCES } from '@/lib/resources';
 
 interface UserState {
@@ -1206,6 +1206,59 @@ export default function Home() {
                     <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
                       <strong className="text-slate-100 block mb-0.5 font-bold">Jazyk & Styl:</strong>
                       {selectedBookDetail.languageAndStyle}
+                    </div>
+
+                    {/* DATABASE LOOKUP LINKS */}
+                    <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 space-y-3">
+                      <strong className="text-slate-100 block font-bold">Katalogové & Bibliografické databáze:</strong>
+
+                      {/* CZECH PRIMARY SOURCES */}
+                      <div className="space-y-1.5">
+                        <span className="text-[10px] font-bold text-[#f5b82e] uppercase tracking-wider block">České primární databáze</span>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {getDatabaseLinksForBook(selectedBookDetail)
+                            .filter(link => link.category === 'czech')
+                            .map((link, idx) => (
+                              <a
+                                key={idx}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition-all flex items-center justify-between text-xs group"
+                              >
+                                <div>
+                                  <div className="font-bold text-slate-200 group-hover:text-[#f5b82e] transition-colors">{link.name}</div>
+                                  <div className="text-[10px] text-slate-400">{link.note}</div>
+                                </div>
+                                <ChevronRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-[#f5b82e]" />
+                              </a>
+                            ))}
+                        </div>
+                      </div>
+
+                      {/* INTERNATIONAL COMPLEMENTARY SOURCES */}
+                      <div className="space-y-1.5 pt-1">
+                        <span className="text-[10px] font-bold text-[#68baaa] uppercase tracking-wider block">Mezinárodní bibliografické databáze</span>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {getDatabaseLinksForBook(selectedBookDetail)
+                            .filter(link => link.category === 'international')
+                            .map((link, idx) => (
+                              <a
+                                key={idx}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition-all flex items-center justify-between text-xs group"
+                              >
+                                <div>
+                                  <div className="font-bold text-slate-200 group-hover:text-[#68baaa] transition-colors">{link.name}</div>
+                                  <div className="text-[10px] text-slate-400">{link.note}</div>
+                                </div>
+                                <ChevronRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-[#68baaa]" />
+                              </a>
+                            ))}
+                        </div>
+                      </div>
                     </div>
 
                     {user && (
