@@ -139,6 +139,8 @@ export default function Home() {
   const [selectedBookDetail, setSelectedBookDetail] = useState<Book | null>(null);
   const [editingNotes, setEditingNotes] = useState('');
   const [bookSearchQuery, setBookSearchQuery] = useState('');
+  const [selectedPeriodFilter, setSelectedPeriodFilter] = useState<string>('vse');
+  const [bookPage, setBookPage] = useState<number>(1);
 
   // Resources / Audio State
   const [resources, setResources] = useState<ResourceItem[]>([]);
@@ -559,10 +561,54 @@ export default function Home() {
 
   const currentErrorQuestion = errorQuestions[activeErrorIndex];
 
-  const filteredBooks = catalogBooks.filter((b) =>
-    b.title.toLowerCase().includes(bookSearchQuery.toLowerCase()) ||
-    b.author.toLowerCase().includes(bookSearchQuery.toLowerCase()) ||
-    b.period.toLowerCase().includes(bookSearchQuery.toLowerCase())
+  const filteredBooks = catalogBooks.filter((b) => {
+    const q = bookSearchQuery.toLowerCase().trim();
+    const matchesSearch =
+      !q ||
+      b.title.toLowerCase().includes(q) ||
+      b.author.toLowerCase().includes(q) ||
+      b.period.toLowerCase().includes(q) ||
+      b.genre.toLowerCase().includes(q);
+
+    if (!matchesSearch) return false;
+
+    if (selectedPeriodFilter === 'my_list') {
+      return userBookIds.includes(b.id);
+    }
+    if (selectedPeriodFilter === 'starsi') {
+      return (
+        b.period.includes('18. stol') ||
+        b.period.includes('10. stol') ||
+        b.period.includes('12. stol') ||
+        b.period.includes('14. stol') ||
+        b.period.includes('15. stol') ||
+        b.period.includes('16. stol') ||
+        b.period.includes('17. stol') ||
+        b.period.includes('Starovek') ||
+        b.period.includes('Starověk')
+      );
+    }
+    if (selectedPeriodFilter === '19_stol') {
+      return b.period.includes('19. stol') || b.period.includes('19. století');
+    }
+    if (selectedPeriodFilter === '20_21_stol') {
+      return (
+        b.period.includes('20. stol') ||
+        b.period.includes('21. stol') ||
+        b.period.includes('20. století') ||
+        b.period.includes('21. století') ||
+        b.period.includes('meziválečn') ||
+        b.period.includes('povál')
+      );
+    }
+    return true;
+  });
+
+  const BOOK_PAGE_SIZE = 12;
+  const totalBookPages = Math.ceil(filteredBooks.length / BOOK_PAGE_SIZE) || 1;
+  const paginatedBooks = filteredBooks.slice(
+    (bookPage - 1) * BOOK_PAGE_SIZE,
+    bookPage * BOOK_PAGE_SIZE
   );
 
   return (
@@ -1111,9 +1157,46 @@ export default function Home() {
               </div>
             </div>
 
+            {/* CATEGORY & PERIOD FILTERS */}
+            <div className="flex flex-wrap gap-2 pt-1">
+              {[
+                { id: 'vse', label: `Všechny tituly (${catalogBooks.length})` },
+                { id: 'starsi', label: 'Do 18. století' },
+                { id: '19_stol', label: '19. století' },
+                { id: '20_21_stol', label: '20. a 21. století' },
+                { id: 'my_list', label: `Moje vybrané (${userBookIds.length})` }
+              ].map((filter) => {
+                const active = selectedPeriodFilter === filter.id;
+                return (
+                  <button
+                    key={filter.id}
+                    onClick={() => {
+                      setSelectedPeriodFilter(filter.id);
+                      setBookPage(1);
+                    }}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all border ${
+                      active
+                        ? 'bg-[#f5b82e] text-slate-950 border-[#f5b82e] shadow-sm font-extrabold'
+                        : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200 hover:border-slate-700'
+                    }`}
+                  >
+                    {filter.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* RESULTS COUNTER */}
+            <div className="flex justify-between items-center text-xs text-slate-400">
+              <span>Nalezeno {filteredBooks.length} knih z celkem {catalogBooks.length}</span>
+              {totalBookPages > 1 && (
+                <span>Stránka {bookPage} z {totalBookPages}</span>
+              )}
+            </div>
+
             {/* CATALOG GRID */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {filteredBooks.map((book) => {
+              {paginatedBooks.map((book) => {
                 const isSelected = userBookIds.includes(book.id);
                 return (
                   <div
@@ -1159,6 +1242,29 @@ export default function Home() {
                 );
               })}
             </div>
+
+            {/* PAGINATION CONTROLS */}
+            {totalBookPages > 1 && (
+              <div className="flex justify-center items-center gap-3 pt-4">
+                <button
+                  disabled={bookPage <= 1}
+                  onClick={() => setBookPage((p) => Math.max(1, p - 1))}
+                  className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-800 transition-colors"
+                >
+                  Předchozí
+                </button>
+                <span className="text-xs font-bold text-slate-400">
+                  Strana {bookPage} / {totalBookPages}
+                </span>
+                <button
+                  disabled={bookPage >= totalBookPages}
+                  onClick={() => setBookPage((p) => Math.min(totalBookPages, p + 1))}
+                  className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-800 transition-colors"
+                >
+                  Další
+                </button>
+              </div>
+            )}
 
             {/* BOOK DETAIL MODAL */}
             {selectedBookDetail && (
