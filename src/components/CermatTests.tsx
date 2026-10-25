@@ -79,9 +79,9 @@ function taskLabel(task: ExamTask) {
 function ScoreRules({ task }: { task: ExamTask }) {
   return <p className="exam-hint">{task.kind === 'binary' ? '4 správná tvrzení = 2 body, 3 = 1 bod, jinak 0 bodů.'
     : task.kind === 'order' ? '3 body pouze za celé správné pořadí. Každé písmeno použij právě jednou.'
-    : task.kind === 'words' ? `Maximum ${task.points} b. Za chybějící i nadbytečné slovo se odečítá bod.${task.ignoreDiacritics ? ' Klíč připouští chybnou diakritiku.' : 'Slova musí být zapsána pravopisně správně.'}`
+    : task.kind === 'words' ? `${task.points === 1 && task.correct.length > 1 ? '1 bod pouze za obě hledaná slova, bez slova navíc.' : `Maximum ${task.points} b. Za chybějící i nadbytečné slovo se odečítá bod.`}${task.ignoreDiacritics ? ' Klíč připouští chybnou diakritiku.' : ' Slova musí být zapsána pravopisně správně.'}${task.caseSensitiveParts?.length ? ' Dodrž i malá a velká písmena.' : ''}`
     : task.kind === 'matching' ? 'Za každé správné přiřazení 1 bod. Jedno písmeno nesmí být přiřazeno víckrát.'
-    : task.kind === 'text' ? 'Za každou správnou podúlohu 1 bod. Klíč připouští chybnou diakritiku.' : 'Právě jedna možnost je správná. Správná odpověď = 1 bod.'}</p>;
+    : task.kind === 'text' ? `Za každou správnou podúlohu 1 bod.${task.ignoreDiacritics ? ' Klíč připouští chybnou diakritiku.' : ' Tvary slov zapiš pravopisně správně.'}` : 'Právě jedna možnost je správná. Správná odpověď = 1 bod.'}</p>;
 }
 
 function SubmitDialog({ unanswered, onCancel, onSubmit }: { unanswered: number; onCancel: () => void; onSubmit: () => void }) {
@@ -101,6 +101,10 @@ function SubmitDialog({ unanswered, onCancel, onSubmit }: { unanswered: number; 
 export default function CermatTests({ storageKey, onResult }: Props) {
   const [session, setSession] = useState<Session | null>(null);
   const [resume, setResume] = useState<Session | null>(null);
+  const [year, setYear] = useState('all');
+  const [season, setSeason] = useState('all');
+  const years = [...new Set(CERMAT_EXAMS.map(exam => exam.year))].sort((a, b) => b - a);
+  const filteredExams = CERMAT_EXAMS.filter(exam => (year === 'all' || String(exam.year) === year) && (season === 'all' || exam.season === season));
   useEffect(() => {
     // Restore an external browser-storage snapshot after hydration.
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -108,12 +112,18 @@ export default function CermatTests({ storageKey, onResult }: Props) {
   }, [storageKey]);
 
   if (session) return <ExamRunner key={`${session.examId}-${session.startedAt}`} initial={session} storageKey={storageKey} onResult={onResult} onBack={() => { setResume(readSession(storageKey)); setSession(null); }} />;
-  return <section className="space-y-6" aria-labelledby="exam-library-title">
+  return <section id="testy" className="space-y-6" aria-labelledby="exam-library-title">
     <div className="exam-library-heading"><span className="eyebrow">CELOU ZKOUŠKU SI MŮŽEŠ ZKUSIT NANEČISTO</span><h2 id="exam-library-title">Didaktické testy CERMAT</h2>
       <p>Kompletní oficiální zadání včetně všech výchozích textů. <strong>32 úloh, 50 bodů, 85 minut.</strong> Číslo 50 označuje body, nikoli počet otázek.</p>
+      <p>{CERMAT_EXAMS.length} celých testů z let {Math.min(...years)}–{Math.max(...years)}. U každého je dostupný oficiální klíč i komentované řešení.</p>
     </div>
     {resume && <div className="exam-resume"><div><strong>{resume.submittedAt ? 'Poslední vyhodnocený test' : 'Máš tu rozpracovaný test'}</strong><p>{CERMAT_EXAMS.find(e => e.id === resume.examId)?.title} · {resume.mode === 'timed' ? 'S časovým limitem' : 'Bez časového limitu'}{!resume.submittedAt && resume.mode === 'timed' ? ' · Čas běží i při zavření stránky.' : ''}</p></div><button className="hero-primary" onClick={() => setSession(resume)}>{resume.submittedAt ? 'Zobrazit výsledek' : 'Pokračovat'}</button></div>}
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">{CERMAT_EXAMS.map(exam => <article key={exam.id} className="exam-library-card study-card">
+    <div className="exam-library-filters">
+      <label>Ročník<select aria-label="Ročník testu" value={year} onChange={event => setYear(event.target.value)}><option value="all">Všechny ročníky</option>{years.map(value => <option key={value} value={value}>{value}</option>)}</select></label>
+      <label>Termín<select aria-label="Termín testu" value={season} onChange={event => setSeason(event.target.value)}><option value="all">Jaro i podzim</option><option value="Jaro">Jaro</option><option value="Podzim">Podzim</option></select></label>
+      <p role="status">Zobrazeno {filteredExams.length} z {CERMAT_EXAMS.length} testů</p>
+    </div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">{filteredExams.map(exam => <article key={exam.id} className="exam-library-card study-card">
       <div className="flex items-center justify-between gap-3"><span className="eyebrow">{exam.season} {exam.year}</span><FileText className="h-6 w-6 text-[var(--sage-ink)]" /></div>
       <h3>{exam.title}</h3><p className="exam-hint">Oficiální test CZVV · {exam.code}</p>
       <div className="exam-facts"><span>32 úloh</span><span>50 bodů</span><span>85 minut</span><span>{exam.pages} stran zadání</span></div>

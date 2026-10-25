@@ -126,6 +126,11 @@
 /* Complete exams: keep the source booklet readable beside the answer sheet. */
 .exam-library-heading h2 { font: 500 clamp(28px, 4vw, 38px)/1.2 Georgia, serif; margin: 12px 0; }
 .exam-library-heading p, .exam-library-card > p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+#testy { scroll-margin-top: 110px; }
+.exam-library-filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px; }
+.exam-library-filters label { display: grid; gap: 7px; font-size: 12px; font-weight: 700; color: var(--muted); }
+.exam-library-filters select { min-width: 150px; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font-size: 13px; }
+.exam-library-filters > p { margin-left: auto; padding-block: 10px; color: var(--muted); font-size: 12px; }
 .exam-library-card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 18px; }
 .exam-library-card h3 { font: 500 27px/1.25 Georgia, serif; }
 .exam-facts { display: flex; flex-wrap: wrap; gap: 8px; }

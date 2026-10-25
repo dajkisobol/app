@@ -98,12 +98,13 @@ export default function Home() {
   const [activeAudio, setActiveAudio] = useState<AudioBook | null>(null);
 
   useEffect(() => {
-    const openAudioSection = () => {
+    const openLinkedSection = () => {
       if (window.location.hash === '#audioknihy') setActiveTab('resources');
+      else if (window.location.hash === '#testy') setActiveTab('tests');
     };
-    openAudioSection();
-    window.addEventListener('hashchange', openAudioSection);
-    return () => window.removeEventListener('hashchange', openAudioSection);
+    openLinkedSection();
+    window.addEventListener('hashchange', openLinkedSection);
+    return () => window.removeEventListener('hashchange', openLinkedSection);
   }, []);
 
   // Initial Data Load
