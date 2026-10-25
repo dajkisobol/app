@@ -1,0 +1,168 @@
+{
+  "verifiedAt": "2026-10-25",
+  "sourceUrl": "https://maturita.cermat.cz/menu/testy-a-zadani-z-predchozich-obdobi/cesky-jazyk-a-literatura/testy-a-zadani-cesky-jazyk.html",
+  "documents": [
+    {
+      "exam": "2025-jaro",
+      "kind": "booklet",
+      "url": "https://maturita.cermat.cz/files/files/CJL_2025j_TS.pdf",
+      "bytes": 1279105,
+      "sha256": "da6d71d73fcdb65a52fd38f2c58bebf1107f00901e8c321767df9fdb95402e70",
+      "pages": 11,
+      "examId": "cjl-2025-jaro"
+    },
+    {
+      "exam": "2025-jaro",
+      "kind": "key",
+      "url": "https://maturita.cermat.cz/files/files/CJL_2025j_KS%C5%98_web.pdf",
+      "bytes": 236930,
+      "sha256": "e174587dbed285828793272531f88d89a30a31c8cdb405f19a5bd889d65d6e2f",
+      "pages": 2,
+      "examId": "cjl-2025-jaro"
+    },
+    {
+      "exam": "2025-jaro",
+      "kind": "commentary",
+      "url": "https://maturita.cermat.cz/files/files/CJMZD25C0T01_komentovan%C3%A1_verze_web_FINAL_oprava2.pdf",
+      "bytes": 216587,
+      "sha256": "0e5afca6c2d5c67c5193420115253066675b012bbeae92f689d3b66f71d9c1e2",
+      "pages": 18,
+      "examId": "cjl-2025-jaro"
+    },
+    {
+      "exam": "2025-podzim",
+      "kind": "booklet",
+      "url": "https://maturita.cermat.cz/files/files/CJMAD25C0T04_web.pdf",
+      "bytes": 177842,
+      "sha256": "1e670f4fd18c1a1d8acf48fc738d0504f839648e7628fe9aa4f5556966681ee3",
+      "pages": 11,
+      "examId": "cjl-2025-podzim"
+    },
+    {
+      "exam": "2025-podzim",
+      "kind": "key",
+      "url": "https://maturita.cermat.cz/files/files/CJL_Kl%C3%AD%C4%8D_spr%C3%A1vn%C3%BDch_%C5%99e%C5%A1en%C3%AD.pdf",
+      "bytes": 239186,
+      "sha256": "6fb7119c33278322da9736e15f403533f20941db4fb660adf1ad1d9b336fa702",
+      "pages": 2,
+      "examId": "cjl-2025-podzim"
+    },
+    {
+      "exam": "2025-podzim",
+      "kind": "commentary",
+      "url": "https://maturita.cermat.cz/files/files/CJMZD25C0T04_komentovan%C3%A1_%C5%99e%C5%A1en%C3%AD_web_FINAL.pdf",
+      "bytes": 298636,
+      "sha256": "d67ffffac4220007feb979dc63465e8ececb514a2468f8ef35bee8a272cc8054",
+      "pages": 17,
+      "examId": "cjl-2025-podzim"
+    },
+    {
+      "exam": "2024-jaro",
+      "kind": "booklet",
+      "url": "https://maturita.cermat.cz/files/files/CJL_MZ2024J_DT.pdf",
+      "bytes": 4414986,
+      "sha256": "9cda59947a2e5ec3882a473b4ea49e764af8ba4c6e5a6fa073dd04784f71d4b6",
+      "pages": 12,
+      "examId": "cjl-2024-jaro"
+    },
+    {
+      "exam": "2024-jaro",
+      "kind": "key",
+      "url": "https://maturita.cermat.cz/files/files/CJMZD24C0K01_web.pdf",
+      "bytes": 307437,
+      "sha256": "338fdc346ad43f50b8567b7a4637c7b993ea5a99f090398bb4b207f07969c48e",
+      "pages": 2,
+      "examId": "cjl-2024-jaro"
+    },
+    {
+      "exam": "2024-jaro",
+      "kind": "commentary",
+      "url": "https://maturita.cermat.cz/files/files/CJMZD24C0T01_komentovan%C3%A1_verze_web_final.pdf",
+      "bytes": 189451,
+      "sha256": "4d057db39b404e462f7ba41c0e4305b93e00058050b116a2af6adfd65681ea22",
+      "pages": 18,
+      "examId": "cjl-2024-jaro"
+    },
+    {
+      "exam": "2024-podzim",
+      "kind": "booklet",
+      "url": "https://maturita.cermat.cz/files/files/%C4%8CJL_MZ2024P_TS.pdf",
+      "bytes": 380970,
+      "sha256": "6f7d5b181af357c6758e34957d386a71346228e2e4d020746a8f7a298f818f18",
+      "pages": 12,
+      "examId": "cjl-2024-podzim"
+    },
+    {
+      "exam": "2024-podzim",
+      "kind": "key",
+      "url": "https://maturita.cermat.cz/files/files/%C4%8CJL_MZ2024P_KS%C5%98_web.pdf",
+      "bytes": 469070,
+      "sha256": "4abdb797f26bb395d90feb78abfcc14a6ee7946739ce59e8bd3dca8c8f8fbe88",
+      "pages": 2,
+      "examId": "cjl-2024-podzim"
+    },
+    {
+      "exam": "2024-podzim",
+      "kind": "commentary",
+      "url": "https://maturita.cermat.cz/files/files/CJMZD24C0T04_koment_verze_web_FINALNI.pdf",
+      "bytes": 451859,
+      "sha256": "8ae6da155e6c3bf7dc4a8edc988ba8b530d254e56869e4f53ae980679dce6190",
+      "pages": 17,
+      "examId": "cjl-2024-podzim"
+    },
+    {
+      "exam": "2023-jaro",
+      "kind": "booklet",
+      "url": "https://maturita.cermat.cz/files/files/CJL_jaro_2023_sada_A_DT.pdf",
+      "bytes": 168530,
+      "sha256": "2460721e1e4411e60a4b5079d03fe253badf944abc7d0ebff0ed80609c09ca16",
+      "pages": 12,
+      "examId": "cjl-2023-jaro"
+    },
+    {
+      "exam": "2023-jaro",
+      "kind": "key",
+      "url": "https://maturita.cermat.cz/files/files/CJL_jaro_2023_sada_A_klic_na_web.pdf",
+      "bytes": 181266,
+      "sha256": "32eb8ace1c289f44245ee65c1723bd9655dae6b6b80d19e763ecf310002fdd42",
+      "pages": 2,
+      "examId": "cjl-2023-jaro"
+    },
+    {
+      "exam": "2023-jaro",
+      "kind": "commentary",
+      "url": "https://maturita.cermat.cz/files/files/CJMZD23C0T01_komentovan%C3%A1_verze_web_FINAL.pdf",
+      "bytes": 169395,
+      "sha256": "2e206e4ad03783abad375e8af9f12ea59e632e1823edb55daa2d50b140a2b09e",
+      "pages": 17,
+      "examId": "cjl-2023-jaro"
+    },
+    {
+      "exam": "2023-podzim",
+      "kind": "booklet",
+      "url": "https://maturita.cermat.cz/files/files/CJL_podzim_2023_DT.pdf",
+      "bytes": 370824,
+      "sha256": "a07b50bba44f93d15ee3710ace4cd40d7ca89e79d85576808eedab5c8f3b8bb4",
+      "pages": 12,
+      "examId": "cjl-2023-podzim"
+    },
+    {
+      "exam": "2023-podzim",
+      "kind": "key",
+      "url": "https://maturita.cermat.cz/files/files/CJMZD23C0K04_Web_rozsireny_klic.pdf",
+      "bytes": 220248,
+      "sha256": "6949ef4ddfd3f9aed38feae41087df4f7d716c8bf63706fc2d6cf70e14a678b8",
+      "pages": 2,
+      "examId": "cjl-2023-podzim"
+    },
+    {
+      "exam": "2023-podzim",
+      "kind": "commentary",
+      "url": "https://maturita.cermat.cz/files/files/CJMZD23C0T04_komentovan%C3%A1_%C5%99e%C5%A1en%C3%AD_jednotliv%C3%BDch_%C3%BAloh_FINAL.pdf",
+      "bytes": 283167,
+      "sha256": "746ebde95dd6e57768a9532efd7edd5c24f744dbdc2f805f012b2835ef4d11e1",
+      "pages": 18,
+      "examId": "cjl-2023-podzim"
+    }
+  ]
+}

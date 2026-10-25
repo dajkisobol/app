@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { CERMAT_EXAMS, isTaskAnswered, scoreExam, scoreTask, secondsRemaining, taskRows } from '../src/lib/cermat.ts';
 
 function correctAnswers(exam) {
@@ -86,4 +87,72 @@ test('the official success boundary is 22 points, not 50 percent', () => {
   }
   assert.equal(scoreExam(spring, answers).points, 22);
   assert.equal(scoreExam(spring, answers).passed, true);
+});
+
+const task = (id, number) => CERMAT_EXAMS.find(exam => exam.id === id).tasks.find(value => value.number === number);
+
+test('the 2023–2025 archive has both terms and matches the verified official documents', () => {
+  const verification = JSON.parse(readFileSync(new URL('../docs/cermat-source-verification.json', import.meta.url)));
+  const archive = CERMAT_EXAMS.filter(exam => exam.year >= 2023 && exam.year <= 2025);
+  assert.equal(archive.length, 6);
+  assert.equal(new Set(CERMAT_EXAMS.map(exam => exam.id)).size, CERMAT_EXAMS.length);
+  assert.equal(new Set(CERMAT_EXAMS.map(exam => exam.code)).size, CERMAT_EXAMS.length);
+  for (const year of [2023, 2024, 2025]) assert.deepEqual(archive.filter(exam => exam.year === year).map(exam => exam.season).sort(), ['Jaro', 'Podzim']);
+  for (const exam of archive) {
+    for (const [kind, field] of [['booklet', 'bookletUrl'], ['key', 'keyUrl'], ['commentary', 'commentaryUrl']]) {
+      const document = verification.documents.find(value => value.examId === exam.id && value.kind === kind);
+      assert.ok(document, `${exam.id}: ${kind}`);
+      assert.equal(document.url, exam[field]);
+      assert.match(document.sha256, /^[a-f0-9]{64}$/);
+      assert.ok(document.bytes > 1000);
+      if (kind === 'booklet') assert.equal(exam.pages, document.pages);
+    }
+    for (const value of exam.tasks) if (value.passagePage) assert.ok(value.passagePage <= value.page, `${exam.id}: task ${value.number}`);
+  }
+});
+
+test('autumn 2025 task 10 awards one point only for both requested words', () => {
+  const value = task('cjl-2025-podzim', 10);
+  assert.equal(value.points, 1);
+  assert.equal(scoreTask(value, 'žil jsem, životě').points, 1);
+  assert.equal(scoreTask(value, 'zil, zivotem').points, 1);
+  assert.equal(scoreTask(value, 'žil').points, 0);
+  assert.equal(scoreTask(value, 'žil, životě, básník').points, 0);
+});
+
+test('open answer rows accept the alternatives explicitly given by the official keys', () => {
+  const autumn = task('cjl-2025-podzim', 24);
+  assert.equal(scoreTask(autumn, { '24.1': 'několika', '24.2': 'úplně' }).points, 2);
+  assert.equal(scoreTask(autumn, { '24.1': 'pár', '24.2': 'kompletne' }).points, 2);
+  assert.equal(scoreTask(task('cjl-2024-jaro', 10), { '10.1': 'popsaném', '10.2': 'bych zapomenul' }).points, 2);
+});
+
+test('grammatical-form answers keep diacritics where the key requires exact spelling', () => {
+  assert.equal(scoreTask(task('cjl-2024-jaro', 10), { '10.1': 'popsanem', '10.2': 'bych zapomnel' }).points, 0);
+  assert.equal(scoreTask(task('cjl-2025-jaro', 4), { '4.1': 'hrdými', '4.2': 'věnovaného' }).points, 2);
+  assert.equal(scoreTask(task('cjl-2025-jaro', 4), { '4.1': 'hrdymi', '4.2': 'venovaneho' }).points, 0);
+  assert.equal(scoreTask(task('cjl-2025-jaro', 15), 'vyslanim, poslu').points, 0);
+  assert.equal(scoreTask(task('cjl-2025-jaro', 23), 'hrozne, poradny').points, 2);
+});
+
+test('the spring 2023 spelling task distinguishes amerických from Amerických in any answer order', () => {
+  const value = task('cjl-2023-jaro', 30);
+  assert.equal(scoreTask(value, 'přibyly, amerických, výkonnou, čidly').points, 4);
+  assert.equal(scoreTask(value, 'amerických, čidly, přibyly, výkonnou').points, 4);
+  assert.equal(scoreTask(value, 'přibyly, výkonnou, čidly').points, 3);
+  assert.equal(scoreTask(value, 'přibyly, Amerických, výkonnou, čidly').points, 2);
+});
+
+test('the spring 2023 literary names use the narrowly permitted spelling tolerances', () => {
+  const value = task('cjl-2023-jaro', 19);
+  assert.equal(scoreTask(value, { '19.1': 'Epos o Gylgamešovy', '19.2': 'Hómmér' }).points, 2);
+  assert.equal(scoreTask(value, { '19.1': 'Gillgames', '19.2': 'Homéros' }).points, 2);
+  assert.equal(scoreTask(value, { '19.1': 'Gilgameš', '19.2': 'Homeř' }).points, 1);
+  assert.equal(scoreTask(value, { '19.1': 'Odyssea', '19.2': 'Hemingway' }).points, 0);
+});
+
+test('the autumn 2024 word-extraction examples follow the official partial-credit rules', () => {
+  assert.equal(scoreTask(task('cjl-2024-podzim', 19), 'horečka, sušák').points, 0);
+  assert.equal(scoreTask(task('cjl-2024-podzim', 21), 'šatů, lidi, záda').points, 1);
+  assert.equal(scoreTask(task('cjl-2024-podzim', 27), 'vzájemně, vysýchání, neprospívají, ochranou').points, 4);
 });
