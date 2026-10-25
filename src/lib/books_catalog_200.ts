@@ -13,9 +13,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Nesmrtelnost skrze činy, přátelství, hledání smyslu.",
     "characters": "Gilgameš, Enkidu, Utnapištim.",
     "plotSummary": "Gilgameš po smrti Enkida hledá nesmrtelnost a poznává hrdinskou obrodu.",
-    "languageAndStyle": "Klínové písmo, paralely.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Klínové písmo, paralely."
   },
   {
     "id": "homer-ilias",
@@ -28,9 +26,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Hněv Achilleův, oběť pro čest.",
     "characters": "Achilles, Hektor, Agamemnón, Priamos.",
     "plotSummary": "Achilles poráží Hektora a po prosbě krále Priama vrací jeho tělo.",
-    "languageAndStyle": "Hexametr, homérská přirovnání.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Hexametr, homérská přirovnání."
   },
   {
     "id": "homer-odyssea",
@@ -43,9 +39,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Návrat domů, manželská věrnost.",
     "characters": "Odysseus, Penelopa, Télémachos.",
     "plotSummary": "Odysseus překonává mořské nástrahy a zachraňuje svůj trůn na Ithace.",
-    "languageAndStyle": "Hexametr, retrospektiva.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Hexametr, retrospektiva."
   },
   {
     "id": "sofokles-kral-oidipus",
@@ -58,9 +52,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Neuniknutelnost osudu, osudová vina.",
     "characters": "Oidipus, Iokasté, Kreón.",
     "plotSummary": "Oidipus zjišťuje, že nevědomky zabil otce a oženil se s matkou.",
-    "languageAndStyle": "Tragická ironie, trojednota.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Tragická ironie, trojednota."
   },
   {
     "id": "sofokles-antigona",
@@ -73,9 +65,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Střet božského a lidského zákona.",
     "characters": "Antigona, Kreón, Haimón.",
     "plotSummary": "Antigona pohřbí bratra navzdory zákazu krále a volí mučednickou smrt.",
-    "languageAndStyle": "Vznešený tragický jazyk.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Vznešený tragický jazyk."
   },
   {
     "id": "ovidius-promeny",
@@ -88,9 +78,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Proměna (metamorfóza), láska, mytologie.",
     "characters": "Daidalos, Ikaros, Orfeus, Narcis.",
     "plotSummary": "Soubor 250 mytologických bájí spojených motivem proměny postavy.",
-    "languageAndStyle": "Hexametr, poezie.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Hexametr, poezie."
   },
   {
     "id": "dante-bozska-komedie",
@@ -103,9 +91,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Cesta duše k spáse, duchovní očista.",
     "characters": "Dante, Vergilius, Beatrice.",
     "plotSummary": "Dante prochází Peklem, Očistcem a Rájem až k nazření Boha.",
-    "languageAndStyle": "Terciny, alegorie.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Terciny, alegorie."
   },
   {
     "id": "boccaccio-dekameron",
@@ -118,9 +104,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Láska, vtip, kritika pokrytectví.",
     "characters": "7 žen a 3 muži.",
     "plotSummary": "Skupina lidí utíká před morem a vypráví si 100 svěžích novel.",
-    "languageAndStyle": "Renesanční humanismus.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Renesanční humanismus."
   },
   {
     "id": "chaucer-kanterburske-povidky",
@@ -133,9 +117,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Pestrost středověké společnosti.",
     "characters": "Poutníci (Rytíř, Mlynář).",
     "plotSummary": "Poutníci si cestou vyprávějí příběhy zachycující anglickou společnost.",
-    "languageAndStyle": "Šťavnatý humor.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Šťavnatý humor."
   },
   {
     "id": "villon-zavet",
@@ -148,9 +130,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Pomíjivost života, kajícnost.",
     "characters": "François Villon.",
     "plotSummary": "Básník ironicky bilancuje svojí bouřlivou minulost tuláka a hříšníka.",
-    "languageAndStyle": "Villonská balada.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Villonská balada."
   },
   {
     "id": "cervantes-don-quijote",
@@ -163,9 +143,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Idealismus vs. realita, boj s mlýny.",
     "characters": "Don Quijote, Sancho Panza.",
     "plotSummary": "Zeman popletený romány koná marná hrdinství se sluhou Sanchou.",
-    "languageAndStyle": "Tragikomedie.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Tragikomedie."
   },
   {
     "id": "shakespeare-hamlet",
@@ -178,9 +156,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Pomsta, předstírané šílenství, spravedlnost.",
     "characters": "Hamlet, Claudius, Gertruda, Ofélie.",
     "plotSummary": "Princ Hamlet mstí zákeřnou vraždu svého otce proveditelnou strýcem.",
-    "languageAndStyle": "Blankvers, monology.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Blankvers, monology."
   },
   {
     "id": "shakespeare-othello",
@@ -193,9 +169,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Slepá žárlivost, podlá intrika.",
     "characters": "Othello, Desdemona, Jago.",
     "plotSummary": "Jago zosnuje intriku, která dovede Othella k zavraždění věrné ženy.",
-    "languageAndStyle": "Blankvers, intriky.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Blankvers, intriky."
   },
   {
     "id": "shakespeare-macbeth",
@@ -208,9 +182,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Touha po moci, vina a svědomí.",
     "characters": "Macbeth, Lady Macbeth, Macduff.",
     "plotSummary": "Macbeth zavraždí krále, aby se ujal vlády, ale podlehne teroru.",
-    "languageAndStyle": "Temná atmosféra.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Temná atmosféra."
   },
   {
     "id": "shakespeare-romeo-a-julie",
@@ -223,9 +195,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Tragická láska, rodová zášť.",
     "characters": "Romeo, Julie, Merkucio, Tybalt.",
     "plotSummary": "Milenci ze znepřátelených rodů volí raději smrt než život bez lásky.",
-    "languageAndStyle": "Blankvers, metafory.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/romeo-a-julie/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Blankvers, metafory."
   },
   {
     "id": "shakespeare-zkroceni-zle-zeny",
@@ -238,9 +208,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Přeměna povahy, souboj pohlaví.",
     "characters": "Petruchio, Kateřina, Bianca.",
     "plotSummary": "Petruchio důvtipným chováním 'zkrotí' hubatou a zlou Kateřinu.",
-    "languageAndStyle": "Slovní přestřelky.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Slovní přestřelky."
   },
   {
     "id": "shakespeare-sonety",
@@ -253,9 +221,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Láska, krása, pomíjivost času.",
     "characters": "Básník, Krásný mladík, Černá dáma.",
     "plotSummary": "154 sonetů věnovaných hloubce milostného citu a stárnutí.",
-    "languageAndStyle": "Shakespearovský sonet.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Shakespearovský sonet."
   },
   {
     "id": "moliere-lakomec",
@@ -268,9 +234,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Chamtivost deformující lidské vztahy.",
     "characters": "Harpagon, Kleant, Elisa.",
     "plotSummary": "Chorobný lakomec Harpagon upřednostňuje peníze před štěstím dětí.",
-    "languageAndStyle": "Komedie charakterů.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/lakomec/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Komedie charakterů."
   },
   {
     "id": "moliere-tartuffe",
@@ -283,9 +247,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Pokrytectví, svatouškovství.",
     "characters": "Tartuffe, Orgon, Elmíra.",
     "plotSummary": "Svatoušek Tartuffe obere důvěřivého Orgona o majetek i rodinu.",
-    "languageAndStyle": "Alexandrín, verše.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Alexandrín, verše."
   },
   {
     "id": "moliere-misantrop",
@@ -298,9 +260,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Upřímnost vs. společenská lež.",
     "characters": "Alcest, Celimena, Filint.",
     "plotSummary": "Zásadový Alcest odmítá pokrytectví salonnistů a odchází do samoty.",
-    "languageAndStyle": "Alexandrín, drama.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Alexandrín, drama."
   },
   {
     "id": "defoe-robinson-crusoe",
@@ -313,9 +273,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Vytrvalost, lidská práce, rozum.",
     "characters": "Robinson Crusoe, Páttek.",
     "plotSummary": "Ztrostkotanec Robinson stráví 28 let budováním domova na ostrově.",
-    "languageAndStyle": "Deníkový styl.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Deníkový styl."
   },
   {
     "id": "swift-gulliverovy-cesty",
@@ -328,9 +286,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Ostrá satira lidství a politiky.",
     "characters": "Lemuel Gulliver.",
     "plotSummary": "Gulliver navštěvuje fantastické říše a odhaluje malost lidstva.",
-    "languageAndStyle": "Parodie cestopisu.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Parodie cestopisu."
   },
   {
     "id": "voltaire-candide",
@@ -343,9 +299,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Kritika naivního optimismu, práce.",
     "characters": "Candide, Panglos, Kunhuta.",
     "plotSummary": "Naivní Candide zažívá pohromy a dochází k závěru 'obdělávat zahrádku'.",
-    "languageAndStyle": "Osvícenská ironie.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Osvícenská ironie."
   },
   {
     "id": "prevost-manon-lescaut",
@@ -358,9 +312,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Spalující vášeň, morální úpadek.",
     "characters": "Rytíř des Grieux, Manon.",
     "plotSummary": "Šlechtic kvůli neustále nevěrné Manon přichází o majetek i čest.",
-    "languageAndStyle": "Tragický milostný tón.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Tragický milostný tón."
   },
   {
     "id": "goethe-utrpeni-mladeho-werthera",
@@ -373,9 +325,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Nenaplněná láska, světobol, sebevražda.",
     "characters": "Werther, Lotte, Albert.",
     "plotSummary": "Werther pro nenaplněnou lásku k zadané Lotte volí dobrovolnou smrt.",
-    "languageAndStyle": "Dopisová forma.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Dopisová forma."
   },
   {
     "id": "kristianova-legenda",
@@ -388,9 +338,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Počátky české státnosti, křesťanství, světci.",
     "characters": "Sv. Václav, sv. Ludmila, Boleslav.",
     "plotSummary": "Život a mučednická smrt svaté Ludmily a svatého Václava.",
-    "languageAndStyle": "Latinská prozaická forma.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Latinská prozaická forma."
   },
   {
     "id": "kosmas-kronika-ceska",
@@ -403,9 +351,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Vznik českého národa, vláda Přemyslovců.",
     "characters": "Praotec Čech, Libuše, Přemysl Oráč, knížata.",
     "plotSummary": "Nejstarší česká kronika zachycující mýty i historii českého státu.",
-    "languageAndStyle": "Vznosná latina.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Vznosná latina."
   },
   {
     "id": "dalimilova-kronika",
@@ -418,9 +364,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Vlastenectví, obrana českého jazyka.",
     "characters": "Česká knížata a králové.",
     "plotSummary": "První česky psaná veršovaná kronika s silným protiněmeckým duchem.",
-    "languageAndStyle": "Bezrozměrný verš.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Bezrozměrný verš."
   },
   {
     "id": "hus-knizky-o-svatokupectvi",
@@ -433,9 +377,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Kritika církve, mravní čistota.",
     "characters": "Jan Hus, církevní představitelé.",
     "plotSummary": "Ostrá kritika vymáhání poplatků za svátosti a církevní úřady.",
-    "languageAndStyle": "Srozumitelná čeština.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Srozumitelná čeština."
   },
   {
     "id": "komensky-labyrint-sveta",
@@ -448,9 +390,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Kritika lidského světa, útěcha ve víře.",
     "characters": "Poutník, Všudybud (Zvědavost), Mámení.",
     "plotSummary": "Poutník prochází městem Labyrint a vidí marnost. Útěchu nalézá v srdci s Bohem.",
-    "languageAndStyle": "Barokní čeština, alegorie.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/labyrint-sveta-a-raj-srdce/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Barokní čeština, alegorie."
   },
   {
     "id": "komensky-orbis-pictus",
@@ -463,9 +403,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Názorné vzdělávání, poznávání světa.",
     "characters": "Učitel, žák.",
     "plotSummary": "Ilustrovaná encyklopedická učebnice světa spojující obrázek a text.",
-    "languageAndStyle": "Vícejazyčné paralelní sloupce.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Vícejazyčné paralelní sloupce."
   },
   {
     "id": "bridel-co-boh-clovek",
@@ -478,9 +416,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Nekonečnost Boha vs. nicotnost člověka.",
     "characters": "Básník před Bohem.",
     "plotSummary": "Meditativní poezie srovnávající dokonalost Boha a ubohost člověka.",
-    "languageAndStyle": "Barokní kontrast, metafory.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Barokní kontrast, metafory."
   },
   {
     "id": "balbin-rozprava-na-obranu-jazyka",
@@ -493,9 +429,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Láska ke českému jazyku a vlasti.",
     "characters": "Bohuslav Balbín.",
     "plotSummary": "Apologie obhajující právo Čechů na vlastní jazyk a kulturu.",
-    "languageAndStyle": "Latinsky psaný spis.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Latinsky psaný spis."
   },
   {
     "id": "dobrovsky-dejiny-ceske-reci",
@@ -508,9 +442,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Vědecký rozbor vývoje českého jazyka.",
     "characters": "Josef Dobrovský.",
     "plotSummary": "Základní vědecké dílo mapující vývoj české literatury a gramatiky.",
-    "languageAndStyle": "Německy psané vědecké dílo.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Německy psané vědecké dílo."
   },
   {
     "id": "jungmann-slovesnost",
@@ -523,9 +455,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Rozvoj české slovesnosti a poezie.",
     "characters": "Josef Jungmann.",
     "plotSummary": "Učebnice poetiky obsahující ukázky české i světové literatury.",
-    "languageAndStyle": "Kultivovaná obrozenecká čeština.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Kultivovaná obrozenecká čeština."
   },
   {
     "id": "celakovsky-ohlas-pisni-ceskych",
@@ -538,9 +468,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Lidová slovesnost, satira, přirozenost.",
     "characters": "Venkovští lidé, Toman (báseň Toman a Lesní panna).",
     "plotSummary": "Básnická sbírka napodobující rytmus a ducha české lidové poezie.",
-    "languageAndStyle": "Lidový verš a popěvky.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Lidový verš a popěvky."
   },
   {
     "id": "celakovsky-ohlas-pisni-ruskych",
@@ -553,9 +481,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Hrdinství, rekovské bohatýrské příběhy.",
     "characters": "Rusky bohatýři, Rusové.",
     "plotSummary": "Básně inspirované ruskými bylinami (bylinami) a hrdinskými eposy.",
-    "languageAndStyle": "Hrdinský tón.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Hrdinský tón."
   },
   {
     "id": "klicpera-rohovin-ctverrohy",
@@ -568,9 +494,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Humor, hříčka se jmény, měšťanstvo.",
     "characters": "Rohovín Čtverrohý, studenti.",
     "plotSummary": "Komedie založená na vtipné sázce a komických nedorozuměních se jménem.",
-    "languageAndStyle": "Živá obrozenecká čeština.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Živá obrozenecká čeština."
   },
   {
     "id": "havlicek-krest-svatého-vladimira",
@@ -583,9 +507,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Kritika absolutismu, církve a carismu.",
     "characters": "Car Vladimír, bůh Perun.",
     "plotSummary": "Car nechat utopit boha Peruna protože mu nechtěl hřmět na svátek, a hledá nové náboženství.",
-    "languageAndStyle": "Lidový jazyk, úderná satira.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Lidový jazyk, úderná satira."
   },
   {
     "id": "havlicek-tirolske-elegie",
@@ -598,9 +520,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Kritika habsburské policie a absolutismu.",
     "characters": "Havlíček, policajti, kočí.",
     "plotSummary": "Humorné i hořké líčení autorova zatčení a deportace do vyhnanství v Brixenu.",
-    "languageAndStyle": "Ironie, lidový popěvek.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Ironie, lidový popěvek."
   },
   {
     "id": "havlicek-epigramy",
@@ -613,9 +533,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Kritika církve, krále, vlastenců i světa.",
     "characters": "Havlíček jako kritický pozorovatel.",
     "plotSummary": "Stručné několikaveršové ustoupené básně s břitkou pointou.",
-    "languageAndStyle": "Úderná břitká pointa.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Úderná břitká pointa."
   },
   {
     "id": "tyl-strakonicky-dudak",
@@ -628,9 +546,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Láska k domovu, české vlastenectví.",
     "characters": "Švanda (dudák), Dorotka, Kalafuna, Vocílka.",
     "plotSummary": "Dudák Švanda jde do světa za penězi. Kouzelné dudy od matky víly ho zachrání, ale štěstí najde až doma s Dorotkou.",
-    "languageAndStyle": "Lidový jazyk, pohádkové prvky.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/strakonicky-dudak/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Lidový jazyk, pohádkové prvky."
   },
   {
     "id": "tyl-fidlovacka",
@@ -643,9 +559,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "České vlastenectví, pražský lid.",
     "characters": "Slepý Mareš, ševci, vlastenci.",
     "plotSummary": "Komedie z pražského prostředí, kde poprvé zazněla píseň Kde domov můj.",
-    "languageAndStyle": "Pražský hovorový jazyk.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Pražský hovorový jazyk."
   },
   {
     "id": "nemcova-babicka",
@@ -658,9 +572,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Ideál lidskosti, české tradice.",
     "characters": "Babička, Barunka, kněžna, Viktorka.",
     "plotSummary": "Babička na Starém Bělidle předává moudrost a dobrotu lidem v okolí.",
-    "languageAndStyle": "Idealizovaný realizmus, lidový jazyk.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/babicka/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Idealizovaný realizmus, lidový jazyk."
   },
   {
     "id": "nemcova-diva-bara",
@@ -673,9 +585,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Odvaha, nezávislost ženy, předsudky.",
     "characters": "Bára (pastýřova dcera), Eliška, Myslivec.",
     "plotSummary": "Nezávislá Bára se nezalekne strašidel a zachrání kamarádku před nechtěným sňatkem.",
-    "languageAndStyle": "Realistický obraz vesnice.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Realistický obraz vesnice."
   },
   {
     "id": "goethe-faust",
@@ -688,9 +598,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Hledání smyslu bytí, touha po poznání, pakt s ďáblem.",
     "characters": "Faust, Mefistofeles, Markétka.",
     "plotSummary": "Učenec Faust znechucen marností vědy upíše duši Ďáblovi Mefistofelovi za mládí a poznání.",
-    "languageAndStyle": "Filozofický verš, dramatická báseň.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Filozofický verš, dramatická báseň."
   },
   {
     "id": "byron-childe-haroldova-pout",
@@ -703,9 +611,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Byronský hrdina, osamělost, touha po svobodě.",
     "characters": "Childe Harold (byronský hrdina).",
     "plotSummary": "Osamělý a zklamaný šlechtic Harold putuje Evropou a rozjímá nad tyranií a zašlou slávou.",
-    "languageAndStyle": "Byronská sloka (spenserovská sloka).",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Byronská sloka (spenserovská sloka)."
   },
   {
     "id": "puskin-evzen-onegin",
@@ -718,9 +624,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Zbytečný člověk, nenaplněná láska, osudová míjení.",
     "characters": "Evžen Oněgin, Taťána Larina, Vladimir Lenskij.",
     "plotSummary": "Oněgin odmítne lásku zralé Taťány. Po letech se setkají v Petrohradě, ale Taťána je vdaná a odmítne ho.",
-    "languageAndStyle": "Oněginská sloka (14 veršů).",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Oněginská sloka (14 veršů)."
   },
   {
     "id": "puskin-kapitanska-dcerka",
@@ -733,9 +637,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Čest, věrnost, láska v bouřlivé době.",
     "characters": "Petr Griňov, Maša Mironovová, Jemeljan Pugačov.",
     "plotSummary": "Mladý důstojník Griňov projde zkouškami během krvavého rolnického povstání Pugačova.",
-    "languageAndStyle": "Střízlivý vyprávěcí styl.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Střízlivý vyprávěcí styl."
   },
   {
     "id": "lermontov-hrdina-nasi-doby",
@@ -748,9 +650,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Zbytečný člověk, skepse, osamělost.",
     "characters": "Grigorij Pečorin.",
     "plotSummary": "Psychologická kronika důstojníka Pečorina, který z nudy ničí životy sobě i okolí.",
-    "languageAndStyle": "Složená kompozice z deníků a povídek.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Složená kompozice z deníků a povídek."
   },
   {
     "id": "hugo-chram-matky-bozi-v-parizi",
@@ -763,9 +663,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Kontrast vnější ošklivosti a vnitřní krásy, láska.",
     "characters": "Quasimodo, Esmeralda, kněz Claude Frollo, Phoebus.",
     "plotSummary": "Hrbáč Quasimodo miluje krásnou cikánku Esmeraldu a brání ji před zlym knězem Frollem.",
-    "languageAndStyle": "Antiteze, kontrast, popis katedrály.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Antiteze, kontrast, popis katedrály."
   },
   {
     "id": "hugo-bidnici",
@@ -778,9 +676,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Spravedlnost, milosrdenství, sociální bída.",
     "characters": "Jean Valjean, inspektor Javert, Cosetta, Marius.",
     "plotSummary": "Bývalý galejník Jean Valjean se mění v dobrodince, ale neustále ho pronásleduje Javert.",
-    "languageAndStyle": "Romantická klenba, sociální rozměr.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Romantická klenba, sociální rozměr."
   },
   {
     "id": "dumas-hrabe-monte-cristo",
@@ -793,9 +689,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Pomsta, spravedlnost, věrnost.",
     "characters": "Edmond Dantès (Hrabě Monte Cristo), Mercedes, Faria.",
     "plotSummary": "Nespravedlivě uvězněný námořník Dantès uteče z pevnosti If a pomstí se svým zrádcům.",
-    "languageAndStyle": "Napínavý děj, romantické motivy.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Napínavý děj, romantické motivy."
   },
   {
     "id": "stendhal-cerveny-a-cerny",
@@ -808,9 +702,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Cílevědomost, společenský vzestup, pokrytectví.",
     "characters": "Julien Sorel, paní de Rênal, Mathilda.",
     "plotSummary": "Chudý mladík Julien Sorel využívá lásky a církve ke společenskému vzestupu, ale končí na popravišti.",
-    "languageAndStyle": "Psychologický rozbor, kontrast červené a černé.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Psychologický rozbor, kontrast červené a černé."
   },
   {
     "id": "balzac-otec-goriot",
@@ -823,9 +715,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Otcova opičí láska k dcerám, touha po penězích.",
     "characters": "Otec Goriot, Eugene de Rastignac, Vautrin.",
     "plotSummary": "Otec Goriot obětuje veškeré jmění pro dcery, které ho v chudobě nechají opuštěného umřít.",
-    "languageAndStyle": "Lidská komedie, detailní popisy prostředí.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Lidská komedie, detailní popisy prostředí."
   },
   {
     "id": "balzac-lesk-a-bida-kurtizan",
@@ -838,9 +728,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Moc peněz, zločin, zkaženost společnosti.",
     "characters": "Lucien de Rubempré, Vautrin, Ester.",
     "plotSummary": "Bývalý galejník Vautrin řídí vzestup mladého básníka Luciena ve vysoké společnosti.",
-    "languageAndStyle": "Propletený děj Lidské komedie.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Propletený děj Lidské komedie."
   },
   {
     "id": "flaubert-pani-bovaryova",
@@ -853,9 +741,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Bovarysmus (útěk od reality k iluzím), neuspokojení.",
     "characters": "Ema Bovaryová, Karel Bovary, Rodolphe, Leon.",
     "plotSummary": "Ema hledá v milostných románcích vášeň z knih, ale po dluzích a zklamání volí sebevraždu.",
-    "languageAndStyle": "Objektivní vyprávěcí styl, psychologická hloubka.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Objektivní vyprávěcí styl, psychologická hloubka."
   },
   {
     "id": "dickens-oliver-twist",
@@ -868,9 +754,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Dětská práce, zločin, sociální nespravedlnost.",
     "characters": "Oliver Twist, Fagin, Sykes, pan Brownlow.",
     "plotSummary": "Sirotek Oliver uteče z chudobince do Londýna, kde ho zloděj Fagin učí krást, než najde dobrodince.",
-    "languageAndStyle": "Kritický realizmus, humor i dojetí.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Kritický realizmus, humor i dojetí."
   },
   {
     "id": "dickens-kronika-pickwickova-klubu",
@@ -883,9 +767,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Humor, laskavost, anglické osobité figurky.",
     "characters": "Samuel Pickwick, Sam Weller (jeho sluha).",
     "plotSummary": "Členové Pickwickova klubu cestují po Anglii a zažívají komické příhody a nedorozumění.",
-    "languageAndStyle": "Humoristický román na pokračování.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Humoristický román na pokračování."
   },
   {
     "id": "bronteova-jana-eyrova",
@@ -898,9 +780,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Nezávislost ženy, morální síla, tajemství.",
     "characters": "Jana Eyrová, pan Rochester, Bertha Masonová.",
     "plotSummary": "Sirotek Jana se stane vychovatelkou u pana Rochestera a odhaluje temné tajemství jeho sídla.",
-    "languageAndStyle": "Ich-forma, romantické i realistické prvky.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Ich-forma, romantické i realistické prvky."
   },
   {
     "id": "bronteova-na-vetrne-hurce",
@@ -913,9 +793,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Divoká vášeň, pomsta zničující generace.",
     "characters": "Heathcliff, Kateřina Earnshawová, Ellen (chůva).",
     "plotSummary": "Nalezenec Heathcliff se z pomsty za zhrzenou lásku ke Kateřině stává tyranem obou rodin.",
-    "languageAndStyle": "Rámcová kompozice, divoká vášeň.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Rámcová kompozice, divoká vášeň."
   },
   {
     "id": "gogol-revizor",
@@ -928,9 +806,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Úplatkářství, hlupáctví úředníků, strach.",
     "characters": "Chlestakov (falešný revizor), Hejtman, Osip.",
     "plotSummary": "Zchudlý úředník Chlestakov je v městečku považován za obávaného tajného revizora z Petrohradu.",
-    "languageAndStyle": "Komedie záměny, břitká satira.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Komedie záměny, břitká satira."
   },
   {
     "id": "gogol-mrtve-duse",
@@ -943,9 +819,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Podvody, zkaženost nevolnického Ruska.",
     "characters": "Pavel Ivanovič Čičikov, statkáři (Manilov, Sobakevič).",
     "plotSummary": "Podvodník Čičikov kupuje od statkářů 'mrtvé duše' (zemřelé nevolníky) k získání majetku.",
-    "languageAndStyle": "Groteskní charakteristiky postav.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Groteskní charakteristiky postav."
   },
   {
     "id": "dostojevskij-zlocin-a-trest",
@@ -958,9 +832,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Svědomí, morální ospravedlnění vraždy, pokání.",
     "characters": "Rodion Raskolnikov, Soňa Мармеладова, Porfirij Petrovič.",
     "plotSummary": "Chudý student Raskolnikov zavraždí lichvářku, ale drtivé výčitky svědomí ho přivedou k doznání.",
-    "languageAndStyle": "Hluboká psychologická analýza, křesťanská spása.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Hluboká psychologická analýza, křesťanská spása."
   },
   {
     "id": "dostojevskij-bratri-karamazovi",
@@ -973,9 +845,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Otcovražda, Bůh a morálka, svoboda vůle.",
     "characters": "Fjodor Karamazov, Dmitrij, Ivan, Aljoša, Smerďakov.",
     "plotSummary": "Po vraždě zkaženého otce Fjodora je obviněn syn Dmitrij, ačkoliv skutečným vrahem je Smerďakov.",
-    "languageAndStyle": "Filozofické úvahy (Legenda o Velkém inkvizitorovi).",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Filozofické úvahy (Legenda o Velkém inkvizitorovi)."
   },
   {
     "id": "tolstoj-vojna-a-mir",
@@ -988,9 +858,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Dějinný osud národa, smysl života, válka.",
     "characters": "Anatol Kuragin, Andrej Bolkonskij, Pierre Bezuchov, Nataša Rostovová.",
     "plotSummary": "Sledování osudů několika šlechtických rodin na pozadí napoleonské invaze do Ruska.",
-    "languageAndStyle": "Obrovský rozsah, filozofie dějin.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Obrovský rozsah, filozofie dějin."
   },
   {
     "id": "tolstoj-anna-kareninova",
@@ -1003,9 +871,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Mravní odpovědnost, cizoložství, láska.",
     "characters": "Anna Kareninová, Vronskij, Karenin, Levin.",
     "plotSummary": "Vdaná Anna obětuje rodinu pro milostný vztah k Vronskému, ale po společenském odsouzení volí smrt.",
-    "languageAndStyle": "Paralelní dějové linie, psychologie postav.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Paralelní dějové linie, psychologie postav."
   },
   {
     "id": "cechov-visnovy-sad",
@@ -1018,9 +884,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Zánik starého světa šlechty, nástup dravého kapitalismu.",
     "characters": "Raněvská, Lopachin, Gajev, Trofimov.",
     "plotSummary": "Zadlužená šlechtična Raněvská přichází o rodinné sídlo s višňovým sadem, které odkoupí podnikatel Lopachin.",
-    "languageAndStyle": "Lyrická atmosféra, podtext dialogů.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Lyrická atmosféra, podtext dialogů."
   },
   {
     "id": "cechov-racek",
@@ -1033,9 +897,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Nenaplněné touhy, umění, nenaplněná láska.",
     "characters": "Treplev, Nina Zarečná, Arkadinová, Trigorin.",
     "plotSummary": "Mladý dramatik Treplev touží po novém umění i lásce Niny, ale po neúspěchu spáchá sebevraždu.",
-    "languageAndStyle": "Symbolika racka, melancholie.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Symbolika racka, melancholie."
   },
   {
     "id": "zola-zabijak",
@@ -1048,9 +910,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Alkoholismus (zabiják), dědičnost, sociální úpadek.",
     "characters": "Gervaisa, Coupeau, Lantier, Nana.",
     "plotSummary": "Pračka Gervaisa se usilovnou prací vypracuje, ale pod vlivem manžela Coupeaua podlehne alkoholu.",
-    "languageAndStyle": "Naturalistický detail, slang chudiny.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Naturalistický detail, slang chudiny."
   },
   {
     "id": "zola-germinal",
@@ -1063,9 +923,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Boj dělníků o přežití, stávka, kapitalismus.",
     "characters": "Štěpán Lantier, Kateřina, Chaval.",
     "plotSummary": "Strojník Štěpán Lantier vede stávku horníků v uhelných dolech, která končí tragickým potlačením.",
-    "languageAndStyle": "Davové scény, syrový popis bídy.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Davové scény, syrový popis bídy."
   },
   {
     "id": "maupassant-kulicka",
@@ -1078,9 +936,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Pokrytectví vyšší společnosti vs. ryzí vlastenectví prostitutky.",
     "characters": "Kulička (prostitutka Elisabeth), pruský důstojník, měšťané.",
     "plotSummary": "Měšťané donutí prostitutku Kuličku obětovat se pruskému důstojníkovi, ale pak jí pohrdají.",
-    "languageAndStyle": "Ironie, kontrast morálky.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Ironie, kontrast morálky."
   },
   {
     "id": "maupassant-milacek",
@@ -1093,9 +949,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Kariérismus, bezpáteřnost, využívání žen.",
     "characters": "Georges Duroy (Miláček), Clotilda, paní Walterová.",
     "plotSummary": "Pohledný bezpáteřní důstojník Duroy využívá žen k ceste na vrchol novinářského a politického světa.",
-    "languageAndStyle": "Kritika žurnalistiky a mocných.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Kritika žurnalistiky a mocných."
   },
   {
     "id": "wilde-obraz-doriana-graye",
@@ -1108,9 +962,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Estetismus, Faustovský motiv, dvojí život.",
     "characters": "Dorian Gray, Lord Henry Wotton, Basil Hallward.",
     "plotSummary": "Krásný Dorian si přeje zůstat mladý, zatímco jeho namalovaný obraz stárne a nese stopy jeho zločinů.",
-    "languageAndStyle": "Aforismy, dekadentní atmosféra.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Aforismy, dekadentní atmosféra."
   },
   {
     "id": "wilde-jak-je-dulezite-miti-filipa",
@@ -1123,9 +975,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Společenská přetvářka, salonní vtip.",
     "characters": "Jack Worthing (Filip), Algernon, Gwendolina, Cecílie.",
     "plotSummary": "Dva přátelé si vymyslí fiktivní osoby, aby mohli vést dvojí život a získat milované ženy.",
-    "languageAndStyle": "Brilantní konverzační vtip a konverzační pointa.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Brilantní konverzační vtip a konverzační pointa."
   },
   {
     "id": "baudelaire-kvety-zla",
@@ -1138,9 +988,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Krása v ošklivosti, melancholie (Spleen), erotika.",
     "characters": "Básník.",
     "plotSummary": "Kultovní sbírka propojující ošklivost, smrt a zmar s čistým básnickým uměním (báseň Mršina).",
-    "languageAndStyle": "Synestezie, symbolika, sonety.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Synestezie, symbolika, sonety."
   },
   {
     "id": "poe-havran",
@@ -1153,9 +1001,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Smrt milované ženy, beznaděj, motiv 'Nevermore'.",
     "characters": "Básník, Havran.",
     "plotSummary": "Horečnatý básník truchlí za zesnulou Lenoru, když do pokoje vletí havran opakováním 'Nevermore' (Již nikdy více).",
-    "languageAndStyle": "Mystická refrenovistost, zvukomalba.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Mystická refrenovistost, zvukomalba."
   },
   {
     "id": "doyle-pes-baskervillsky",
@@ -1168,9 +1014,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Vědecký rozum vs. pověry, tajemný zločin.",
     "characters": "Sherlock Holmes, dr. Watson, Sir Henry Baskerville.",
     "plotSummary": "Sherlock Holmes odhaluje tajemství 'strašidelného psa' vraždícího dědice rodu Baskervillů.",
-    "languageAndStyle": "Atmosféra mlžných blat, dedukce.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Atmosféra mlžných blat, dedukce."
   },
   {
     "id": "twain-dobrodruzstvi-huckleberryho-finna",
@@ -1183,9 +1027,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Touha po svobodě, rasové předsudky, přátelství.",
     "characters": "Huckleberry Finn, uprchlý otrok Jim, Tom Sawyer.",
     "plotSummary": "Chlapec Huck uteče na voru po řece Mississippi s uprchlým otrokem Jimem a poznává jižanskou společnost.",
-    "languageAndStyle": "Hovorový jižanský jazyk, humor.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Hovorový jižanský jazyk, humor."
   },
   {
     "id": "verne-20000-mil-pod-morem",
@@ -1198,9 +1040,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Technický pokrok, touha po svobodě, tajemství.",
     "characters": "Kapitán Nemo, profesore Aronnax, Ned Land.",
     "plotSummary": "Trosečníci se stávají zajatci tajemného kapitána Nema na technicky dokonalé ponorce Nautilus.",
-    "languageAndStyle": "Vědecké popisy, dobrodružství.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Vědecké popisy, dobrodružství."
   },
   {
     "id": "macha-maj",
@@ -1213,9 +1053,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Tragická láska, osudovost, marnost života.",
     "characters": "Vilém, Jarmila, Hynek.",
     "plotSummary": "Vilém zavraždí otce který svedl Jarmilu, a po noci uvažování o smrti je popraven.",
-    "languageAndStyle": "Jambický verš, metafory.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/maj/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Jambický verš, metafory."
   },
   {
     "id": "erben-kytice",
@@ -1228,9 +1066,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Mateřská láska, porušení mravního řádu, trest.",
     "characters": "Matky, dcery, Polednice, Vodník.",
     "plotSummary": "Většina postav se dopustí prohřešku proti mravnímu řádu a následuje neúprosný trest.",
-    "languageAndStyle": "Zvukomalba, lidový verš.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/kytice/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Zvukomalba, lidový verš."
   },
   {
     "id": "nemcova-v-zamku-a-v-podzamci",
@@ -1243,9 +1079,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Sociální rozdíly, sobectví bohatých vs. obětavost chudých.",
     "characters": "Paní Skočdopolová, pes Joli, Karásek, Vojtěch.",
     "plotSummary": "Povýšená zámecká paní prožije po nemoci a smrti psíka duševní proměnu v dobrodinku.",
-    "languageAndStyle": "Kontrast zámeckého a podzámeckého života.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Kontrast zámeckého a podzámeckého života."
   },
   {
     "id": "neruda-povidky-malostranske",
@@ -1258,9 +1092,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Maloměstský život, lidičky, figurky, ironie.",
     "characters": "Pan Rybář, pan Vorel, doktor Kazisvět.",
     "plotSummary": "Soubor povídek popisující rázovité postavičky a příběhy pražské Malé Strany.",
-    "languageAndStyle": "Archaismy, pražský slang.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/povidky-malostranske/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Archaismy, pražský slang."
   },
   {
     "id": "neruda-balady-a-romance",
@@ -1273,9 +1105,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Lidské vztahy, národní osud, mateřství.",
     "characters": "Král Karel IV., Arnošt z Pardubic, Děd.",
     "plotSummary": "Sbírka otáčející tradiční žánry (Baláda o Karlu IV., Romance o Karlu IV.).",
-    "languageAndStyle": "Přístupná poetika, humor.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Přístupná poetika, humor."
   },
   {
     "id": "neruda-zpevy-patecni",
@@ -1288,9 +1118,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Víra v budoucnost českého národa, utrpení.",
     "characters": "Básník jako mluvčí národa.",
     "plotSummary": "Posmrtně vydaná vlastenecká sbírka přirovnávající utrpení národa k pátečnímu ukřižování.",
-    "languageAndStyle": "Patetický vlastenecký tón.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Patetický vlastenecký tón."
   },
   {
     "id": "halek-vecerni-pisne",
@@ -1303,9 +1131,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Čistá milostná láska, optimismus, krása přírody.",
     "characters": "Básník a jeho milá.",
     "plotSummary": "Optimistické lyrické básně oslavující milostný cit a přírodu.",
-    "languageAndStyle": "Písňová forma, melodie.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Písňová forma, melodie."
   },
   {
     "id": "cech-pravy-vylet-pana-broucka",
@@ -1318,9 +1144,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Kritika maloměšťáctví, sobectví a omezenosti.",
     "characters": "Matěj Brouček (pražský domácí).",
     "plotSummary": "Pražský měšťák Brouček se ve snu dostává na Měsíc mezi éterické estetické obyvatele.",
-    "languageAndStyle": "Ostrá satira, humor.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Ostrá satira, humor."
   },
   {
     "id": "krasnohorska-hubicka",
@@ -1333,9 +1157,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Předsudky, hrdost, smíření v lásce.",
     "characters": "Vendulka, Lukáš.",
     "plotSummary": "Hrdá Vendulka odmítne dát Lukášovi hubičku před svatbou z úcty k zesnulé ženě.",
-    "languageAndStyle": "Veršované operní libreto (hudba B. Smetana).",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Veršované operní libreto (hudba B. Smetana)."
   },
   {
     "id": "jirasek-stare-povesti-ceske",
@@ -1348,9 +1170,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Národní hrdinství, české dějiny.",
     "characters": "Praotec Čech, Libuše, Přemysl, Horymír.",
     "plotSummary": "Převyprávění nejznámějších českých mýtů a historických událostí.",
-    "languageAndStyle": "Archaizovaný vlastenecký styl.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/stare-povesti-ceske/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Archaizovaný vlastenecký styl."
   },
   {
     "id": "jirasek-mezi-proudy",
@@ -1363,9 +1183,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Počátky husitského hnutí, reformy.",
     "characters": "Jan Hus, král Václav IV., Jan Žižka.",
     "plotSummary": "Trilogie zachycující napětí v české společnosti před vypuknutím husitské revoluce.",
-    "languageAndStyle": "Historický detail.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Historický detail."
   },
   {
     "id": "jirasek-f-l-vek",
@@ -1378,9 +1196,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Vlastenectví, divadlo, česká kniha.",
     "characters": "František Ladislav Věk, Kramerius, Thám.",
     "plotSummary": "Kronika sledující život obrozence Věka a boj za český jazyk a divadlo.",
-    "languageAndStyle": "Rozsáhlý děj, historická věrnost.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Rozsáhlý děj, historická věrnost."
   },
   {
     "id": "jirasek-temno",
@@ -1393,9 +1209,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Rekatolizace, tajní nekatolíci, pálení knih.",
     "characters": "Koniáš (jezuita), Helenka, Tomáš Svoboda.",
     "plotSummary": "Boj protireformace s tajnými českými nekatolíky uchovávajícími bratrské knihy.",
-    "languageAndStyle": "Dramatický obrozenecký obraz.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Dramatický obrozenecký obraz."
   },
   {
     "id": "jirasek-lucerna",
@@ -1408,9 +1222,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Český poddaný lid vs. panská vrchnost, vodníci.",
     "characters": "Mlynář Libor, Hanička, Kněžna, Vodník Michal.",
     "plotSummary": "Mlynář brání své právo a lípu před panskou vrchností za pomoci pohádkových bytostí.",
-    "languageAndStyle": "Pohádková atmosféra, vlastenectví.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Pohádková atmosféra, vlastenectví."
   },
   {
     "id": "winter-mistr-kampanus",
@@ -1423,9 +1235,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Bělohorská tragédie, osud české inteligence.",
     "characters": "Jan Kampanus Vodňanský, rektor univerzity.",
     "plotSummary": "Tragický osud rektora Kampana, který se marně snaží zachránit univerzitu po bitvě na Bílé hoře.",
-    "languageAndStyle": "Archaizovaný jazyk, historická věrnost.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Archaizovaný jazyk, historická věrnost."
   },
   {
     "id": "vrchlicky-noc-na-karlstejne",
@@ -1438,9 +1248,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Láska překonávající hradní zákazy, vlastenectví.",
     "characters": "Karel IV., královna Eliška Pomořanská, Pešek.",
     "plotSummary": "Královna Eliška v převlečení za páže pronikne na Karlštejn, kam mají ženy vstup zakázán.",
-    "languageAndStyle": "Lehký veršovaný humor, vlastenecký patos.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Lehký veršovaný humor, vlastenecký patos."
   },
   {
     "id": "vrchlicky-okna-v-bouri",
@@ -1453,9 +1261,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Osobní bolest, zklamání, příroda, báseň Za trochu lásky.",
     "characters": "Básník.",
     "plotSummary": "Sbírka reagující na básníkovu osobní a manželskou krizi (obsahuje báseň Za trochu lásky šel bych světa kraj).",
-    "languageAndStyle": "Mistrovská formální dokonalost.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Mistrovská formální dokonalost."
   },
   {
     "id": "machar-confiteor",
@@ -1468,9 +1274,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Kritika společnosti, věcnost, beziluzivnost.",
     "characters": "Básník.",
     "plotSummary": "Společenská a osobní lyrika odmítající vlasteneckou frázi a sentiment.",
-    "languageAndStyle": "Civilismus, hovorový tón.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Civilismus, hovorový tón."
   },
   {
     "id": "sova-kvety-intimnich-nalad",
@@ -1483,9 +1287,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Přírodní impresionismus, nálady, přeludy.",
     "characters": "Básník.",
     "plotSummary": "Impresionistická lyrika zachycující prchavé nálady přírody a duše (báseň U řek).",
-    "languageAndStyle": "Impresionistická barevnost, volný verš.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Impresionistická barevnost, volný verš."
   },
   {
     "id": "brezina-svitani-na-zapade",
@@ -1498,9 +1300,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Mystický symbolismus, bol, duchovní vykoupení.",
     "characters": "Básník - mystik.",
     "plotSummary": "Vrcholný český symbolismus hledající duchovní smysl utrpení a spásy světa.",
-    "languageAndStyle": "Bohatá metaforika, hymnický verš.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Bohatá metaforika, hymnický verš."
   },
   {
     "id": "hlavacek-mstiva-kantilena",
@@ -1513,9 +1313,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Dekadence, marnost vzpoury, melancholie.",
     "characters": "Geusové (vzpurníští šlechtici).",
     "plotSummary": "Dekadentní básnický cyklus o marné a tragické vzpouře nizozemských geusů.",
-    "languageAndStyle": "Hudebnost, melancholické tóny.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Hudebnost, melancholické tóny."
   },
   {
     "id": "mrstik-pohadka-maje",
@@ -1528,9 +1326,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Oslava mládí, čisté lásky a jarní přírody.",
     "characters": "Ríša (student), Helenka (dcerka myslivce).",
     "plotSummary": "Městský student Ríša se zamiluje do čisté venkovské Helenky a nachází duševní obrodu.",
-    "languageAndStyle": "Okouzlující popisy jarní přírody.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Okouzlující popisy jarní přírody."
   },
   {
     "id": "mrstikove-marysa",
@@ -1543,9 +1339,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Dohodnuté manželství pro peníze, otrava trautem.",
     "characters": "Maryša, Lízal (otec), Vávra (vdovec), Francek.",
     "plotSummary": "Maryša je otcem donucena provdat se za bohatého krutého mlynáře Vávru. Nakonec ho otráví kávou s jedem.",
-    "languageAndStyle": "Moravské nářečí, drcená tragika.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Moravské nářečí, drcená tragika."
   },
   {
     "id": "rais-kalibuv-zlocin",
@@ -1558,9 +1352,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Rozvrat manželství chamtivostí, týrání.",
     "characters": "Lojza Kaliba, Karla (žena), Boučková (tchyně).",
     "plotSummary": "Dobrý Lojza Kaliba je uštván chamtivou ženou a tchyní až v afektu Karlu zabije a umírá na selhání.",
-    "languageAndStyle": "Tragický venkovský realizmus.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Tragický venkovský realizmus."
   },
   {
     "id": "novakova-jiri-smatlan",
@@ -1573,9 +1365,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Hledání pravdy a sociální spravedlnosti.",
     "characters": "Jiří Šmatlán (tkadlec).",
     "plotSummary": "Příběh chudého tkadlece, který přes náboženské hnutí dospívá k myšlenkám socialismu.",
-    "languageAndStyle": "Detailní národopisný popis.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Detailní národopisný popis."
   },
   {
     "id": "herrmann-u-snedeneho-kramu",
@@ -1588,9 +1378,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Rozvrat živnosti chamtivou rodinou, tragédie.",
     "characters": "Martin Žemla (kupec), Pavlína, tchyně.",
     "plotSummary": "Hodný kupec Žemla je finančně i lidsky zničen bezohlednou manželkou a tchyní a páchá sebevraždu.",
-    "languageAndStyle": "Pražský měšťanský humor a tragika.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Pražský měšťanský humor a tragika."
   },
   {
     "id": "kvapil-princezna-pampeliska",
@@ -1603,9 +1391,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Křehkost života, touha po dálkách.",
     "characters": "Princezna Pampeliška, Honza.",
     "plotSummary": "Křehká princezna uteče ze zámeckého světa s Honzou, ale v podzimním větru se rozplyne.",
-    "languageAndStyle": "Lyrický pohádkový tón.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Lyrický pohádkový tón."
   },
   {
     "id": "slejhar-kure-melancholik",
@@ -1618,9 +1404,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Týrání bezbranných, krutost lidí.",
     "characters": "Sirotek (chlapec), zlá macecha, choré kuře.",
     "plotSummary": "Týraný osiřelý chlapec a opuštěné nemocné kuře společně dožívají na okraji kruté vesnice.",
-    "languageAndStyle": "Syrový naturalismus, paralelismus.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Syrový naturalismus, paralelismus."
   },
   {
     "id": "arbes-svaty-xaverius",
@@ -1633,9 +1417,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Tajemný obraz, hledání pokladu, logika.",
     "characters": "Vypravěč, malíř Xaverius.",
     "plotSummary": "Pátrání po šifře v obrazu sv. Xaveria vedoucí k údajnému pokladu v pražských zátiších.",
-    "languageAndStyle": "Žánr romaneta (rozumové vysvětlení záhady).",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Žánr romaneta (rozumové vysvětlení záhady)."
   },
   {
     "id": "cech-pisne-otroka",
@@ -1648,9 +1430,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Touha po národní a sociální svobodě, vzpoura.",
     "characters": "Otrok (básník).",
     "plotSummary": "Alegorické básně vyzývající český národ k rozbití okovů útlaku a boji za svobodu.",
-    "languageAndStyle": "Rétorický patetický verš.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Rétorický patetický verš."
   },
   {
     "id": "apollinaire-kaligramy",
@@ -1663,9 +1443,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Oslava moderní civilizace, plynutí času.",
     "characters": "Básník.",
     "plotSummary": "Kultovní avantgardní sbírky rušící interpunkci a tvořící obrazové básně (kaligramy).",
-    "languageAndStyle": "Asociativní metoda, kaligramy.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Asociativní metoda, kaligramy."
   },
   {
     "id": "rolland-petr-a-lucie",
@@ -1678,9 +1456,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Čistá milostná láska ničená válkou.",
     "characters": "Petr Aubry, Lucie.",
     "plotSummary": "Mladí milenci Petr a Lucie hledají únik před válečným běsněním v lásce, ale hynou při bombardování chrámu.",
-    "languageAndStyle": "Kontrast lásky a válečné hrůzy.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Kontrast lásky a válečné hrůzy."
   },
   {
     "id": "remarque-na-zapadni-fronte-klid",
@@ -1693,9 +1469,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Hrůzy války, ztracená generace, přátelství.",
     "characters": "Paul Bäumer, Katczinsky, Kantorek.",
     "plotSummary": "Mladý vojak Paul popisuje drsnou realitu zákopů a nesmyslné umírání kamarádů.",
-    "languageAndStyle": "Syrový naturalismus, ich-forma.",
-    "ebookUrl": "https://oceansofpdf.com/authors/erich-maria-remarque/pdf-epub-all-quiet-on-the-western-front-download/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Syrový naturalismus, ich-forma."
   },
   {
     "id": "remarque-tri-kamaradi",
@@ -1708,9 +1482,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Přátelství na život a na smrt, tragická láska, hospodářská krize.",
     "characters": "Robert Lohkamp, Patricia Hollmannová, Otto, Gottfried.",
     "plotSummary": "Tři kamarádi provozují autodílnu. Robert se zamiluje do Patricie, která však podléhá tuberkulóze.",
-    "languageAndStyle": "Dojemný lidský tón.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Dojemný lidský tón."
   },
   {
     "id": "hemingway-starec-a-more",
@@ -1723,9 +1495,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Boj člověka s přírodou, nezlomnost lidské vůle.",
     "characters": "Santiago, Manolin.",
     "plotSummary": "Starý rybář Santiago chytí obřího marlina a svádí vyčerpávající boj se žraloky.",
-    "languageAndStyle": "Metoda ledovce, přímočarost.",
-    "ebookUrl": "https://oceansofpdf.com/authors/ernest-hemingway/pdf-epub-the-old-man-and-the-sea-download/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Metoda ledovce, přímočarost."
   },
   {
     "id": "hemingway-komu-zroni-hrana",
@@ -1738,9 +1508,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Boj za svobodu, oběť, španělská mentalita.",
     "characters": "Robert Jordan, Maria, Pablo, Pilar.",
     "plotSummary": "Americký dobrovolník Robert Jordan dostane za úkol odpálit most v týlu fašistů.",
-    "languageAndStyle": "Dramatická gradace, 3 dny děje.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Dramatická gradace, 3 dny děje."
   },
   {
     "id": "hemingway-sbohem-armado",
@@ -1753,9 +1521,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Nesmyslnost války, tragická láska.",
     "characters": "Frederic Henry, Catherine Barkleyová.",
     "plotSummary": "Americký poručík sanitního sboru se zamiluje do ošetřovatelky Catherine a dezerteruje s ní do Švýcarska.",
-    "languageAndStyle": "Úsporný styl, autobiografie.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Úsporný styl, autobiografie."
   },
   {
     "id": "fitzgerald-velky-gatsby",
@@ -1768,9 +1534,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Ztráta amerického snu, touha po minulosti.",
     "characters": "Jay Gatsby, Nick Carraway, Daisy Buchananová.",
     "plotSummary": "Tajemný boháč Gatsby pořádá velkolepé večírky jen aby získal zpět svou bývalou lásku Daisy.",
-    "languageAndStyle": "Symbolismus, retrospektiva.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Symbolismus, retrospektiva."
   },
   {
     "id": "steinbeck-o-mysich-a-lidech",
@@ -1783,9 +1547,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Přátelství, osamělost, touha po vlastním domově.",
     "characters": "George Milton, Lennie Small.",
     "plotSummary": "Racionální George pečuje o mentálně postiženého siláka Lennieho na farmě, kde dojde k tragédii.",
-    "languageAndStyle": "Dramatické vidění, přímá řeč.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Dramatické vidění, přímá řeč."
   },
   {
     "id": "steinbeck-hrozny-hnevu",
@@ -1798,9 +1560,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Hospodářská krize, lidská solidarita, útlak.",
     "characters": "Rodina Joadových, Tom Joad, kazatel Casy.",
     "plotSummary": "Chudá farmářská rodina Joadových putuje za prací do Kalifornie, kde čelí bezohledné exploataci.",
-    "languageAndStyle": "Dokumentární mezipitoly.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Dokumentární mezipitoly."
   },
   {
     "id": "orwell-1984",
@@ -1813,9 +1573,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Totalita, manipulace s lidmi, ztráta svobody, Newspeak.",
     "characters": "Winston Smith, Julie, O'Brien.",
     "plotSummary": "Winston Smith tajně vzdoruje diktatuře Velkého Bratra, ale po mučení podlehne.",
-    "languageAndStyle": "Chladný věcný styl, Newspeak.",
-    "ebookUrl": "https://oceansofpdf.com/authors/george-orwell/pdf-epub-1984-download/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Chladný věcný styl, Newspeak."
   },
   {
     "id": "orwell-farma-zvirat",
@@ -1828,9 +1586,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Kritika stalinismu, korupce moci, diktatura.",
     "characters": "Prasata Kuliš a Napoleon, koník Boxer.",
     "plotSummary": "Zvířata vyženou lidského majitele, ale prasata pod vedením Napoleona ovládnou farmu jako noví tyrani.",
-    "languageAndStyle": "Alegorie, bajka.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Alegorie, bajka."
   },
   {
     "id": "kafka-promena",
@@ -1843,9 +1599,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Otcizení, osamělost, ztráta lidské důstojnosti.",
     "characters": "Řehoř Samsa, Markétka, Otec, Matka.",
     "plotSummary": "Řehoř Samsa se probudí proměněn v obřího hmyzího tvora a rodina ho postupně zavrhne.",
-    "languageAndStyle": "Chladný popis absurdity.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/promena/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Chladný popis absurdity."
   },
   {
     "id": "kafka-proces",
@@ -1858,9 +1612,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Absurdita byrokracie, bezmocnost jedince vůči moci.",
     "characters": "Josef K., soudní úředníci, obhájce Huld.",
     "plotSummary": "Bankovní úředník Josef K. je bez udání důvodu zatčen a vede absurdní marný proces končící popravou.",
-    "languageAndStyle": "Grotekní odcizení.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Grotekní odcizení."
   },
   {
     "id": "kafka-zamek",
@@ -1873,9 +1625,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Nedosažitelnost cíle, odcizení, labyrint moci.",
     "characters": "Zeměměřič K., spojka Barnabáš, Frieda.",
     "plotSummary": "Zeměměřič K. přichází do vesnice, ale nedokáže navázat kontakt s nepřístupnými úředníky na Zámku.",
-    "languageAndStyle": "Absurdní labyrint.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Absurdní labyrint."
   },
   {
     "id": "exupery-maly-princ",
@@ -1888,9 +1638,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Přátelství, odpovědnost, hodnoty lidského srdce.",
     "characters": "Malý princ, Pilot, Liška, Růže.",
     "plotSummary": "Malý princ cestuje po planetkách a učí se od Lišky, že správně vidíme jen srdcem.",
-    "languageAndStyle": "Poetické metafory.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/maly-princ/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Poetické metafory."
   },
   {
     "id": "exupery-citadela",
@@ -1903,9 +1651,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Budování člověka, kázeň, duchovní řád.",
     "characters": "Pouštní vládce.",
     "plotSummary": "Meditace pouštního vládce o smyslu lidské práce, oběti a duchovním řádu.",
-    "languageAndStyle": "Básnická próza, paraboly.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Básnická próza, paraboly."
   },
   {
     "id": "bulgakov-mistr-a-marketka",
@@ -1918,9 +1664,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Boj dobra a zla, láska, satira na sovětskou byrokracii.",
     "characters": "Voland (Ďábel), Mistr, Markétka, kocour Kňour.",
     "plotSummary": "Ďábel Voland se svou družinou navštíví Moskvu a odhaluje zkaženost obyvatel, zatímco Markétka zachraňuje Mistra.",
-    "languageAndStyle": "Magický realizmus, dvě dějové roviny.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Magický realizmus, dvě dějové roviny."
   },
   {
     "id": "mann-kouzelny-vrch",
@@ -1933,9 +1677,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Duchovní krize Evropy před 1. světovou válkou.",
     "characters": "Hans Castorp, Settembrini, Naphta, Chauchatová.",
     "plotSummary": "Mladík Hans Castorp přijíždí do plicního sanatoria na 3 týdny, ale zůstává 7 let v izolovaném světě myšlenek.",
-    "languageAndStyle": "Esejistický tón, filosofické disputace.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Esejistický tón, filosofické disputace."
   },
   {
     "id": "hesse-stepni-vlk",
@@ -1948,9 +1690,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Rozpolcenost lidské duše, rozorvanost, krize.",
     "characters": "Harry Haller (Stepní vlk), Hermina, Pablo.",
     "plotSummary": "Intelektuál Harry Haller trpí rozpolceností mezi lidskou duší a divokým 'stepním vlkem'.",
-    "languageAndStyle": "Magické divadlo, psychoanalýza.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Magické divadlo, psychoanalýza."
   },
   {
     "id": "joyce-odysseus",
@@ -1963,9 +1703,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Jednodenní putování lidské duše, paralela k Homérovi.",
     "characters": "Leopold Bloom, Stephen Dedalus, Molly Bloomová.",
     "plotSummary": "Detailní záznam jediného dne v životě dublinského akvizitéra Leopolda Blooma.",
-    "languageAndStyle": "Proud vědomí, jazykový experiment.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Proud vědomí, jazykový experiment."
   },
   {
     "id": "woolf-k-majak u",
@@ -1978,9 +1716,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Plynutí času, rodinné vztahy, vnímání reality.",
     "characters": "Paní Ramsayová, pan Ramsay, malířka Lily Briscoeová.",
     "plotSummary": "Zachycení atmosféry jedné rodiny a proměny jejich domu před a po 1. světové válce.",
-    "languageAndStyle": "Proud vědomí, subjektivní čas.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Proud vědomí, subjektivní čas."
   },
   {
     "id": "beckett-cekani-na-godota",
@@ -1993,9 +1729,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Marnost lidského čekání, absurdita existence.",
     "characters": "Vladimir (Didi), Estragon (Gogo), Pozzo, Lucky.",
     "plotSummary": "Dva vagabundi čekají u stromu na tajemného Godota, který nikdy nepřichází.",
-    "languageAndStyle": "Absurdní dialogy, kruhová kompozice.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Absurdní dialogy, kruhová kompozice."
   },
   {
     "id": "ionesco-plesata-zpevacka",
@@ -2008,9 +1742,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Neschopnost lidské komunikace, automatismus.",
     "characters": "Pan a paní Smithovi, pan a paní Martinovi.",
     "plotSummary": "Rozhovor dvou anglických manželství plný klišé, nesmyslů a jazykového zmatku.",
-    "languageAndStyle": "Deformace jazyka, antidrama.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Deformace jazyka, antidrama."
   },
   {
     "id": "sartre-zed",
@@ -2023,9 +1755,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Svoboda volby, úzkost ze smrti, absurdita.",
     "characters": "Pablo Ibbieta.",
     "plotSummary": "Odsouzenec k smrti Pablo se rozhodne ze žertu lhát fašistům o úkrytu přítele, ale náhodou ho tím prozradí.",
-    "languageAndStyle": "Existenciální úzkost, mezní situace.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Existenciální úzkost, mezní situace."
   },
   {
     "id": "camus-cizinec",
@@ -2038,9 +1768,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Absurdita světa, odcizení jedince, lhostejnost.",
     "characters": "Mersault (úředník), Marie, Raymond.",
     "plotSummary": "Úředník Mersault bezhlavě a bez motivu zastřelí na pláži Araba a je odsouzen k smrti ne pro vraždu, ale pro lhostejnost.",
-    "languageAndStyle": "Střízlivý lhostejný styl (ich-forma).",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Střízlivý lhostejný styl (ich-forma)."
   },
   {
     "id": "camus-mor",
@@ -2053,9 +1781,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Boj s zlem, lidská solidarita, odpor k absurdnu.",
     "characters": "Doktor Bernard Rieux, Tarrou, Cottard.",
     "plotSummary": "Město Oran stihne morová epidemie. Doktor Rieux a dobrovolníci bojují se smrtonosnou nemocí.",
-    "languageAndStyle": "Alegorie fašismu a zla.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Alegorie fašismu a zla."
   },
   {
     "id": "marquez-sto-roku-samoty",
@@ -2068,9 +1794,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Samota, koloběh času, osud rodiny Buendíů.",
     "characters": "José Arcadio Buendía, Úrsula, plukovník Aureliano Buendía.",
     "plotSummary": "Kronika 6 generací rodu Buendíů v městečku Macondo propletená zázračnými i tragickými událostmi.",
-    "languageAndStyle": "Magický realizmus, mýtus.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Magický realizmus, mýtus."
   },
   {
     "id": "marquez-kronika-ohlásene-smrti",
@@ -2083,9 +1807,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Kolektivní vina, rodová čest, osudovost.",
     "characters": "Santiago Nasar, bratři Vicariové, Angela.",
     "plotSummary": "Všichni ve vesnici vědí, že bratři Vicariové zabijí Santiaga Nasara kvůli cti sestry, ale nikdo mu nepomůže.",
-    "languageAndStyle": "Retrospektivní vyšetřování.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Retrospektivní vyšetřování."
   },
   {
     "id": "styron-sophiina-volba",
@@ -2098,9 +1820,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Fašismus, nacistické zločin, nepřenositelná vina.",
     "characters": "Sophie Zawistowská, Nathan, Stingo (vypravěč).",
     "plotSummary": "Polka Sophie s nacistickým traumatem vypráví Stingovi o tragické volbě v Osvětimi mezi dcerou a synem.",
-    "languageAndStyle": "Dvě časové roviny, psychologické trauma.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Dvě časové roviny, psychologické trauma."
   },
   {
     "id": "heller-hlava-xxii",
@@ -2113,9 +1833,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Absurdita vojenské mašinérie, byrokracie.",
     "characters": "Kapitán Yossarian, major Major, Milo Minderbinder.",
     "plotSummary": "Kapitán Yossarian se snaží uniknout ze sebezničujícího kolotoče nárůstu bojových letů, naráží však na paragraf Hlava XXII.",
-    "languageAndStyle": "Groteskní černý humor.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Groteskní černý humor."
   },
   {
     "id": "salinger-kdo-chyta-v-jite",
@@ -2128,9 +1846,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Revolta dospívajícího, odpor k přetvářce dospělých.",
     "characters": "Holden Caulfield, sestra Phoebe.",
     "plotSummary": "Šestnáctiletý Holden Caulfield po vyloučení ze školy bloudí 3 dny sám New Yorkem a hledá čistotu v žitě.",
-    "languageAndStyle": "Hovorový autentický slang dospívajícího.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Hovorový autentický slang dospívajícího."
   },
   {
     "id": "bradbury-451-stupnu-fahrenheita",
@@ -2143,9 +1859,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Ničení kniha a kultury, povrchnost diktatury.",
     "characters": "Guy Montag (požárník), Clarissa, velitel Beatty.",
     "plotSummary": "Požárník Montag, jehož náplní práce je pálit zakázané knihy, projde procitnutím a přidá se k odboji 'lidí-knih'.",
-    "languageAndStyle": "Varovná symbolika, obraznost.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Varovná symbolika, obraznost."
   },
   {
     "id": "golding-pan-mouchy",
@@ -2158,9 +1872,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Zlo v lidském nitru, zkáza civilizačních návyků.",
     "characters": "Ralf, Čuník, Jack, Simon.",
     "plotSummary": "Skupina britských chlapců ztroskotá na pustém ostrově a postupně divočí v krvavý kmen uctívající 'Pána mouch'.",
-    "languageAndStyle": "Alegorie lidské přirozenosti.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Alegorie lidské přirozenosti."
   },
   {
     "id": "burgess-mechanicky-pomeranc",
@@ -2173,9 +1885,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Násilí mládeže, svobodná vůle, manipulace státu.",
     "characters": "Alex (mladý delikvent), jeho banda.",
     "plotSummary": "Mladík Alex páchá brutální násilí. Po zatčení podstoupí státní experiment drastického odnaučení agrese.",
-    "languageAndStyle": "Fiktivní slang 'Týnka' (slang mladých).",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Fiktivní slang 'Týnka' (slang mladých)."
   },
   {
     "id": "eco-jmeno-ruze",
@@ -2188,9 +1898,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Hledání pravdy, strach ze smíchu, středověké kacířství.",
     "characters": "Vilém z Baskervillu, mladý novic Adso, Jorge z Burgos.",
     "plotSummary": "Učený mnich Vilém z Baskervillu vyšetřuje záhadné vraždy v klášterní knihovně ukrývající zakázanou knihu.",
-    "languageAndStyle": "Víceúrovňový text, intertextualita.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Víceúrovňový text, intertextualita."
   },
   {
     "id": "waltari-egyptan-sinuhet",
@@ -2203,9 +1911,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Pomíjivost moci, lidské utrpení, láska.",
     "characters": "Sinuhet (lékař), Kaptah (sluha), král Achnaton, Neferneferfer.",
     "plotSummary": "Královský lékař Sinuhet vypráví o svém životě, cestách a reformách faraona Achnatona.",
-    "languageAndStyle": "Působivý historický tón, nadčasovost.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Působivý historický tón, nadčasovost."
   },
   {
     "id": "mccarthy-cesta",
@@ -2218,9 +1924,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Láska otce a syna, uchování lidskosti v troskách světa.",
     "characters": "Otec, Syn.",
     "plotSummary": "Otec se synem putují spálenou krajinou plnou kanibalů směrem k moři a nesou 'světlo lidskosti'.",
-    "languageAndStyle": "Úsporný jazyk, temná atmosféra.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Úsporný jazyk, temná atmosféra."
   },
   {
     "id": "tolkien-hobit",
@@ -2233,9 +1937,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Odvaha obyčejného tvora, přátelství, dobro vs. zlo.",
     "characters": "Bilbo Pytlík, čaroděj Gandalf, Thorin Pavéza, drak Šmak.",
     "plotSummary": "Pohodlný hobit Bilbo se vydává s trpaslíky na výpravu k Osamělé hoře získat poklad střežený drakem.",
-    "languageAndStyle": "Pohádková fantasy poetika.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Pohádková fantasy poetika."
   },
   {
     "id": "tolkien-spolecenstvo-prstenu",
@@ -2248,9 +1950,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Boj s absolutním zlem, oběť, věrnost.",
     "characters": "Frodo Pytlík, Samvěd Cvrček, Aragorn, Gandalf, Sauron.",
     "plotSummary": "Hobit Frodo dostane za úkol odnést Prsten moci do Hory osudu a zničit ho.",
-    "languageAndStyle": "Komplexní mytologie a jazyky.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Komplexní mytologie a jazyky."
   },
   {
     "id": "martin-hra-o-truny",
@@ -2263,9 +1963,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Mocenské intriky, čest, boj o vládu.",
     "characters": "Eddard Stark, Tyrion Lannister, Daenerys Targaryen, Jon Sníh.",
     "plotSummary": "Krvavý boj vznešených rodů o Železný trůn v říši, které hrozí dlouhá zima.",
-    "languageAndStyle": "Více pohledů postav (POV).",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Více pohledů postav (POV)."
   },
   {
     "id": "coelho-alchymista",
@@ -2278,9 +1976,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Osobní příběh, naslouchání srdci, znamení.",
     "characters": "Pastýř Santiago, Alchymista.",
     "plotSummary": "Španělský pastýř Santiago putuje za pokladem k egyptským pyramidám a poznává 'Osobní příběh'.",
-    "languageAndStyle": "Jednoduché alegorické poselství.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Jednoduché alegorické poselství."
   },
   {
     "id": "martel-pi-a-jeho-zivot",
@@ -2293,9 +1989,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Víra v Boha, vůle k životu, alegorie krutosti.",
     "characters": "Pí Patel (indický chlapec), tygr Richard Parker.",
     "plotSummary": "Indický chlapec Pí stráví 227 dní v záchranném člunu uprostřed oceánu s bengálským tygrem.",
-    "languageAndStyle": "Dvě verze příběhu, víra.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Dvě verze příběhu, víra."
   },
   {
     "id": "hosseini-lovec-draku",
@@ -2308,9 +2002,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Vina a vykoupení, věrnost, afghánské dějiny.",
     "characters": "Amír, Hasan, Sohráb.",
     "plotSummary": "Chlapec Amír zradí svého věrného služebníka Hasana. Po letech se vrací do tálibánského Kábulu zachránit jeho syna.",
-    "languageAndStyle": "Silný emociální náboj.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Silný emociální náboj."
   },
   {
     "id": "atwood-pribeh-sluzebnice",
@@ -2323,9 +2015,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Útlak žen, náboženský fanatismus, ztráta svobody.",
     "characters": "Offred (Služebnice), Velitel, Serena Joy.",
     "plotSummary": "V totalitním Gileádu jsou plodné ženy zotročeny jako 'Služebnice' k plození dětí pro vládnoucí elitu.",
-    "languageAndStyle": "Ich-forma, varovná dystopie.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Ich-forma, varovná dystopie."
   },
   {
     "id": "dyk-krysar",
@@ -2338,9 +2028,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Touha po plnosti života vs. maloměstská lhostejnost.",
     "characters": "Krysař, Agnes, Sepp Jörgen.",
     "plotSummary": "Krysař odvede píšťalou obyvatele Hamelnu do propasti poté, co mu odepřou odměnu a Agnes umírá.",
-    "languageAndStyle": "Symbolismus, refrény.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/krysar/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Symbolismus, refrény."
   },
   {
     "id": "bezruc-slezske-pisne",
@@ -2353,9 +2041,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Sociální a národnostní útlak Slezanů, vzpoura.",
     "characters": "Bard, Ostrava, Maryčka Magdonova.",
     "plotSummary": "Básník vystupuje jako mluvčí utlačovaného slezského lidu trpícího pod útlakem.",
-    "languageAndStyle": "Slezský dialekt, údernost.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/slezske-pisne/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Slezský dialekt, údernost."
   },
   {
     "id": "sramek-stribrny-vitr",
@@ -2368,9 +2054,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Ml mládí, citové zrání, první láska, vzdor.",
     "characters": "Jeník Ratkin, Anička, profesor 'Mesiáš'.",
     "plotSummary": "Mladík Jeník Ratkin prožívá študácké lásky, střety s přísným otcem a dospívá k přijetí života.",
-    "languageAndStyle": "Impresionismus, citovost.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Impresionismus, citovost."
   },
   {
     "id": "sramek-mesic-nad-rekou",
@@ -2383,9 +2067,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Nostalgie po mládí, mezigenerační porozumění.",
     "characters": "Jan Hlubina, jeho syn Willy, Slávka Hlubinová.",
     "plotSummary": "Setkání bývalých spolužáků po letech přináší nostalgii i předání mládí mladší generaci.",
-    "languageAndStyle": "Impresionistická atmosféra.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Impresionistická atmosféra."
   },
   {
     "id": "hasek-svejk",
@@ -2398,9 +2080,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Absurdita války, genialita předstíraného blbství.",
     "characters": "Josef Švejk, nadporučík Lukáš, polní kurát Katz.",
     "plotSummary": "Švejk svojí důslednou poslušností dovádí rakousko-uherskou vojenskou mašinérii k šílenství.",
-    "languageAndStyle": "Pražský hovorový jazyk, anekdoty.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/svejk/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Pražský hovorový jazyk, anekdoty."
   },
   {
     "id": "capek-rur",
@@ -2413,9 +2093,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Varování před technickým pokrokem, slovo robot.",
     "characters": "Harry Domin, Helena Gloryová, Alquist.",
     "plotSummary": "Roboti vyhubí lidstvo, ale dva z nich projeví lásku a pokoru, což je nadějí na nový počátek.",
-    "languageAndStyle": "Odborný jazyk, filozofie.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/r.u.r./",
-    "audiobookUrl": ""
+    "languageAndStyle": "Odborný jazyk, filozofie."
   },
   {
     "id": "capek-bila-nemoc",
@@ -2428,9 +2106,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Varování před fašismem, fašistická psychóza.",
     "characters": "Dr. Galén, Maršál, Baron Krüg.",
     "plotSummary": "Dr. Galén podmíní léčbu bílé nemoci podpisem míru. Když Maršál souhlasí, Galéna ušlapou fašisté.",
-    "languageAndStyle": "Gradace dialogů, drama.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/bila-nemoc/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Gradace dialogů, drama."
   },
   {
     "id": "capek-matka",
@@ -2443,9 +2119,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Oběť pro vlast, materská láska a povinnost.",
     "characters": "Matka (Dolores), zemřelý otec a synové, nejmladší Toni.",
     "plotSummary": "Matka postupně přichází o manžela a 4 syny ve válce. Když nepřítel vraždí děti, sama podá nejmladšímu zbraň.",
-    "languageAndStyle": "Dialogy se mrtvými.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Dialogy se mrtvými."
   },
   {
     "id": "capek-valka-s-mloky",
@@ -2458,9 +2132,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Varování před fašismem, rozpínavostí a lidskou chamtivostí.",
     "characters": "Kapitán van Toch, pan Povondra, Mloci.",
     "plotSummary": "Lidé objeví inteligentní Mloky a využívají je k práci. Mloci se přemnoží a začnou bourat pevniny.",
-    "languageAndStyle": "Novinářský styl, persifláž.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Novinářský styl, persifláž."
   },
   {
     "id": "capek-krakatit",
@@ -2473,9 +2145,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Zneužití vědy, odpovědnost vědce.",
     "characters": "Inženýr Prokop, Princezna, Dědeček.",
     "plotSummary": "Inženýr Prokop vynalezne atomovou třaskavinu Krakatit a čelí snahám moci zneužít ji k ovládnutí světa.",
-    "languageAndStyle": "Snové výjevy, napětí.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Snové výjevy, napětí."
   },
   {
     "id": "capek-povidky-z-jedne-a-druhe-kapsy",
@@ -2488,9 +2158,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Spravedlnost, lidskost, tajemství lidské duše.",
     "characters": "Četníci, soudci, obyčejní hříšníci.",
     "plotSummary": "Soubor humorných i filosofických povídek o zločinech, spravedlnosti a lidských slabostech.",
-    "languageAndStyle": "Čtivý hovorový jazyk.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Čtivý hovorový jazyk."
   },
   {
     "id": "capek-j-stin-kapradiny",
@@ -2503,9 +2171,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Vina a trest, útěk před spravedlností.",
     "characters": "Ruda Axa, Václav Kala.",
     "plotSummary": "Dva mladíci zastřelí lesníka a utíkají lesy. Jejich štvanice končí tragickou smrtí.",
-    "languageAndStyle": "Básnická baladická próza.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Básnická baladická próza."
   },
   {
     "id": "vancura-rozmarne-leto",
@@ -2518,9 +2184,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Narušení maloměstského klidu, oslava života.",
     "characters": "Karpíšek, Hugo, Důstojník, kouzelník Arnoštek, Anna.",
     "plotSummary": "Příjezd kouzelníka Arnoštka a krásné Anny rozvíří stojaté vody maloměstských pánů u vody.",
-    "languageAndStyle": "Archaický básnický jazyk.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Archaický básnický jazyk."
   },
   {
     "id": "vancura-marketa-lazarova",
@@ -2533,9 +2197,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Spontánnost, divoká láska, vášeň.",
     "characters": "Markéta Lazarová, Mikoláš Kozlík, Kozlík.",
     "plotSummary": "Dva loupeživé rody Kozlíků a Lazarů bojují s královským vojskem. Markéta vzplane divokou láskou k Mikolášovi.",
-    "languageAndStyle": "Metaforický archaický jazyk.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Metaforický archaický jazyk."
   },
   {
     "id": "olbracht-nikola-suhaj-loupeznik",
@@ -2548,9 +2210,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Nezranitelnost, zrada, baladický mýtus.",
     "characters": "Nikola Šuhaj, Eržika, četníci.",
     "plotSummary": "Zběh Nikola z lásky k Eržice zbojničí v koločavských lesích. Chudí ho milují, ale četníci za odměnu dojednají jeho zradu.",
-    "languageAndStyle": "Mýtus, poetický realizmus.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Mýtus, poetický realizmus."
   },
   {
     "id": "seifert-maminka",
@@ -2563,9 +2223,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Láska k matce, domov, vzpomínky na dětství.",
     "characters": "Maminka, básník jako chlapec.",
     "plotSummary": "Dojemné vzpomínkové básně oslavující skromnou a milující maminku a domov dětství.",
-    "languageAndStyle": "Prostá melodická poezia.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Prostá melodická poezia."
   },
   {
     "id": "nezval-edison",
@@ -2578,9 +2236,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Oslava lidské práce, vynalézavosti a světla.",
     "characters": "Básník, vynálezce Edison.",
     "plotSummary": "Básnický chvalozpěv na tvorbu a práci vynálezce Edisona překonávající temnotu a sebevražedné nálady.",
-    "languageAndStyle": "Polytematická báseň, asociace.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Polytematická báseň, asociace."
   },
   {
     "id": "nezval-manon-lescaut",
@@ -2593,9 +2249,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Půvab české řeči, milostné vzplanutí.",
     "characters": "Rytíř des Grieux, Manon Lescaut, Duval.",
     "plotSummary": "Básnická veršovaná adaptace románu opěvující krásu české řeči.",
-    "languageAndStyle": "Melodický verš, hymnus na češtinu.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Melodický verš, hymnus na češtinu."
   },
   {
     "id": "halas-torzo-nadeje",
@@ -2608,9 +2262,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Odpor k mnichovské zradě, mobilizace, národní vzdor.",
     "characters": "Básník jako hlas národa.",
     "plotSummary": "Ostrá tragická reakce na mnichovskou diktaturu a zradu spojenců.",
-    "languageAndStyle": "Nervní úderný verš.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Nervní úderný verš."
   },
   {
     "id": "wolker-tezka-hodina",
@@ -2623,9 +2275,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Sociální spravedlnost, proměna chlapce v muže.",
     "characters": "Chudí dělníci, Ballada o očích topičových.",
     "plotSummary": "Ikonická proletářská sbírka obsahující slavnou Baladu o očích topičových či Baladu o nenarozeném dítěti.",
-    "languageAndStyle": "Sociální balady.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Sociální balady."
   },
   {
     "id": "hostovsky-cizinec-hledat-byt",
@@ -2638,9 +2288,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Otcizení, osamělost exulanta, neschopnost domova.",
     "characters": "Doktor Václav Král.",
     "plotSummary": "Český lékař v newyorském exilu marně hledá klidný byt k dokončení vědeckého objevu zachraňujícího lidi.",
-    "languageAndStyle": "Psychologické odcizení.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Psychologické odcizení."
   },
   {
     "id": "havlicek-petrolejove-lampy",
@@ -2653,9 +2301,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Zkažený život touhou po společenském uznání.",
     "characters": "Štěpka Kiliánová, Pavel Malina.",
     "plotSummary": "Energická Štěpka se provdá za důstojníka Pavla, ale zjišťuje, že manželsky podléhá pokročilé syfilidě.",
-    "languageAndStyle": "Kritický psychologický vhled.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Kritický psychologický vhled."
   },
   {
     "id": "havlicek-neviditelny",
@@ -2668,9 +2314,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Rozpad rodiny šílenstvím, cynický kariérismus.",
     "characters": "Inženýr Petr Švajcar, Soňa, strýček Cyrani.",
     "plotSummary": "Cynický inženýr se ožení s bohatou dědičkou, ale rodina se hroutí pod bludem strýce, který věří, že je neviditelný.",
-    "languageAndStyle": "Temná psychologie rozpadu.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Temná psychologie rozpadu."
   },
   {
     "id": "weil-zivot-s-hvezdou",
@@ -2683,9 +2327,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Židovská perzekuce, strach z transportu, touha žít.",
     "characters": "Josef Roubíček.",
     "plotSummary": "Židovský úředník Roubíček se skrývá v okupované Praze před transportem a nachází sílu k odboji.",
-    "languageAndStyle": "Prostý věcný detail.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Prostý věcný detail."
   },
   {
     "id": "drda-nema-barikada",
@@ -2698,9 +2340,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Hrdinství obyčejných lidí za okupace.",
     "characters": "Franta Kroupa, žák Jiřík (Vyšší princip).",
     "plotSummary": "Slavné povídky z odboje (Vyšší princip, Hlídač dynamitu, Němá barikada) ukazující morální sílu proti nacismu.",
-    "languageAndStyle": "Strhující lidové hrdinství.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Strhující lidové hrdinství."
   },
   {
     "id": "drda-hratky-s-certem",
@@ -2713,9 +2353,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Česká prostořekost, odvaha, souboj dobra a zla.",
     "characters": "Vysloužilý voják Martin Kabát, Káča, čert Trepifajkl.",
     "plotSummary": "Nebojácný voják Martin Kabát zachrání dvě dívky před pekelným úpisem.",
-    "languageAndStyle": "Lidový štěpný jazyk.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Lidový štěpný jazyk."
   },
   {
     "id": "orten-elegie",
@@ -2728,9 +2366,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Úzkost, osamělost, židovská perzekuce, Bůh.",
     "characters": "Básník.",
     "plotSummary": "Jímavý básnický cyklus devíti elegií zosobňující tragiku generace s žlutou hvězdou.",
-    "languageAndStyle": "Jímavá melodická lyrika.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Jímavá melodická lyrika."
   },
   {
     "id": "skvorecky-zbabelci",
@@ -2743,9 +2379,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Demytizace května 1945, jazz, dospívání.",
     "characters": "Danny Smiřický, Irena, jazzová kapela.",
     "plotSummary": "Mladík Danny prožívá konec války hraním jazzu a touhou po Ireně zatímco místní honosní vlastenci hrají na povstalce.",
-    "languageAndStyle": "Authentický hovorový styl.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Authentický hovorový styl."
   },
   {
     "id": "skvorecky-tankovy-prapor",
@@ -2758,9 +2392,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Absurdita komunistické lidové armády.",
     "characters": "Danny Smiřický, major Borovička (Prasopes).",
     "plotSummary": "Danny jako rotný základní služby přežívá absurdní vojenská cvičení a politické školení 50. let.",
-    "languageAndStyle": "Humorná vojenská satira.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Humorná vojenská satira."
   },
   {
     "id": "hrabal-ostre-sledovane-vlaky",
@@ -2773,9 +2405,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Dospívání, odboj proti fašismu, tragikomika.",
     "characters": "Miloš Hrma, výpravčí Hubička.",
     "plotSummary": "Miloš Hrma na nádraží překoná stud a odpálí německý vojenský transport.",
-    "languageAndStyle": "Pábitelský styl, tragikomika.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/ostre-sledovane-vlaky/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Pábitelský styl, tragikomika."
   },
   {
     "id": "hrabal-obsluhoval-jsem-anglickeho-krale",
@@ -2788,9 +2418,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Touha po bohatství a uznání, zakrslost, osud.",
     "characters": "Jan Dítě, hotelier Skřivánek.",
     "plotSummary": "Číšník malého vzrůstu Jan Dítě se touží stát milionářem. Projde hotely i manželstvím s Němkou, ale končí jako cestář.",
-    "languageAndStyle": "Pábitelský chrlivý proud řeči.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Pábitelský chrlivý proud řeči."
   },
   {
     "id": "hrabal-postriziny",
@@ -2803,9 +2431,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Radost ze života, krása vzpomínek, zkracování.",
     "characters": "Maminka Maryška, tatínek Francin, strýc Pepin.",
     "plotSummary": "Oslava života a komických příhod v pivovaru po příjezdu křičícího strýce Pepina.",
-    "languageAndStyle": "Poetický pábitelský jazyk.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Poetický pábitelský jazyk."
   },
   {
     "id": "fuks-spalovac-mrtvol",
@@ -2818,9 +2444,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Proměna člověka v monstrum pod vlivem ideologie.",
     "characters": "Karel Kopfrkingl, Lakmé, Willi Reinke.",
     "plotSummary": "Mírný zaměstnanec krematoria podlehne nacistické propagandě a vyvraždí vlastní rodinu.",
-    "languageAndStyle": "Mrazivý opakující se styl.",
-    "ebookUrl": "https://www.mlp.cz/cz/katalog-sluzeb/eknihy/spalovac-mrtvol/",
-    "audiobookUrl": ""
+    "languageAndStyle": "Mrazivý opakující se styl."
   },
   {
     "id": "pavel-smrt-krasnych-srncu",
@@ -2833,9 +2457,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Láska k rybaření a přírodě, rodina za války.",
     "characters": "Leo Popper (tatínek), maminka, pes Holan.",
     "plotSummary": "Tatínek Leo přes nacistické zákazy uloví srnce na Křivoklátsku, aby nakrmil syny před transportem.",
-    "languageAndStyle": "Lyrický vyprávěcí tón, dojetí.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Lyrický vyprávěcí tón, dojetí."
   },
   {
     "id": "kundera-zert",
@@ -2848,9 +2470,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Devastující žert, stalinismus, marnost pomsty.",
     "characters": "Ludvík Jahn, Helena, Kostka, Jaroslav.",
     "plotSummary": "Ludvík pošle spolužačce žertovnou pohlednici s protistátním textem a je vyloučen ze studií. Po letech chystá pomstu.",
-    "languageAndStyle": "Polyfonní kompozice 4 vypravěčů.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Polyfonní kompozice 4 vypravěčů."
   },
   {
     "id": "kundera-nesnesitelna-lehkost-byti",
@@ -2863,9 +2483,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Lehkost vs. tíha bytí, návratnost, láska.",
     "characters": "Tomáš (chirurg), Tereza, Sabina, Franz.",
     "plotSummary": "Osudy chirurga Tomáše a jeho ženy Terezy po srpnu 1968 protkané esejistickými úvahami o Kicši a existenci.",
-    "languageAndStyle": "Esejistické odbočky, filozofie.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Esejistické odbočky, filozofie."
   },
   {
     "id": "havel-zahradni-slavnost",
@@ -2878,9 +2496,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Absurdní fráze, ztráta identity v byrokracii.",
     "characters": "Hugo Pludek, tajemník, ředitel.",
     "plotSummary": "Mladík Hugo Pludek díky dokonale osvojené byrokratické hantýrce ovládne Likvidační úřad.",
-    "languageAndStyle": "Deformace jazyka, mechanické fráze.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Deformace jazyka, mechanické fráze."
   },
   {
     "id": "havel-audience",
@@ -2893,9 +2509,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Absurdita komunistického režimu, morální integrita.",
     "characters": "Sládek, Ferdinand Vaněk (spisovatel).",
     "plotSummary": "Zakázaný spisovatel Vaněk pracuje v pivovaru. Sládek ho žáda, aby na sebe sám psal udavačské zprávy.",
-    "languageAndStyle": "Opakující se dialogy, hovorový tón.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Opakující se dialogy, hovorový tón."
   },
   {
     "id": "lustig-modlitba-pro-katerinu-horovitzovou",
@@ -2908,9 +2522,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Nacistická cyničnost, lidská důstojnost, vzdor.",
     "characters": "Kateřina Horovitzová, Herman Cohen, Bedřich Brenske.",
     "plotSummary": "Nacisté cynicky vydírají bohaté židovské podnikatele iluzí výměny. Mladá tanečnice Kateřina se v plynové komoře vzepře.",
-    "languageAndStyle": "Mrazivý nacistický cynismus.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Mrazivý nacistický cynismus."
   },
   {
     "id": "kohout-katyne",
@@ -2923,9 +2535,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Absurdita totality, ztráta lidskosti.",
     "characters": "Lenzka Tachecí, profesorský sbor.",
     "plotSummary": "Patnáctiletá Lenička studuje na oboru popravčího řemesla. Groteskní satira na totalitní výchovu.",
-    "languageAndStyle": "Groteskní černý humor.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Groteskní černý humor."
   },
   {
     "id": "jirotka-saturnin",
@@ -2938,9 +2548,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Brilantní suchý humor, nápady sluhy Saturnina.",
     "characters": "Saturnin (sluha), Vypravěč, Teta Kateřina, Milouš, dědeček.",
     "plotSummary": "Věrný a vynalézavý sluha Saturnin přetvoří poklidný život svého pána v řadu dobrodružství.",
-    "languageAndStyle": "Dry britský humor, parodie.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Dry britský humor, parodie."
   },
   {
     "id": "viewegh-bajecna-leta-pod-psa",
@@ -2953,9 +2561,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Normalizace, dospívání, rodinné tragikomedie.",
     "characters": "Kvido, otec Aleš, matka, babička Líba.",
     "plotSummary": "Kronika rodiny chlapce Kvida popisující s humorem i nadhledem absurditu komunistické normalizace.",
-    "languageAndStyle": "Humorný nadhled, ich-forma.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Humorný nadhled, ich-forma."
   },
   {
     "id": "topol-sestra",
@@ -2968,9 +2574,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Chotické 90. léta, podsvětí, láska.",
     "characters": "Papež, Černá, Mára.",
     "plotSummary": "Chaoz a divoká atmosféra porevoluční transformace Prahy 90. let očima básníka a podsvětí.",
-    "languageAndStyle": "Expressivní jazyk, mluvená čeština.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Expressivní jazyk, mluvená čeština."
   },
   {
     "id": "tuckova-zitkovske-bohyne",
@@ -2983,9 +2587,7 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Lidové léčitelství, perzekuce StB a nacistů.",
     "characters": "Dora Idesová, Surmena.",
     "plotSummary": "Dora Idesová zkoumá v archívu StB historii lidových léčitelek (kyjovských bohyň) ze Žítkové.",
-    "languageAndStyle": "Dokumentární archívní styl.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Dokumentární archívní styl."
   },
   {
     "id": "mornstajnova-hana",
@@ -2998,8 +2600,6 @@ export const FULL_BOOK_CATALOG: BookAnalysis[] = [
     "themeAndMotifs": "Holokaust, vina, osudové tragédie rodiny.",
     "characters": "Hana Hellingerová, neteř Mira, Rosa.",
     "plotSummary": "Příběh podivínské tety Hany odhalující rodinné trauma z koncentračního tábora a tyfové epidemie.",
-    "languageAndStyle": "Dvě dějové linie, strhující spád.",
-    "ebookUrl": "",
-    "audiobookUrl": ""
+    "languageAndStyle": "Dvě dějové linie, strhující spád."
   }
 ];

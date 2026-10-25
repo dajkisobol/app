@@ -10,6 +10,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? (repo ? `/${repo}` : (proc
 
 const nextConfig: NextConfig = {
   output: "export",
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
   images: {
     unoptimized: true,
   },
