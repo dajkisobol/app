@@ -5,6 +5,7 @@ import readingCorner from '@/assets/reading-corner.webp';
 import customLogo from '../../public/IMG_2470 (1).jpeg';
 import customPattern from '../../public/IMG_2468.jpeg';
 import handwrittenName from '../../public/IMG_2469 (1).jpeg';
+import heroChalkboard from '@/assets/hero-chalkboard.webp';
 import React, { useState, useEffect } from 'react';
 import {
   BookOpen,
@@ -95,6 +96,15 @@ export default function Home() {
   const [bookPage, setBookPage] = useState<number>(1);
 
   const [activeAudio, setActiveAudio] = useState<AudioBook | null>(null);
+
+  useEffect(() => {
+    const openAudioSection = () => {
+      if (window.location.hash === '#audioknihy') setActiveTab('resources');
+    };
+    openAudioSection();
+    window.addEventListener('hashchange', openAudioSection);
+    return () => window.removeEventListener('hashchange', openAudioSection);
+  }, []);
 
   // Initial Data Load
   useEffect(() => {
@@ -550,7 +560,15 @@ export default function Home() {
             <section className="reading-hero" aria-labelledby="welcome-heading">
               <div className="hero-copy">
                 <span className="eyebrow"><span className="inline-block h-2 w-2 rounded-full bg-[var(--sage)]" /> TVŮJ KLIDNÝ KOUTEK NA UČENÍ</span>
-                <h1 id="welcome-heading">Velké příběhy.<br />Malé kroky.<br /><em>Zvládnutá maturita.</em></h1>
+                <h1 id="welcome-heading">
+                  <Image
+                    src={heroChalkboard}
+                    alt="Maturita, formalita. Psaní, čtení, komunita. S MaturYtou realita."
+                    preload
+                    sizes="(max-width: 767px) calc(100vw - 82px), (max-width: 1023px) 50vw, 640px"
+                    className="hero-slogan-image"
+                  />
+                </h1>
                 <p>Udělej si pohodlí. Provedeme tě češtinou od prvního cvičného testu až po poslední knihu v maturitním seznamu.</p>
                 <div className="flex flex-wrap gap-3 mt-7">
                   <button onClick={() => setActiveTab('tests')} className="hero-primary">

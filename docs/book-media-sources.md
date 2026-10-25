@@ -1,6 +1,6 @@
 # E-knihy a audioknihy: zdroje a hranice dostupnosti
 
-Stav ověřen 25. 10. 2026. Katalog obsahuje 200 titulů. Přímo v repozitáři je 36 úplných českých e-knih (36 EPUB a navíc alternativa R.U.R. v TXT) a jedna úplná nahraná česká audiokniha: Krysař, Viktor Dyk, čte Kudrna, LibriVox, 26 kapitol, 2:18:39.
+Stav ověřen 25. 10. 2026. Katalog obsahuje 200 titulů. Přímo v repozitáři je 42 úplných českých e-knih (42 EPUB a navíc alternativa R.U.R. v TXT) a jedna úplná nahraná česká audiokniha: Krysař, Viktor Dyk, čte Kudrna, LibriVox, 26 kapitol, 2:18:39. Další tři tituly mají samostatně označený odkaz na českou rozhlasovou četbu u poskytovatele; tyto nahrávky nejsou součástí distribuovaných souborů.
 
 Není pravda, že všech 200 titulů má ověřenou volnou e-knihu i audioknihu. U zbývajících titulů to rozhraní výslovně uvádí, nabízí vyhledání legální nabídky a import vlastních souborů. Vyhledávač ani stránka katalogu nejsou vykazovány jako dostupný soubor. Nejsou použity pirátské kopie ani demo hudba SoundHelix.
 
@@ -24,6 +24,24 @@ Nahrávka Krysaře je z https://librivox.org/krysar-by-viktor-dyk/ a https://arc
 
 ## Externí hledání
 
+### Doplnění knihovny 25. 10. 2026
+
+Přidáno šest nezměněných českých EPUB: Noc na Karlštejně, Ohlas písní českých, Lucerna, Závěť, Odysseia a Kosmůw letopis český. U každého byla ověřena česká jazyková metadata, EPUB kontejner, pořadí kapitol a tiráž výslovně uvolňující text a uvádějící CC BY-NC-SA 3.0 CZ pro vydání. Manifest obsahuje SHA-256, velikost a konkrétní commit původního vydání. Název vydání může mít odlišný pravopis od názvu v katalogu (Odysseia / Odyssea, Kosmůw letopis český / Kronika česká).
+
+U uživatelem doporučených stránek [Luxor](https://www.luxor.cz/c/12000/e-knihy-zdarma) a [Knihy Dobrovský](https://www.knihydobrovsky.cz/eknihy-zdarma) byla ověřena HTTP 200. Luxor načítá nabídku klientským JavaScriptem; Knihy Dobrovský nabízí současné autorské povídky za nulovou cenu. Samotná nulová cena neuděluje licenci k dalšímu šíření, proto jsou v knihovně odkazy na původní nabídky a možnost osobního importu ke katalogovým titulům. Chráněné soubory nebyly převzaty.
+
+Na přání uživatele jsou nově nabízené nahrávky pouze česky. LibriVox / Internet Archive v ověřeném katalogu obsahoval jako českou samostatnou audioknihu pouze již distribuovaného Krysaře. Přidány proto byly konkrétní oficiální stránky pro poslech u Českého rozhlasu:
+
+| Titul | Český poslech u poskytovatele | Rozsah |
+| --- | --- | --- |
+| Kytice | https://www.mujrozhlas.cz/karel-jaromir-erben-kytice | 13 básní, samostatné odkazy na části |
+| Máj | https://www.mujrozhlas.cz/ctenarsky-denik/karel-hynek-macha-maj | Četba z roku 2008, 50:40, František Derfler, Jiří Valůšek a Erika Stárková |
+| Babička | https://www.mujrozhlas.cz/ctenarsky-denik/bozena-nemcova-babicka | Rozhlasová adaptace z roku 2007, 11 dílů, Hana Kofránková |
+
+U těchto stránek byla ověřena HTTP 200, identita titulu a přítomnost přehrávače nebo seznamu dílů. Záznamy v `src/lib/book-listening.json` nemají lokální cestu ani seznam distribuovaných zvukových souborů. Rozhraní je zobrazuje ve filtru „Český poslech online“, v detailu i na kartách knih. Odkaz otevře původní přehrávač v nové kartě; nahrávky se nekopírují, nepoužívají v interním přehrávači ani nezapočítávají do místních audioknih v `docs/media-availability.csv`. Dostupnost a podmínky poslechu určuje poskytovatel. Babička je výslovně označena jako rozhlasová adaptace.
+
+České audio je navíc zobrazené hned na začátku knihovny v samostatné sekci „České audioknihy a četba“: Krysař s přímým otevřením interního přehrávače a tři samostatné odkazy na Český rozhlas. Adresa aplikace s fragmentem `#audioknihy` automaticky otevře tuto sekci, včetně obnovení stránky. V Chromium bylo ověřeno zobrazení všech čtyř karet, 26 kapitol Krysaře, skutečný posun času během přehrávání, pauza, přímý odkaz i mobilní rozložení.
+
 Staré neexistující adresy `/cz/katalog-sluzeb/eknihy/<název>/` i odkazy OceansOfPDF byly odstraněny z aplikačních dat. Oficiální MLP vyhledávání dnes přesměrovává ze search.mlp.cz na `https://www.mlp.cz/katalog/?query=...`; aplikace používá tuto kanonickou adresu. Ověřena byla HTTP 200 a skutečná hodnota query ve vyhledávání Palmknih (`https://www.palmknihy.cz/vyhledavani?query=...`). Palmknihy jsou označené jako nabídka, která může být placená. LibriVox vyhledávání používá jejich skutečný formulář. Výsledek hledání ani budoucí dostupnost externích služeb nejsou zaručeny.
 
 Kontrola katalogu Knihovny.cz z cloudového klienta dostala ochranu proti botům (418); nejde o důkaz neexistující knihy. Aplikace tento katalog nenabízí jako přímé stažení. Audiolibrix v cloudovém klientu neodpovídal spolehlivě a nebyl použit pro přímé soubory.
@@ -41,6 +59,8 @@ Regrese byla zopakována se souborem generovaným původní akcí: čtečka Bož
 ## Kontroly
 
 `npm test` kontroluje i identitu titulů, fyzickou přítomnost souborů, SHA-256, velikosti, licence, EPUB kontejnery a jejich pořadí kapitol, úplnost 26 MP3 i absenci falešných aplikačních odkazů. Testy běží v GitHub Actions před nasazením (Node.js 24). Žádný build nestahuje obsah z neověřených stránek.
+
+Při tomto doplnění prošlo všech 25 testů, lint, produkční sestavení včetně TypeScriptu a kontrola 113 exportovaných médií a licencí pod `/app`. V Chromium bylo otevřeno všech šest nových EPUB, ověřen text kapitol, tři odkazy na český poslech, oddělený filtr místního audia, odkazy na knihkupectví a mobilní rozložení bez vodorovného přetékání. Skutečné přehrávání u externího poskytovatele nebylo součástí této kontroly. Přehled dostupnosti odpovídá manifestu u všech 200 katalogových titulů.
 
 V Chromium byly navíc postupně otevřeny všechny distribuované EPUB, ověřeno skutečné vykreslení textu kapitol, osobní import TXT, bezpečné zobrazení doslovného HTML v textu, IndexedDB po obnovení stránky, mazání souboru a skutečné přehrávání zvuku s pauzou, změnou rychlosti a kapitolou. Syntetické hlasy závisí na zařízení a v headless Chromium bez českého hlasu jsou správně nedostupné.
 
@@ -85,4 +105,10 @@ V Chromium byly navíc postupně otevřeny všechny distribuované EPUB, ověře
 | Těžká hodina | EPUB | [Městská knihovna v Praze / next-book](https://github.com/books-are-next/tezka-hodina/tree/546316eaf5701352d864e99cb9c43bffd9d1a3bb) |
 | Petrolejové lampy | EPUB | [Městská knihovna v Praze / next-book](https://github.com/books-are-next/petrolejove-lampy/tree/8ee5e65e74fdf28b78f41d1d6b38d6a5e3f6d91b) |
 | R.U.R. | TXT | [Project Gutenberg](https://github.com/GITenberg/R.U.R._13083/tree/7ed743dcd772d0dcbcbfa54aa904169d14a87270) |
+| Noc na Karlštejně | EPUB | [Městská knihovna v Praze / next-book](https://github.com/books-are-next/vrchlicky-noc-na-karlstejne/tree/6596e911ba6b57486ea855066f1462f9184ffd43) |
+| Ohlas písní českých | EPUB | [Městská knihovna v Praze / next-book](https://github.com/books-are-next/ohlas-pisni-ceskych/tree/7f4aa49edd039bdda41417b89a8e8dbf8d2fd042) |
+| Lucerna | EPUB | [Městská knihovna v Praze / next-book](https://github.com/books-are-next/lucerna/tree/dc0411d7143810cab40c9a4fa46469c091ac07b1) |
+| Závěť | EPUB | [Městská knihovna v Praze / next-book](https://github.com/books-are-next/zavet/tree/b9718ab6aa7f3d27899d907a1b8ce414ea732037) |
+| Odysseia | EPUB | [Městská knihovna v Praze / next-book](https://github.com/books-are-next/odysseia/tree/1a29b23153b9db0e0037c254e8bc7ae25dea0721) |
+| Kosmůw letopis český | EPUB | [Městská knihovna v Praze / next-book](https://github.com/books-are-next/kosmas-kosmuw-letopis-cesky/tree/95f6070ed172080f9f85dcaf8cf1974d99bd77f6) |
 | Krysař — celá audiokniha | MP3 | [LibriVox · čte Kudrna](https://librivox.org/krysar-by-viktor-dyk/) |

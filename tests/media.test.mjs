@@ -7,6 +7,7 @@ import { fileFormat } from '../src/lib/media-files.ts';
 import { speechChunks } from '../src/lib/ebook-reader.ts';
 
 const media = JSON.parse(readFileSync(new URL('../src/lib/book-media.json', import.meta.url)));
+const listening = JSON.parse(readFileSync(new URL('../src/lib/book-listening.json', import.meta.url)));
 const rawCatalog = readFileSync(new URL('../src/lib/books_catalog_200.ts', import.meta.url), 'utf8');
 const catalog = JSON.parse(rawCatalog.slice(rawCatalog.indexOf('= [') + 2, rawCatalog.lastIndexOf(']') + 1));
 
@@ -37,6 +38,23 @@ test('every distributed media file and attribution exists and matches its record
       assert.match(license, /by-nc-sa\/3\.0\/cz/);
     } else if (source.format === 'TXT') assert.match(license, /FULL PROJECT GUTENBERG LICENSE/);
     else assert.match(license, /Public Domain Mark/);
+  }
+});
+
+test('external Czech readings have title-specific provider pages and stay separate from bundled files', () => {
+  const ids = new Set(catalog.map(book => book.id));
+  assert.equal(new Set(listening.map(recording => recording.bookId)).size, listening.length);
+  for (const recording of listening) {
+    assert.ok(ids.has(recording.bookId));
+    assert.equal(recording.language, 'cs');
+    const url = new URL(recording.url);
+    assert.equal(url.protocol, 'https:');
+    assert.equal(url.hostname, 'www.mujrozhlas.cz');
+    assert.notEqual(url.pathname, '/');
+    assert.doesNotMatch(url.pathname, /vyhledavani/);
+    assert.ok(recording.description && recording.provider && recording.verifiedAt);
+    assert.equal(recording.path, undefined);
+    assert.equal(recording.tracks, undefined);
   }
 });
 

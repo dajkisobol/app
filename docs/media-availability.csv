@@ -1,14 +1,14 @@
 id,title,author,ebook_in_app,recorded_audio_in_app
 epos-o-gilgamesovi,Epos o Gilgamešovi,Neznámý autor,False,False
 homer-ilias,Ilias,Homér,True,False
-homer-odyssea,Odyssea,Homér,False,False
+homer-odyssea,Odyssea,Homér,True,False
 sofokles-kral-oidipus,Král Oidipus,Sofoklés,False,False
 sofokles-antigona,Antigona,Sofoklés,False,False
 ovidius-promeny,Proměny,Ovidius,False,False
 dante-bozska-komedie,Božská komedie,Dante Alighieri,True,False
 boccaccio-dekameron,Dekameron,Giovanni Boccaccio,False,False
 chaucer-kanterburske-povidky,Kanterburské povídky,Geoffrey Chaucer,False,False
-villon-zavet,Závěť (Velký testament),François Villon,False,False
+villon-zavet,Závěť (Velký testament),François Villon,True,False
 cervantes-don-quijote,Důmyslný rytíř Don Quijote de la Mancha,Miguel de Cervantes y Saavedra,False,False
 shakespeare-hamlet,Hamlet,William Shakespeare,True,False
 shakespeare-othello,Othello,William Shakespeare,False,False
@@ -25,7 +25,7 @@ voltaire-candide,Candide neboli Optimismus,Voltaire,False,False
 prevost-manon-lescaut,Manon Lescaut,Antoine François Prévost,False,False
 goethe-utrpeni-mladeho-werthera,Utrpení mladého Werthera,Johann Wolfgang von Goethe,False,False
 kristianova-legenda,Kristiánova legenda,Neznámý autor (Kristián),False,False
-kosmas-kronika-ceska,Kronika česká (Chronica Boemorum),Kosmas,False,False
+kosmas-kronika-ceska,Kronika česká (Chronica Boemorum),Kosmas,True,False
 dalimilova-kronika,Dalimilova kronika,Neznámý autor (takzvaný Dalimil),True,False
 hus-knizky-o-svatokupectvi,Knížky o svatokupectví,Jan Hus,False,False
 komensky-labyrint-sveta,Labyrint světa a ráj srdce,Jan Amos Komenský,True,False
@@ -34,7 +34,7 @@ bridel-co-boh-clovek,Co Bůh? Člověk?,Bedřich Bridel,True,False
 balbin-rozprava-na-obranu-jazyka,Rozprava na obranu jazyka slovanského,Bohuslav Balbín,False,False
 dobrovsky-dejiny-ceske-reci,Dějiny české řeči a literatury,Josef Dobrovský,False,False
 jungmann-slovesnost,Slovesnost,Josef Jungmann,False,False
-celakovsky-ohlas-pisni-ceskych,Ohlas písní českých,František Ladislav Čelakovský,False,False
+celakovsky-ohlas-pisni-ceskych,Ohlas písní českých,František Ladislav Čelakovský,True,False
 celakovsky-ohlas-pisni-ruskych,Ohlas písní ruských,František Ladislav Čelakovský,False,False
 klicpera-rohovin-ctverrohy,Rohovín Čtverrohý,Václav Kliment Klicpera,False,False
 havlicek-krest-svatého-vladimira,Křest svatého Vladimíra,Karel Havlíček Borovský,True,False
@@ -92,9 +92,9 @@ jirasek-stare-povesti-ceske,Staré pověsti české,Alois Jirásek,False,False
 jirasek-mezi-proudy,Mezi proudy,Alois Jirásek,False,False
 jirasek-f-l-vek,F. L. Věk,Alois Jirásek,False,False
 jirasek-temno,Temno,Alois Jirásek,True,False
-jirasek-lucerna,Lucerna,Alois Jirásek,False,False
+jirasek-lucerna,Lucerna,Alois Jirásek,True,False
 winter-mistr-kampanus,Mistr Kampanus,Zikmund Winter,False,False
-vrchlicky-noc-na-karlstejne,Noc na Karlštejně,Jaroslav Vrchlický,False,False
+vrchlicky-noc-na-karlstejne,Noc na Karlštejně,Jaroslav Vrchlický,True,False
 vrchlicky-okna-v-bouri,Okna v bouři,Jaroslav Vrchlický,False,False
 machar-confiteor,Confiteor,Josef Svatopluk Machar,False,False
 sova-kvety-intimnich-nalad,Květy intimních nálad,Antonín Sva,False,False
