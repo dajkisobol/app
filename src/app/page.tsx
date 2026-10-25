@@ -2,14 +2,13 @@
 
 import Image from 'next/image';
 import readingCorner from '@/assets/reading-corner.webp';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BookOpen,
   GraduationCap,
   AlertCircle,
   Headphones,
   CheckCircle,
-  Clock,
   LogOut,
   Moon,
   Sun,
@@ -20,14 +19,14 @@ import {
   ChevronRight,
   User,
   BarChart3,
-  Award,
   Search,
   Check,
   X
 } from 'lucide-react';
 import AudioPlayer from '@/components/AudioPlayer';
+import CermatTests, { CermatMistakes } from '@/components/CermatTests';
 import { supabase } from '@/lib/supabase';
-import { BOOK_CATALOG, CERMAT_TESTS, getDatabaseLinksForBook } from '@/lib/data';
+import { BOOK_CATALOG, getDatabaseLinksForBook } from '@/lib/data';
 import { FREE_RESOURCES } from '@/lib/resources';
 
 interface UserState {
@@ -37,37 +36,13 @@ interface UserState {
   isGuest?: boolean;
 }
 
-interface Question {
-  id: string;
-  category: string;
-  prompt: string;
-  options: string[];
-  correctOption: number;
-  explanation: string;
-}
-
-interface DidacticTest {
-  id: string;
-  title: string;
-  year: string;
-  season: string;
-  timeLimitMinutes: number;
-  questions: Question[];
-}
-
-interface TestResult {
-  score: number;
-  totalQuestions: number;
-  percentage: number;
-  timeSpentSeconds: number;
-}
-
 interface MissedQuestion {
   id: string;
   missedRecordId?: string;
   test_id?: string;
   category: string;
   prompt: string;
+  passage?: string;
   options: string[];
   correctOption: number;
   explanation: string;
@@ -116,16 +91,6 @@ export default function Home() {
   const [password, setPassword] = useState('');
   const [authError, setAuthError] = useState('');
 
-  // Tests State
-  const [tests, setTests] = useState<DidacticTest[]>([]);
-  const [activeTest, setActiveTest] = useState<DidacticTest | null>(null);
-  const [testMode, setTestMode] = useState<'timed' | 'untimed'>('timed');
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
-  const [timeLeft, setTimeLeft] = useState(85 * 60);
-  const [isTestSubmitted, setIsTestSubmitted] = useState(false);
-  const [testResult, setTestResult] = useState<TestResult | null>(null);
-
   // Weakness / Errors State
   const [errorQuestions, setErrorQuestions] = useState<MissedQuestion[]>([]);
   const [errorCategory, setErrorCategory] = useState<string>('vse');
@@ -157,7 +122,6 @@ export default function Home() {
     let isMounted = true;
     const init = async () => {
       setResources(FREE_RESOURCES as ResourceItem[]);
-      setTests(CERMAT_TESTS as DidacticTest[]);
       setCatalogBooks(BOOK_CATALOG as Book[]);
 
       if (supabase) {
@@ -283,108 +247,6 @@ export default function Home() {
     };
   }, [activeTab, errorCategory, user]);
 
-  const submitTest = useCallback(async () => {
-    if (!activeTest) return;
-    let score = 0;
-    const missedQuestions: Question[] = [];
-
-    activeTest.questions.forEach((q) => {
-      const userAns = selectedAnswers[q.id];
-      if (userAns === q.correctOption) {
-        score++;
-      } else {
-        missedQuestions.push(q);
-      }
-    });
-
-    const totalQuestions = activeTest.questions.length;
-    const timeSpentSeconds = (activeTest.timeLimitMinutes * 60) - timeLeft;
-
-    setIsTestSubmitted(true);
-    setTestResult({
-      score,
-      totalQuestions,
-      percentage: Math.round((score / totalQuestions) * 100),
-      timeSpentSeconds
-    });
-
-    if (user) {
-      if (supabase && !user.isGuest) {
-        await supabase.from('test_results').insert({
-          user_id: user.id,
-          test_id: activeTest.id,
-          test_title: activeTest.title,
-          score,
-          total_questions: totalQuestions,
-          time_spent_seconds: timeSpentSeconds
-        });
-
-        for (const q of missedQuestions) {
-          const { data: existing } = await supabase
-            .from('user_missed_questions')
-            .select('id, times_failed')
-            .eq('user_id', user.id)
-            .eq('question_id', q.id)
-            .single();
-
-          if (existing) {
-            await supabase
-              .from('user_missed_questions')
-              .update({ times_failed: existing.times_failed + 1, mastered: false })
-              .eq('id', existing.id);
-          } else {
-            await supabase.from('user_missed_questions').insert({
-              user_id: user.id,
-              question_id: q.id,
-              test_id: activeTest.id,
-              category: q.category,
-              prompt: q.prompt,
-              options_json: JSON.stringify(q.options),
-              correct_option: q.correctOption,
-              explanation: q.explanation,
-              times_failed: 1,
-              mastered: false
-            });
-          }
-        }
-      } else {
-        const savedErrorsKey = `maturyta_missed_${user.id}`;
-        const existingRaw = localStorage.getItem(savedErrorsKey);
-        const existingList: MissedQuestion[] = existingRaw ? JSON.parse(existingRaw) : [];
-
-        missedQuestions.forEach((q) => {
-          const idx = existingList.findIndex((item) => item.id === q.id);
-          if (idx >= 0) {
-            existingList[idx].timesFailed = (existingList[idx].timesFailed || 1) + 1;
-          } else {
-            existingList.push({ ...q, timesFailed: 1 });
-          }
-        });
-        localStorage.setItem(savedErrorsKey, JSON.stringify(existingList));
-      }
-    }
-  }, [activeTest, selectedAnswers, timeLeft, user]);
-
-  // Timer Effect
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (activeTest && testMode === 'timed' && !isTestSubmitted && timeLeft > 0) {
-      timer = setInterval(() => {
-        setTimeLeft((prev) => {
-          if (prev <= 1) {
-            clearInterval(timer);
-            submitTest();
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-    return () => {
-      if (timer) clearInterval(timer);
-    };
-  }, [activeTest, testMode, isTestSubmitted, timeLeft, submitTest]);
-
   const handleLogin = async (isGuest = false) => {
     setAuthError('');
 
@@ -473,16 +335,6 @@ export default function Home() {
     setUser(null);
   };
 
-  const startTest = (test: DidacticTest, mode: 'timed' | 'untimed') => {
-    setActiveTest(test);
-    setTestMode(mode);
-    setCurrentQuestionIndex(0);
-    setSelectedAnswers({});
-    setTimeLeft((test.timeLimitMinutes || 85) * 60);
-    setIsTestSubmitted(false);
-    setTestResult(null);
-  };
-
   const toggleBookSelection = async (bookId: string) => {
     if (!user) {
       setShowAuthModal(true);
@@ -544,12 +396,6 @@ export default function Home() {
         localStorage.setItem(savedErrorsKey, JSON.stringify(filtered));
       }
     }
-  };
-
-  const formatSeconds = (secs: number) => {
-    const m = Math.floor(secs / 60);
-    const s = secs % 60;
-    return `${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
   const cardClass = 'study-card bg-[var(--surface)] border border-[var(--line)] transition-all duration-200';
@@ -782,7 +628,7 @@ export default function Home() {
                   onClick={() => setActiveTab('errors')}
                   className="text-xs font-extrabold text-[var(--coral-ink)] hover:underline inline-flex items-center gap-1 pt-1"
                 >
-                  Procvičit chyby ({errorQuestions.length}) <ChevronRight className="w-3.5 h-3.5" />
+                  Procvičit uložené chyby <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
 
@@ -805,205 +651,22 @@ export default function Home() {
           </div>
         )}
 
-        {/* CERMAT TESTS TAB */}
-        {activeTab === 'tests' && (
-          <div className="space-y-6">
-            {!activeTest ? (
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-2xl font-extrabold tracking-tight text-[var(--ink)]">Didaktické testy CERMAT</h2>
-                  <p className="text-xs text-[var(--muted)]">Vyber si test k procvičení. Můžeš zvolit oficiální ostrý režim s časem nebo neomezený trénink.</p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  {tests.map((test) => (
-                    <div key={test.id} className={`p-6 rounded-2xl ${cardClass} space-y-4`}>
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[var(--mustard)]/10 text-[var(--mustard-ink)] border border-[var(--mustard)]/20">
-                            {test.season} {test.year}
-                          </span>
-                          <h3 className="text-lg font-bold mt-2 text-[var(--ink)]">{test.title}</h3>
-                        </div>
-                        <div className="flex items-center gap-1 text-xs text-[var(--muted)] font-mono">
-                          <Clock className="w-3.5 h-3.5 text-[var(--mustard-ink)]" />
-                          {test.timeLimitMinutes} min
-                        </div>
-                      </div>
-
-                      <p className="text-xs text-[var(--muted)] leading-relaxed">
-                        Obsahuje {test.questions.length} kompletních úloh zaměřených na Pravopis, Literární historii, Mluvnici a Textovou návaznost.
-                      </p>
-
-                      <div className="pt-2 flex flex-col sm:flex-row items-center gap-2.5">
-                        <button
-                          onClick={() => startTest(test, 'timed')}
-                          className="w-full sm:flex-1 py-2.5 rounded-xl bg-[var(--coral)] hover:bg-[var(--coral-hover)] text-[#293643] font-extrabold text-xs transition-transform active:scale-95 flex items-center justify-center gap-2 shadow-sm"
-                        >
-                          <Clock className="w-3.5 h-3.5" />
-                          Ostrý test (85 min)
-                        </button>
-                        <button
-                          onClick={() => startTest(test, 'untimed')}
-                          className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[var(--surface-soft)] hover:bg-[var(--surface-hover)]/80 text-[var(--muted)] font-bold text-xs border border-[var(--line)]/80 transition-colors"
-                        >
-                          Trénink bez času
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              /* ACTIVE TEST RUNNER */
-              <div className="max-w-3xl mx-auto space-y-6">
-                <div className={`p-4 rounded-2xl ${cardClass} flex items-center justify-between`}>
-                  <div>
-                    <h3 className="font-bold text-sm text-[var(--ink)]">{activeTest.title}</h3>
-                    <p className="text-xs text-[var(--muted)]">
-                      Otázka {currentQuestionIndex + 1} z {activeTest.questions.length}
-                    </p>
-                  </div>
-
-                  {testMode === 'timed' && !isTestSubmitted && (
-                    <div className="flex items-center gap-1.5 font-mono font-bold text-sm px-3 py-1.5 rounded-xl bg-[var(--mustard)]/10 text-[var(--mustard-ink)] border border-[var(--mustard)]/20">
-                      <Clock className="w-4 h-4 animate-pulse" />
-                      {formatSeconds(timeLeft)}
-                    </div>
-                  )}
-
-                  <button
-                    onClick={() => setActiveTest(null)}
-                    className="text-xs text-[var(--coral-ink)] hover:underline font-bold"
-                  >
-                    Ukončit test
-                  </button>
-                </div>
-
-                {!isTestSubmitted ? (
-                  <div className={`p-6 lg:p-8 rounded-2xl ${cardClass} space-y-6`}>
-                    <div className="space-y-2">
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[var(--sage)]/10 text-[var(--sage-ink)] border border-[var(--sage)]/20">
-                        {activeTest.questions[currentQuestionIndex].category}
-                      </span>
-                      <h2 className="text-lg lg:text-xl font-bold leading-relaxed text-[var(--ink)]">
-                        {activeTest.questions[currentQuestionIndex].prompt}
-                      </h2>
-                    </div>
-
-                    <div className="space-y-2.5">
-                      {activeTest.questions[currentQuestionIndex].options.map((opt: string, idx: number) => {
-                        const qId = activeTest.questions[currentQuestionIndex].id;
-                        const isSelected = selectedAnswers[qId] === idx;
-                        return (
-                          <button
-                            key={idx}
-                            onClick={() => setSelectedAnswers({ ...selectedAnswers, [qId]: idx })}
-                            className={`w-full text-left p-4 rounded-xl border text-xs lg:text-sm font-semibold transition-all ${
-                              isSelected
-                                ? 'bg-[var(--mustard)]/15 border-[var(--mustard)] text-[var(--mustard-ink)]'
-                                : 'bg-[var(--surface-soft)]/40 border-[var(--line)] hover:border-[var(--line)] text-[var(--muted)]'
-                            }`}
-                          >
-                            {opt}
-                          </button>
-                        );
-                      })}
-                    </div>
-
-                    <div className="flex justify-between items-center pt-4 border-t border-[var(--line)]/80">
-                      <button
-                        onClick={() => setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1))}
-                        disabled={currentQuestionIndex === 0}
-                        className="px-4 py-2 rounded-xl bg-[var(--surface-soft)]/60 disabled:opacity-40 text-xs font-bold text-[var(--muted)] border border-[var(--line)]/60"
-                      >
-                        Předchozí
-                      </button>
-
-                      {currentQuestionIndex < activeTest.questions.length - 1 ? (
-                        <button
-                          onClick={() => setCurrentQuestionIndex(currentQuestionIndex + 1)}
-                          className="px-5 py-2 rounded-xl bg-[var(--sage)] hover:bg-[var(--sage-hover)] text-[#293643] font-extrabold text-xs transition-colors"
-                        >
-                          Další otázka
-                        </button>
-                      ) : (
-                        <button
-                          onClick={submitTest}
-                          className="px-5 py-2 rounded-xl bg-[var(--coral)] hover:bg-[var(--coral-hover)] text-[#293643] font-extrabold text-xs transition-transform active:scale-95 shadow-sm"
-                        >
-                          Vyhodnotit test
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                ) : (
-                  /* TEST RESULTS DISPLAY */
-                  <div className={`p-6 lg:p-8 rounded-2xl ${cardClass} space-y-6`}>
-                    <div className="text-center space-y-2">
-                      <div className="inline-flex p-3 rounded-2xl bg-[var(--mustard)]/10 text-[var(--mustard-ink)] border border-[var(--mustard)]/20">
-                        <Award className="w-10 h-10" />
-                      </div>
-                      <h2 className="text-2xl font-extrabold text-[var(--ink)]">Výsledky testu</h2>
-                      <div className="text-5xl font-black text-[var(--mustard-ink)]">
-                        {testResult?.percentage}%
-                      </div>
-                      <p className="text-[var(--muted)] text-xs">
-                        Získali jste <strong className="text-[var(--ink)]">{testResult?.score}</strong> z{' '}
-                        <strong className="text-[var(--ink)]">{testResult?.totalQuestions}</strong> bodů.
-                      </p>
-                    </div>
-
-                    <div className="space-y-3 pt-4 border-t border-[var(--line)]/80">
-                      <h3 className="font-bold text-sm text-[var(--ink)]">Přehled otázek:</h3>
-                      {activeTest.questions.map((q, idx) => {
-                        const userAns = selectedAnswers[q.id];
-                        const isCorrect = userAns === q.correctOption;
-                        return (
-                          <div
-                            key={q.id}
-                            className={`p-4 rounded-xl border text-xs space-y-2 ${
-                              isCorrect
-                                ? 'border-[var(--sage)]/40 bg-[var(--sage)]/5'
-                                : 'border-[var(--coral)]/40 bg-[var(--coral)]/5'
-                            }`}
-                          >
-                            <div className="flex items-center justify-between">
-                              <span className="font-bold text-[var(--ink)]">
-                                {idx + 1}. {q.prompt}
-                              </span>
-                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${isCorrect ? 'bg-[var(--sage)]/20 text-[var(--sage-ink)]' : 'bg-[var(--coral)]/20 text-[var(--coral-ink)]'}`}>
-                                {isCorrect ? 'Správně' : 'Chyba'}
-                              </span>
-                            </div>
-                            <p className="text-[var(--muted)]">
-                              Vaše odpověď: <strong className="text-[var(--ink)]">{userAns !== undefined ? q.options[userAns] : 'Nezodpovězeno'}</strong>
-                            </p>
-                            {!isCorrect && (
-                              <div className="p-3 rounded-lg bg-[var(--surface-soft)]/80 space-y-1 border border-[var(--line)]/80">
-                                <span className="font-bold text-[var(--sage-ink)]">Správné řešení: {q.options[q.correctOption]}</span>
-                                <p className="text-[var(--muted)] leading-relaxed">{q.explanation}</p>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    <div className="flex justify-center pt-2">
-                      <button
-                        onClick={() => setActiveTest(null)}
-                        className="px-6 py-2.5 rounded-xl bg-[var(--mustard)] hover:bg-[var(--mustard-hover)] text-[#293643] font-extrabold text-xs transition-transform active:scale-95 shadow-sm"
-                      >
-                        Zpět na přehled testů
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        )}
+        {/* Complete official exam booklets and interactive answer sheets */}
+        <div hidden={activeTab !== 'tests'}>
+          <CermatTests
+            key={user?.id ?? 'anonymous'}
+            storageKey={`maturyta_cermat_v1_${user?.id ?? 'anonymous'}`}
+            onResult={async ({ exam, score, seconds }) => {
+              if (supabase && user && !user.isGuest) {
+                const { error } = await supabase.from('test_results').insert({
+                  user_id: user.id, test_id: exam.id, test_title: exam.title,
+                  score, total_questions: exam.tasks.length, time_spent_seconds: seconds,
+                });
+                if (error) throw error;
+              }
+            }}
+          />
+        </div>
 
         {/* ERROR PRACTICE TAB */}
         {activeTab === 'errors' && (
@@ -1013,6 +676,9 @@ export default function Home() {
               <p className="text-xs text-[var(--muted)]">Otázky, ve kterých jsi v minulosti chyboval/a. Jakmile otázku zvládneš, vyřaď ji tlačítkem.</p>
             </div>
 
+            <CermatMistakes key={user?.id ?? 'anonymous'} storageKey={`maturyta_cermat_v1_${user?.id ?? 'anonymous'}`} />
+
+            {errorQuestions.length > 0 && <h3 className="font-bold">Dříve uložené cvičné otázky</h3>}
             {/* CATEGORY FILTER */}
             <div className="flex flex-wrap gap-2">
               {['vse', 'Pravopis', 'Literatura', 'Mluvnice', 'Textová návaznost'].map((cat) => (
@@ -1033,9 +699,9 @@ export default function Home() {
             {!currentErrorQuestion ? (
               <div className={`p-10 text-center rounded-2xl ${cardClass} space-y-3`}>
                 <CheckCircle className="w-12 h-12 text-[var(--sage-ink)] mx-auto" />
-                <h3 className="font-bold text-lg text-[var(--ink)]">Žádné nevyřešené chyby!</h3>
+                <h3 className="font-bold text-lg text-[var(--ink)]">Žádné starší cvičné otázky</h3>
                 <p className="text-[var(--muted)] text-xs max-w-sm mx-auto leading-relaxed">
-                  Skvělá práce! V této kategorii nemáš žádné nevyřešené chyby. Vyzkoušej nový Cermat test.
+                  V této kategorii nemáš dříve uložené cvičné otázky. Chyby z kompletních CERMAT testů najdeš v samostatné části výše.
                 </p>
               </div>
             ) : (
@@ -1050,6 +716,7 @@ export default function Home() {
                     </span>
                   </div>
 
+                  {currentErrorQuestion.passage && <div className="exam-legacy-passage"><h4>Výchozí text</h4><p>{currentErrorQuestion.passage}</p></div>}
                   <h3 className="text-base lg:text-lg font-bold leading-relaxed text-[var(--ink)]">
                     {currentErrorQuestion.prompt}
                   </h3>
