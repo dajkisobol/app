@@ -42,7 +42,8 @@ export async function POST(req: Request) {
     });
 
     return res;
-  } catch (err: any) {
-    return NextResponse.json({ error: 'Chyba serveru při registraci: ' + err.message }, { status: 500 });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error';
+    return NextResponse.json({ error: 'Chyba serveru při registraci: ' + message }, { status: 500 });
   }
 }

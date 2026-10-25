@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Pause, Volume2, RotateCcw, FastForward } from 'lucide-react';
+import { Play, Pause, RotateCcw } from 'lucide-react';
 
 interface AudioPlayerProps {
   title: string;
@@ -15,14 +15,6 @@ export default function AudioPlayer({ title, author, streamUrl, sourceName, onCl
   const [currentTime, setCurrentTime] = React.useState(0);
   const [duration, setDuration] = React.useState(0);
   const [playbackRate, setPlaybackRate] = React.useState(1.0);
-
-  React.useEffect(() => {
-    setIsPlaying(false);
-    setCurrentTime(0);
-    if (audioRef.current) {
-      audioRef.current.load();
-    }
-  }, [streamUrl]);
 
   const togglePlay = () => {
     if (!audioRef.current) return;
@@ -71,7 +63,10 @@ export default function AudioPlayer({ title, author, streamUrl, sourceName, onCl
     <div className="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md text-white border-t border-slate-800 p-4 shadow-2xl z-50">
       <audio
         ref={audioRef}
+        key={streamUrl}
         src={streamUrl}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleTimeUpdate}
         onEnded={() => setIsPlaying(false)}

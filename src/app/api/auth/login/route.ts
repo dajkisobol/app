@@ -2,24 +2,32 @@ import { NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { verifyPassword, signToken } from '@/lib/auth';
 
+interface UserRecord {
+  id: string;
+  username: string;
+  email: string;
+  password_hash: string;
+}
+
 export async function POST(req: Request) {
   try {
     const { identifier, password, isGuest } = await req.json();
 
     if (isGuest) {
-      const guestId = 'guest_' + Date.now();
+      const guestId = 'guest_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6);
+      const guestEmail = `guest_${Date.now()}_${Math.random().toString(36).substring(2, 6)}@maturyta.cz`;
       const guestUser = {
         id: guestId,
         username: 'Host / Student',
-        email: 'host@maturyta.cz',
+        email: guestEmail,
         isGuest: true
       };
 
-      // Ensure guest exists in DB for foreign key support
-      db.prepare('INSERT OR IGNORE INTO users (id, username, email, password_hash) VALUES (?, ?, ?, ?)').run(
+      // Insert guest into DB for foreign key constraint support
+      db.prepare('INSERT INTO users (id, username, email, password_hash) VALUES (?, ?, ?, ?)').run(
         guestId,
-        guestUser.username,
-        guestUser.email,
+        `Host_${guestId.substring(6)}`,
+        guestEmail,
         'guest'
       );
 
@@ -39,7 +47,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Zadejte uživatelské jméno / e-mail a heslo.' }, { status: 400 });
     }
 
-    const user: any = db.prepare('SELECT * FROM users WHERE username = ? OR email = ?').get(identifier, identifier);
+    const user = db.prepare('SELECT * FROM users WHERE username = ? OR email = ?').get(identifier, identifier) as UserRecord | undefined;
     if (!user) {
       return NextResponse.json({ error: 'Uživatel nenalezen.' }, { status: 401 });
     }
@@ -61,7 +69,8 @@ export async function POST(req: Request) {
     });
 
     return res;
-  } catch (err: any) {
-    return NextResponse.json({ error: 'Chyba při přihlášení: ' + err.message }, { status: 500 });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error';
+    return NextResponse.json({ error: 'Chyba při přihlášení: ' + message }, { status: 500 });
   }
 }

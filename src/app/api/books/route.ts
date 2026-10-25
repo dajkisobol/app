@@ -1,16 +1,20 @@
 import { NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { getCurrentUser } from '@/lib/auth';
-import { BOOK_CATALOG } from '@/lib/data';
+
+interface UserBookRecord {
+  book_id: string;
+  custom_notes?: string;
+}
 
 export async function GET() {
   const user = await getCurrentUser();
 
   let userBookIds: string[] = [];
-  let userNotes: Record<string, string> = {};
+  const userNotes: Record<string, string> = {};
 
   if (user) {
-    const userBooks: any[] = db.prepare('SELECT book_id, custom_notes FROM user_books WHERE user_id = ?').all(user.id);
+    const userBooks = db.prepare('SELECT book_id, custom_notes FROM user_books WHERE user_id = ?').all(user.id) as UserBookRecord[];
     userBookIds = userBooks.map((b) => b.book_id);
     userBooks.forEach((b) => {
       if (b.custom_notes) {
@@ -26,6 +30,8 @@ export async function GET() {
   });
 }
 
+import { BOOK_CATALOG } from '@/lib/data';
+
 export async function POST(req: Request) {
   const user = await getCurrentUser();
   if (!user) {
@@ -35,7 +41,7 @@ export async function POST(req: Request) {
   const { bookId, action, notes } = await req.json();
 
   if (action === 'toggle') {
-    const existing: any = db.prepare('SELECT id FROM user_books WHERE user_id = ? AND book_id = ?').get(user.id, bookId);
+    const existing = db.prepare('SELECT id FROM user_books WHERE user_id = ? AND book_id = ?').get(user.id, bookId) as { id: string } | undefined;
     if (existing) {
       db.prepare('DELETE FROM user_books WHERE id = ?').run(existing.id);
       return NextResponse.json({ success: true, added: false });

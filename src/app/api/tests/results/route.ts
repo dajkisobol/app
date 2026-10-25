@@ -2,6 +2,27 @@ import { NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { getCurrentUser } from '@/lib/auth';
 
+interface MissedQuestionRecord {
+  id: string;
+  question_id: string;
+  test_id: string;
+  category: string;
+  prompt: string;
+  options_json: string;
+  correct_option: number;
+  explanation: string;
+  times_failed: number;
+}
+
+interface MissedQuestionInput {
+  id: string;
+  category: string;
+  prompt: string;
+  options: string[];
+  correctOption: number;
+  explanation: string;
+}
+
 export async function GET(req: Request) {
   const user = await getCurrentUser();
   if (!user) {
@@ -12,7 +33,7 @@ export async function GET(req: Request) {
   const category = searchParams.get('category');
 
   let query = 'SELECT * FROM user_missed_questions WHERE user_id = ? AND mastered = 0';
-  const params: any[] = [user.id];
+  const params: (string | number)[] = [user.id];
 
   if (category && category !== 'vse') {
     query += ' AND category = ?';
@@ -21,7 +42,7 @@ export async function GET(req: Request) {
 
   query += ' ORDER BY times_failed DESC, created_at DESC';
 
-  const rows: any[] = db.prepare(query).all(...params);
+  const rows = db.prepare(query).all(...params) as MissedQuestionRecord[];
   const questions = rows.map((r) => ({
     id: r.question_id,
     missedRecordId: r.id,
@@ -54,10 +75,10 @@ export async function POST(req: Request) {
 
   // Process missed questions for weakness practice queue
   if (Array.isArray(missedQuestions) && missedQuestions.length > 0) {
-    for (const q of missedQuestions) {
-      const existing: any = db.prepare(
+    for (const q of (missedQuestions as MissedQuestionInput[])) {
+      const existing = db.prepare(
         'SELECT id, times_failed FROM user_missed_questions WHERE user_id = ? AND question_id = ?'
-      ).get(user.id, q.id);
+      ).get(user.id, q.id) as { id: string; times_failed: number } | undefined;
 
       if (existing) {
         db.prepare(

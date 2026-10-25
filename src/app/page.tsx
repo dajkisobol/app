@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   BookOpen,
   GraduationCap,
@@ -13,7 +13,6 @@ import {
   Sun,
   Printer,
   Plus,
-  Trash2,
   Play,
   Download,
   ChevronRight,
@@ -24,8 +23,81 @@ import {
 } from 'lucide-react';
 import AudioPlayer from '@/components/AudioPlayer';
 
+interface UserState {
+  id: string;
+  username: string;
+  email: string;
+  isGuest?: boolean;
+}
+
+interface Question {
+  id: string;
+  category: string;
+  prompt: string;
+  options: string[];
+  correctOption: number;
+  explanation: string;
+}
+
+interface DidacticTest {
+  id: string;
+  title: string;
+  year: string;
+  season: string;
+  timeLimitMinutes: number;
+  questions: Question[];
+}
+
+interface TestResult {
+  score: number;
+  totalQuestions: number;
+  percentage: number;
+  timeSpentSeconds: number;
+}
+
+interface MissedQuestion {
+  id: string;
+  missedRecordId?: string;
+  test_id?: string;
+  category: string;
+  prompt: string;
+  options: string[];
+  correctOption: number;
+  explanation: string;
+  timesFailed?: number;
+}
+
+interface Book {
+  id: string;
+  title: string;
+  author: string;
+  period: string;
+  genre: string;
+  timeAndPlace: string;
+  themeAndMotifs: string;
+  characters: string;
+  plotSummary: string;
+  languageAndStyle: string;
+  ebookUrl?: string;
+  audiobookUrl?: string;
+  audioSource?: string;
+}
+
+interface ResourceItem {
+  id: string;
+  title: string;
+  author: string;
+  type: 'ebook' | 'audiobook';
+  format: string;
+  sourceName: string;
+  downloadUrl?: string;
+  streamUrl?: string;
+  description: string;
+  coverColor: string;
+}
+
 export default function Home() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<UserState | null>(null);
   const [activeTab, setActiveTab] = useState<'dashboard' | 'tests' | 'errors' | 'books' | 'resources'>('dashboard');
   const [darkMode, setDarkMode] = useState(true);
 
@@ -38,31 +110,31 @@ export default function Home() {
   const [authError, setAuthError] = useState('');
 
   // Tests State
-  const [tests, setTests] = useState<any[]>([]);
-  const [activeTest, setActiveTest] = useState<any>(null);
+  const [tests, setTests] = useState<DidacticTest[]>([]);
+  const [activeTest, setActiveTest] = useState<DidacticTest | null>(null);
   const [testMode, setTestMode] = useState<'timed' | 'untimed'>('timed');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
   const [timeLeft, setTimeLeft] = useState(85 * 60);
   const [isTestSubmitted, setIsTestSubmitted] = useState(false);
-  const [testResult, setTestResult] = useState<any>(null);
+  const [testResult, setTestResult] = useState<TestResult | null>(null);
 
   // Weakness / Errors State
-  const [errorQuestions, setErrorQuestions] = useState<any[]>([]);
+  const [errorQuestions, setErrorQuestions] = useState<MissedQuestion[]>([]);
   const [errorCategory, setErrorCategory] = useState<string>('vse');
   const [activeErrorIndex, setActiveErrorIndex] = useState(0);
   const [errorSelectedAnswer, setErrorSelectedAnswer] = useState<number | null>(null);
   const [errorShowExplanation, setErrorShowExplanation] = useState(false);
 
   // Books State
-  const [catalogBooks, setCatalogBooks] = useState<any[]>([]);
+  const [catalogBooks, setCatalogBooks] = useState<Book[]>([]);
   const [userBookIds, setUserBookIds] = useState<string[]>([]);
   const [userNotes, setUserNotes] = useState<Record<string, string>>({});
-  const [selectedBookDetail, setSelectedBookDetail] = useState<any>(null);
+  const [selectedBookDetail, setSelectedBookDetail] = useState<Book | null>(null);
   const [editingNotes, setEditingNotes] = useState('');
 
   // Resources / Audio State
-  const [resources, setResources] = useState<any[]>([]);
+  const [resources, setResources] = useState<ResourceItem[]>([]);
   const [activeAudio, setActiveAudio] = useState<{
     title: string;
     author: string;
@@ -70,26 +142,7 @@ export default function Home() {
     sourceName: string;
   } | null>(null);
 
-  useEffect(() => {
-    fetchUser();
-    fetchBooks();
-    fetchResources();
-    fetchTests();
-  }, []);
-
-  const fetchUser = async () => {
-    try {
-      const res = await fetch('/api/auth/me');
-      const data = await res.json();
-      if (data.user) {
-        setUser(data.user);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const fetchBooks = async () => {
+  const fetchBooks = useCallback(async () => {
     try {
       const res = await fetch('/api/books');
       const data = await res.json();
@@ -99,10 +152,10 @@ export default function Home() {
     } catch (e) {
       console.error(e);
     }
-  };
+  }, []);
 
-  const fetchResources = async () => {
-    const res = [
+  const fetchResources = useCallback(() => {
+    const res: ResourceItem[] = [
       {
         id: 'res-rur-ebook',
         title: 'R.U.R. (E-kniha zdarma)',
@@ -171,10 +224,10 @@ export default function Home() {
       }
     ];
     setResources(res);
-  };
+  }, []);
 
-  const fetchTests = () => {
-    const data = [
+  const fetchTests = useCallback(() => {
+    const data: DidacticTest[] = [
       {
         id: 'cermat-2023-jaro',
         title: 'Didaktický test ČJL - Jaro 2023',
@@ -193,7 +246,7 @@ export default function Home() {
               'D) Děti se radovali z prázdnin. / Psi hlasitě štěkali na dvoře.'
             ],
             correctOption: 0,
-            explanation: 'Slovo "výjimka" se píše s dlouhým "ý" a krátkým "i". "Visely" má příčestí minulého času podle podmětu "hodiny" (ženský rod, Měkké i). Ve variantě B má být "zhlédli jsme film" (spatřili jsme). Ve variantě C "vstříc". Ve variantě D "děti se radovaly" (střední rod / ženský rod v množném čísle - děti).'
+            explanation: 'Slovo "výjimka" se píše s dlouhým "ý" a krátkým "i". "Visely" má příčestí minulého času podle podmětu "hodiny" (ženský rod, Měkké i).'
           },
           {
             id: 'c2023j-2',
@@ -206,189 +259,69 @@ export default function Home() {
               'D) Historický román popisující období vlády Karla IV.'
             ],
             correctOption: 1,
-            explanation: 'R.U.R. (Rossum’s Universal Robots) je utopické/sci-fi drama Karla Čapka z roku 1920, kde autor poprvé použil slovo "robot" (které mu doporučil bratr Josef Čapek).'
-          },
-          {
-            id: 'c2023j-3',
-            category: 'Mluvnice',
-            prompt: 'Určete větný člen podtržený ve větě: "Chlapec běžel rychle do školy."',
-            options: [
-              'A) Předmět',
-              'B) Příslovečné určení způsobu',
-              'C) Příslovečné určení místa',
-              'D) Přívlastek shodný'
-            ],
-            correctOption: 1,
-            explanation: 'Slovo "rychle" vyjadřuje, JAKÝM ZPŮSOBEM chlapec běžel, jedná se tedy o příslovečné určení způsobu (PUM).'
-          },
-          {
-            id: 'c2023j-4',
-            category: 'Textová návaznost',
-            prompt: 'Která věta nejlépe navazuje na myšlenku: "Karel Hynek Mácha byl významný český básník. Napsal Máj. [???] Byla přijata se značným pochopením až dalšími generacemi."',
-            options: [
-              'A) Ve své době však tato skladba nesklidila u soudobé kritiky velký ohlas.',
-              'B) Mácha velmi rád cestoval po českých hradech a zámcích.',
-              'C) Česká literatura 19. století byla velmi bohatá na různé žánry.',
-              'D) Vydal také několik dalších románů pro mládež.'
-            ],
-            correctOption: 0,
-            explanation: 'Následující věta začíná "Byla přijata se značným pochopením až dalšími generacemi...", což přirozeně navazuje na fakt, že ve své době byla nepochopena nebo kritizována.'
-          },
-          {
-            id: 'c2023j-5',
-            category: 'Pravopis',
-            prompt: 'Které slovo obsahuje chybu v psaní i/ý nebo ě/je?',
-            options: [
-              'A) Objednávka',
-              'B) Běsnění',
-              'C) Zapomnětlivý',
-              'D) Mětský'
-            ],
-            correctOption: 3,
-            explanation: 'Správně se píše "Městský" (od slova město -> měst-ský).'
-          }
-        ]
-      },
-      {
-        id: 'cermat-2022-jaro',
-        title: 'Didaktický test ČJL - Jaro 2022',
-        year: '2022',
-        season: 'Jaro',
-        timeLimitMinutes: 85,
-        questions: [
-          {
-            id: 'c2022j-1',
-            category: 'Literatura',
-            prompt: 'Kdo je autorem baladické sbírky "Kytice"?',
-            options: [
-              'A) Jan Neruda',
-              'B) Karel Jaromír Erben',
-              'C) Božena Němcová',
-              'D) Vítězslav Hálek'
-            ],
-            correctOption: 1,
-            explanation: 'Kytice z pověstí národních je jediná básnická sbírka Karla Jaromíra Erbena.'
-          },
-          {
-            id: 'c2022j-2',
-            category: 'Pravopis',
-            prompt: 'Ve které z možností je chyba v psaní velikosti písmen?',
-            options: [
-              'A) Město Praha, Severní moře, Základní škola v Brně',
-              'B) Tichý oceán, Karlovy Vary, ulice Na Příkopě',
-              'C) Vánoce, Velikonoce, Nový rok',
-              'D) Česká Republika, Pražský Hrad, Univerzita Karlova'
-            ],
-            correctOption: 3,
-            explanation: 'Správný zápis je "Česká republika" (republika s malým r) a "Pražský hrad" (hrad s malým h).'
+            explanation: 'R.U.R. je utopické/sci-fi drama Karla Čapka z roku 1920, kde autor poprvé použil slovo "robot".'
           }
         ]
       }
     ];
     setTests(data);
-  };
+  }, []);
 
-  // Timer Effect
-  useEffect(() => {
-    let timer: any;
-    if (activeTest && testMode === 'timed' && !isTestSubmitted && timeLeft > 0) {
-      timer = setInterval(() => {
-        setTimeLeft((prev) => {
-          if (prev <= 1) {
-            clearInterval(timer);
-            submitTest();
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-    return () => clearInterval(timer);
-  }, [activeTest, testMode, isTestSubmitted, timeLeft]);
-
-  // Load Errors
-  useEffect(() => {
-    if (activeTab === 'errors' && user) {
-      fetchErrorQuestions();
-    }
-  }, [activeTab, errorCategory, user]);
-
-  const fetchErrorQuestions = async () => {
+  const fetchUser = useCallback(async () => {
     try {
-      const res = await fetch(`/api/tests/results?category=${errorCategory}`);
+      const res = await fetch('/api/auth/me');
       const data = await res.json();
-      setErrorQuestions(data.questions || []);
-      setActiveErrorIndex(0);
-      setErrorSelectedAnswer(null);
-      setErrorShowExplanation(false);
+      if (data.user) {
+        setUser(data.user);
+      }
     } catch (e) {
       console.error(e);
     }
-  };
+  }, []);
 
-  const handleLogin = async (isGuest = false) => {
-    setAuthError('');
-    try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ identifier: username, password, isGuest })
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setAuthError(data.error || 'Chyba přihlášení.');
-        return;
+  useEffect(() => {
+    let isMounted = true;
+    const loadAll = async () => {
+      await fetchUser();
+      if (isMounted) {
+        fetchBooks();
+        fetchResources();
+        fetchTests();
       }
-      setUser(data.user);
-      setShowAuthModal(false);
-      fetchBooks();
-    } catch (e: any) {
-      setAuthError('Chyba přihlášení: ' + e.message);
+    };
+    loadAll();
+    return () => {
+      isMounted = false;
+    };
+  }, [fetchUser, fetchBooks, fetchResources, fetchTests]);
+
+  // Load Errors
+  useEffect(() => {
+    let isMounted = true;
+    if (activeTab === 'errors' && user) {
+      fetch(`/api/tests/results?category=${errorCategory}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (isMounted) {
+            setErrorQuestions(data.questions || []);
+            setActiveErrorIndex(0);
+            setErrorSelectedAnswer(null);
+            setErrorShowExplanation(false);
+          }
+        })
+        .catch(console.error);
     }
-  };
+    return () => {
+      isMounted = false;
+    };
+  }, [activeTab, errorCategory, user]);
 
-  const handleRegister = async () => {
-    setAuthError('');
-    try {
-      const res = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password })
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setAuthError(data.error || 'Chyba při registraci.');
-        return;
-      }
-      setUser(data.user);
-      setShowAuthModal(false);
-      fetchBooks();
-    } catch (e: any) {
-      setAuthError('Chyba při registraci: ' + e.message);
-    }
-  };
-
-  const handleLogout = async () => {
-    await fetch('/api/auth/me', { method: 'POST' });
-    setUser(null);
-  };
-
-  const startTest = (test: any, mode: 'timed' | 'untimed') => {
-    setActiveTest(test);
-    setTestMode(mode);
-    setCurrentQuestionIndex(0);
-    setSelectedAnswers({});
-    setTimeLeft((test.timeLimitMinutes || 85) * 60);
-    setIsTestSubmitted(false);
-    setTestResult(null);
-  };
-
-  const submitTest = async () => {
+  const submitTest = useCallback(async () => {
     if (!activeTest) return;
     let score = 0;
-    const missedQuestions: any[] = [];
+    const missedQuestions: Question[] = [];
 
-    activeTest.questions.forEach((q: any) => {
+    activeTest.questions.forEach((q) => {
       const userAns = selectedAnswers[q.id];
       if (userAns === q.correctOption) {
         score++;
@@ -426,6 +359,85 @@ export default function Home() {
         console.error(e);
       }
     }
+  }, [activeTest, selectedAnswers, timeLeft, user]);
+
+  // Timer Effect
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (activeTest && testMode === 'timed' && !isTestSubmitted && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            submitTest();
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [activeTest, testMode, isTestSubmitted, timeLeft, submitTest]);
+
+  const handleLogin = async (isGuest = false) => {
+    setAuthError('');
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ identifier: username, password, isGuest })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setAuthError(data.error || 'Chyba přihlášení.');
+        return;
+      }
+      setUser(data.user);
+      setShowAuthModal(false);
+      fetchBooks();
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : 'Unknown error';
+      setAuthError('Chyba přihlášení: ' + msg);
+    }
+  };
+
+  const handleRegister = async () => {
+    setAuthError('');
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setAuthError(data.error || 'Chyba při registraci.');
+        return;
+      }
+      setUser(data.user);
+      setShowAuthModal(false);
+      fetchBooks();
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : 'Unknown error';
+      setAuthError('Chyba při registraci: ' + msg);
+    }
+  };
+
+  const handleLogout = async () => {
+    await fetch('/api/auth/me', { method: 'POST' });
+    setUser(null);
+  };
+
+  const startTest = (test: DidacticTest, mode: 'timed' | 'untimed') => {
+    setActiveTest(test);
+    setTestMode(mode);
+    setCurrentQuestionIndex(0);
+    setSelectedAnswers({});
+    setTimeLeft((test.timeLimitMinutes || 85) * 60);
+    setIsTestSubmitted(false);
+    setTestResult(null);
   };
 
   const toggleBookSelection = async (bookId: string) => {
@@ -527,7 +539,7 @@ export default function Home() {
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id as 'dashboard' | 'tests' | 'errors' | 'books' | 'resources')}
                   className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
                     active
                       ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
@@ -592,7 +604,7 @@ export default function Home() {
           return (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => setActiveTab(tab.id as 'dashboard' | 'tests' | 'errors' | 'books' | 'resources')}
               className={`flex flex-col items-center gap-1 p-2 rounded-lg text-xs font-medium ${
                 active ? 'text-indigo-400' : 'text-slate-400'
               }`}
@@ -839,17 +851,17 @@ export default function Home() {
                       </div>
                       <h2 className="text-3xl font-black">Výsledky Didaktického Testu</h2>
                       <div className="text-5xl font-black text-indigo-400">
-                        {testResult.percentage}%
+                        {testResult?.percentage}%
                       </div>
                       <p className="text-slate-400">
-                        Získali jste <strong className="text-white">{testResult.score}</strong> z{' '}
-                        <strong className="text-white">{testResult.totalQuestions}</strong> možných bodů.
+                        Získali jste <strong className="text-white">{testResult?.score}</strong> z{' '}
+                        <strong className="text-white">{testResult?.totalQuestions}</strong> možných bodů.
                       </p>
                     </div>
 
                     <div className="space-y-4 pt-4 border-t border-slate-800">
                       <h3 className="font-bold text-lg">Podrobný přehled odpovědí:</h3>
-                      {activeTest.questions.map((q: any, idx: number) => {
+                      {activeTest.questions.map((q, idx) => {
                         const userAns = selectedAnswers[q.id];
                         const isCorrect = userAns === q.correctOption;
                         return (
@@ -1178,13 +1190,13 @@ export default function Home() {
                   </div>
 
                   <div className="pt-2">
-                    {item.type === 'audiobook' ? (
+                    {item.type === 'audiobook' && item.streamUrl ? (
                       <button
                         onClick={() =>
                           setActiveAudio({
                             title: item.title,
                             author: item.author,
-                            streamUrl: item.streamUrl,
+                            streamUrl: item.streamUrl || '',
                             sourceName: item.sourceName
                           })
                         }
