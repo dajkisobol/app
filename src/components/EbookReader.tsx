@@ -45,7 +45,7 @@ export default function EbookReader({ book, onClose }: { book: ReaderDocument; o
         if (book.format === 'PDF') return;
         if (!blob) {
           const response = await fetch(book.url!, { signal: controller.signal });
-          if (!response.ok) throw new Error(`Soubor není dostupný (HTTP ${response.status}).`);
+          if (!response.ok) throw new Error(`Soubor knihy „${book.title}“ nebyl načten (HTTP ${response.status}).${response.status === 404 ? ' Na webu nebyl nalezen.' : ''}`);
           blob = await response.blob();
         }
         let result: BookChapter[];

@@ -54,13 +54,10 @@ jobs:
           node-version: "24"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v5
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
+        # Configure Pages metadata only. The v5 auto-configurer does not support
+        # next.config.ts and would create an overriding next.config.js.
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -78,7 +75,13 @@ jobs:
       - name: Lint
         run: npm run lint
       - name: Build with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: npm run build
+      - name: Verify exported media paths and files
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: npm run check:export
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
