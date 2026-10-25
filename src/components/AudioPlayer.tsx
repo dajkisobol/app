@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Pause, RotateCcw } from 'lucide-react';
+import { Play, Pause, RotateCcw, Volume2, X } from 'lucide-react';
 
 interface AudioPlayerProps {
   title: string;
@@ -60,7 +60,7 @@ export default function AudioPlayer({ title, author, streamUrl, sourceName, onCl
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-slate-900/95 border-t-4 border-[#f5b82e] p-4 shadow-2xl z-50 backdrop-blur-md">
+    <div className="fixed bottom-0 left-0 right-0 bg-[#0f172a]/95 border-t border-slate-800 p-3 lg:p-4 shadow-2xl z-50 backdrop-blur-md">
       <audio
         ref={audioRef}
         key={streamUrl}
@@ -71,46 +71,46 @@ export default function AudioPlayer({ title, author, streamUrl, sourceName, onCl
         onLoadedMetadata={handleTimeUpdate}
         onEnded={() => setIsPlaying(false)}
       />
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
         <div className="flex items-center gap-3 w-full md:w-1/3">
-          <div className="w-12 h-12 rounded-2xl bg-[#f5b82e] text-slate-900 flex items-center justify-center font-black text-xl shadow-lg shadow-[#f5b82e]/20 border-2 border-slate-900">
-            🎧
+          <div className="w-9 h-9 rounded-xl bg-[#f5b82e]/10 border border-[#f5b82e]/20 text-[#f5b82e] flex items-center justify-center font-bold text-sm">
+            <Volume2 className="w-4 h-4" />
           </div>
           <div className="truncate">
-            <h4 className="font-extrabold text-sm text-slate-100 truncate">{title}</h4>
-            <p className="text-xs text-slate-300 truncate">{author} • <span className="text-[#68baaa] font-bold">{sourceName}</span></p>
+            <h4 className="font-bold text-xs text-slate-100 truncate">{title}</h4>
+            <p className="text-[11px] text-slate-400 truncate">{author} • <span className="text-[#68baaa] font-medium">{sourceName}</span></p>
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-2 w-full md:w-1/2">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col items-center gap-1.5 w-full md:w-1/2">
+          <div className="flex items-center gap-3">
             <button
               onClick={() => {
                 if (audioRef.current) audioRef.current.currentTime -= 10;
               }}
-              className="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl transition-colors"
-              title="-10s"
+              className="p-1.5 text-slate-400 hover:text-slate-200 rounded-lg transition-colors"
+              title="-10 sec"
             >
-              <RotateCcw className="w-4 h-4" />
+              <RotateCcw className="w-3.5 h-3.5" />
             </button>
 
             <button
               onClick={togglePlay}
-              className="w-12 h-12 bg-[#ef6453] hover:bg-[#d84e3d] text-white rounded-full transition-transform active:scale-95 shadow-lg shadow-[#ef6453]/30 flex items-center justify-center border-2 border-slate-900"
+              className="w-9 h-9 bg-[#ef6453] hover:bg-[#d84e3d] text-white rounded-full transition-transform active:scale-95 shadow-sm flex items-center justify-center"
             >
-              {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
+              {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
             </button>
 
             <button
               onClick={toggleSpeed}
-              className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-xs font-bold text-[#f5b82e] transition-colors"
+              className="px-2 py-0.5 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded text-[10px] font-bold text-[#f5b82e]"
               title="Rychlost přehrávání"
             >
               {playbackRate}x
             </button>
           </div>
 
-          <div className="flex items-center gap-3 w-full text-xs text-slate-300 font-mono">
+          <div className="flex items-center gap-2.5 w-full text-[10px] text-slate-400 font-mono">
             <span>{formatTime(currentTime)}</span>
             <input
               type="range"
@@ -118,7 +118,7 @@ export default function AudioPlayer({ title, author, streamUrl, sourceName, onCl
               max={duration || 100}
               value={currentTime}
               onChange={handleSeek}
-              className="w-full accent-[#f5b82e] h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer"
+              className="w-full accent-[#f5b82e] h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer"
             />
             <span>{formatTime(duration)}</span>
           </div>
@@ -127,9 +127,9 @@ export default function AudioPlayer({ title, author, streamUrl, sourceName, onCl
         {onClose && (
           <button
             onClick={onClose}
-            className="hidden md:block text-slate-400 hover:text-[#ef6453] text-xs font-bold transition-colors"
+            className="hidden md:flex items-center gap-1 text-slate-400 hover:text-[#ef6453] text-xs font-medium transition-colors"
           >
-            ✕ Zavřít
+            <X className="w-4 h-4" />
           </button>
         )}
       </div>
