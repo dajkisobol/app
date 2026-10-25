@@ -20,8 +20,6 @@ import {
   Sparkles,
   BarChart3,
   Award,
-  BookCheck,
-  RotateCcw,
   Search,
   Check,
   X

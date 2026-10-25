@@ -23,6 +23,26 @@
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
+
+  /* Reset button and input browser defaults */
+  button, input, select, textarea {
+    font-family: inherit;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: transparent;
+    border-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Focus visible accessibility outline */
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid #f5b82e;
+    outline-offset: 2px;
+  }
 }
 
 /* Custom subtle scrollbar */
