@@ -4,6 +4,7 @@ import Image from 'next/image';
 import readingCorner from '@/assets/reading-corner.webp';
 import customLogo from '../../public/IMG_2470 (1).jpeg';
 import customPattern from '../../public/IMG_2468.jpeg';
+import handwrittenName from '../../public/IMG_2469 (1).jpeg';
 import React, { useState, useEffect } from 'react';
 import {
   BookOpen,
@@ -435,10 +436,7 @@ export default function Home() {
         <div className="brand-masthead-inner">
           <button type="button" aria-label="MaturYta – úvodní přehled" className="brand-lockup" onClick={() => setActiveTab('dashboard')}>
             <Image src={customLogo} alt="" className="brand-logo" preload sizes="(max-width: 600px) 92px, 144px" />
-            <span className="brand-lettering">
-              <span className="brand-name">Matur<span>Yta</span></span>
-              <span className="brand-tagline">TVŮJ KOUTEK PRO ČEŠTINU</span>
-            </span>
+            <Image src={handwrittenName} alt="MaturYta" className="brand-wordmark" preload sizes="(max-width: 600px) 50vw, (max-width: 1000px) 210px, 280px" />
           </button>
           <Image src={customPattern} alt="" aria-hidden="true" className="brand-pattern" preload sizes="(max-width: 600px) 100vw, (max-width: 1000px) 44vw, 600px" />
         </div>
