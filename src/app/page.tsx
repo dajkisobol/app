@@ -1,11 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import readingCorner from '@/assets/reading-corner.webp';
-import customLogo from '../../public/IMG_2470 (1).jpeg';
-import customPattern from '../../public/IMG_2468.jpeg';
-import handwrittenName from '../../public/IMG_2469 (1).jpeg';
-import heroChalkboard from '@/assets/hero-chalkboard.webp';
+import readingCorner from '@/assets/reading-cutout.webp';
+import brandLockup from '@/assets/brand-lockup.webp';
+import brandRibbon from '@/assets/brand-ribbon.webp';
+import homeMotto from '@/assets/home-motto.webp';
+import homeSignature from '@/assets/home-signature.webp';
 import React, { useState, useEffect } from 'react';
 import {
   BookOpen,
@@ -442,21 +442,11 @@ export default function Home() {
 
   return (
     <div data-theme={darkMode ? "dark" : "light"} className="app-shell min-h-screen flex flex-col font-sans transition-colors duration-200 pb-28">
-      <div className="brand-masthead">
-        <div className="brand-masthead-inner">
-          <button type="button" aria-label="MaturYta – úvodní přehled" className="brand-lockup" onClick={() => setActiveTab('dashboard')}>
-            <Image src={customLogo} alt="" className="brand-logo" preload sizes="(max-width: 600px) 92px, 144px" />
-            <Image src={handwrittenName} alt="MaturYta" className="brand-wordmark" preload sizes="(max-width: 600px) 50vw, (max-width: 1000px) 210px, 280px" />
-          </button>
-          <Image src={customPattern} alt="" aria-hidden="true" className="brand-pattern" preload sizes="(max-width: 600px) 100vw, (max-width: 1000px) 44vw, 600px" />
-        </div>
-      </div>
-
       {/* HEADER NAVBAR */}
-      <header className={`sticky top-0 z-40 border-b bg-[var(--page)]/95 border-[var(--line)] backdrop-blur-md px-4 lg:px-8 py-3.5`}>
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          <button type="button" aria-label="MaturYta – zpět na přehled" className="brand-compact xl:hidden" onClick={() => setActiveTab('dashboard')}>
-            Matur<span>Yta</span>
+      <header className="site-header sticky top-0 z-40 bg-[var(--page)]/95 backdrop-blur-md">
+        <div className="site-header-inner">
+          <button type="button" aria-label="MaturYta – úvodní přehled" className="brand-lockup" onClick={() => setActiveTab('dashboard')}>
+            <Image src={brandLockup} alt="MaturYta" className="brand-lockup-image" preload sizes="(max-width: 380px) 126px, (max-width: 767px) 160px, 220px" />
           </button>
 
           {/* Navigation Links */}
@@ -525,6 +515,7 @@ export default function Home() {
           </div>
         </div>
       </header>
+      <div className="brand-ribbon" aria-hidden="true" style={{ backgroundImage: `url("${brandRibbon.src}")` }} />
 
       {/* MOBILE BOTTOM NAV */}
       <div className="xl:hidden fixed bottom-0 left-0 right-0 z-40 bg-[var(--page)]/95 border-t border-[var(--line)]/80 px-2 py-1.5 flex justify-around backdrop-blur-md">
@@ -560,17 +551,16 @@ export default function Home() {
             <section className="reading-hero" aria-labelledby="welcome-heading">
               <div className="hero-copy">
                 <span className="eyebrow"><span className="inline-block h-2 w-2 rounded-full bg-[var(--sage)]" /> TVŮJ KLIDNÝ KOUTEK NA UČENÍ</span>
-                <h1 id="welcome-heading">
-                  <Image
-                    src={heroChalkboard}
-                    alt="Maturita, formalita. Psaní, čtení, komunita. S MaturYtou realita."
-                    preload
-                    sizes="(max-width: 767px) calc(100vw - 82px), (max-width: 1023px) 50vw, 640px"
-                    className="hero-slogan-image"
-                  />
+                <h1 id="welcome-heading" className="hero-heading">
+                  <span className="hero-motto">
+                    <Image src={homeMotto} alt="Maturita, formalita. Psaní, čtení, komunita." preload sizes="(max-width: 767px) calc(100vw - 80px), 640px" />
+                  </span>
+                  <span className="hero-signature">
+                    <Image src={homeSignature} alt="S MaturYtou realita." sizes="(max-width: 767px) calc(100vw - 80px), 460px" />
+                  </span>
                 </h1>
                 <p>Udělej si pohodlí. Provedeme tě češtinou od prvního cvičného testu až po poslední knihu v maturitním seznamu.</p>
-                <div className="flex flex-wrap gap-3 mt-7">
+                <div className="hero-actions">
                   <button onClick={() => setActiveTab('tests')} className="hero-primary">
                     Pustit se do přípravy <ChevronRight className="w-4 h-4" />
                   </button>
@@ -581,7 +571,7 @@ export default function Home() {
                 <div className="hero-footnote"><CheckCircle className="h-4 w-4" /> Vlastním tempem <span aria-hidden="true">·</span> Na jednom místě <span aria-hidden="true">·</span> Zdarma</div>
               </div>
               <figure className="hero-art">
-                <Image src={readingCorner} alt="Čtenářka s knihou a čajem v oranžovém křesle pod petrolejovou lampou" preload sizes="(max-width: 767px) 85vw, 460px" className="reading-illustration" />
+                <Image src={readingCorner} alt="Čtenářka s knihou a čajem v oranžovém křesle pod petrolejovou lampou" sizes="(max-width: 767px) 72vw, 380px" className="reading-illustration" />
                 <figcaption>Ještě jednu kapitolu…</figcaption>
               </figure>
             </section>
