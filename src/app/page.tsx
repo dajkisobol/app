@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+import readingCorner from '@/assets/reading-corner.webp';
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   BookOpen,
@@ -17,7 +19,6 @@ import {
   Download,
   ChevronRight,
   User,
-  Sparkles,
   BarChart3,
   Award,
   Search,
@@ -105,7 +106,7 @@ interface ResourceItem {
 export default function Home() {
   const [user, setUser] = useState<UserState | null>(null);
   const [activeTab, setActiveTab] = useState<'dashboard' | 'tests' | 'errors' | 'books' | 'resources'>('dashboard');
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   // Auth Modal State
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -551,13 +552,7 @@ export default function Home() {
     return `${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
-  const themeClass = darkMode
-    ? 'bg-[#0f172a] text-slate-100'
-    : 'bg-[#f8fafc] text-slate-900';
-
-  const cardClass = darkMode
-    ? 'bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-all duration-200'
-    : 'bg-white border border-slate-200 shadow-sm hover:border-slate-300 transition-all duration-200';
+  const cardClass = 'study-card bg-[var(--surface)] border border-[var(--line)] transition-all duration-200';
 
   const currentErrorQuestion = errorQuestions[activeErrorIndex];
 
@@ -612,29 +607,29 @@ export default function Home() {
   );
 
   return (
-    <div className={`min-h-screen ${themeClass} flex flex-col font-sans transition-colors duration-200 pb-28`}>
+    <div data-theme={darkMode ? "dark" : "light"} className="app-shell min-h-screen flex flex-col font-sans transition-colors duration-200 pb-28">
       {/* SLIM ACCENT TOP STRIP */}
-      <div className="h-1 w-full bg-gradient-to-r from-[#f5b82e] via-[#ef6453] to-[#68baaa]" />
+      <div className="knit-border" aria-hidden="true" />
 
       {/* HEADER NAVBAR */}
-      <header className={`sticky top-0 z-40 border-b ${darkMode ? 'bg-[#0f172a]/90 border-slate-800/80' : 'bg-white/90 border-slate-200'} backdrop-blur-md px-4 lg:px-8 py-3.5`}>
+      <header className={`sticky top-0 z-40 border-b bg-[var(--page)]/95 border-[var(--line)] backdrop-blur-md px-4 lg:px-8 py-3.5`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => setActiveTab('dashboard')}>
-            <div className="w-10 h-10 rounded-xl bg-[#f5b82e] text-slate-950 flex items-center justify-center font-black text-xl shadow-sm">
+          <button type="button" aria-label="MaturYta – úvodní přehled" className="flex items-center gap-3 text-left" onClick={() => setActiveTab('dashboard')}>
+            <div className="w-10 h-10 rounded-xl bg-[var(--mustard)] text-[#293643] flex items-center justify-center font-black text-xl shadow-sm">
               M
             </div>
             <div>
-              <span className="font-extrabold text-xl tracking-tight text-slate-100">
-                Matur<span className="text-[#f5b82e]">Yta</span>
+              <span className="font-extrabold text-xl tracking-tight text-[var(--ink)]">
+                Matur<span className="text-[var(--mustard-ink)]">Yta</span>
               </span>
-              <span className="hidden sm:inline-block ml-2 text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#f5b82e]/10 text-[#f5b82e] border border-[#f5b82e]/20 uppercase tracking-wide">
+              <span className="hidden sm:inline-block ml-2 text-[10px] font-bold px-2 py-0.5 rounded-md bg-[var(--mustard)]/10 text-[var(--mustard-ink)] border border-[var(--mustard)]/20 uppercase tracking-wide">
                 Český Jazyk
               </span>
             </div>
-          </div>
+          </button>
 
           {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-slate-800/30 p-1 rounded-xl border border-slate-800/60">
+          <nav className="hidden xl:flex items-center gap-1 bg-[var(--surface-soft)]/30 p-1 rounded-xl border border-[var(--line)]/60">
             {[
               { id: 'dashboard', label: 'Přehled', icon: BarChart3 },
               { id: 'tests', label: 'Cermat Testy', icon: GraduationCap },
@@ -650,8 +645,8 @@ export default function Home() {
                   onClick={() => setActiveTab(tab.id as 'dashboard' | 'tests' | 'errors' | 'books' | 'resources')}
                   className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold transition-all ${
                     active
-                      ? 'bg-[#f5b82e] text-slate-950 shadow-sm font-extrabold'
-                      : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/50'
+                      ? 'bg-[var(--mustard)] text-[#293643] shadow-sm font-extrabold'
+                      : 'text-[var(--muted)] hover:text-[var(--ink)] hover:bg-[var(--surface-soft)]/50'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -665,21 +660,23 @@ export default function Home() {
           <div className="flex items-center gap-2.5">
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className={`p-2 rounded-xl border ${darkMode ? 'border-slate-800/80 hover:bg-slate-800/60 text-slate-400 hover:text-slate-200' : 'border-slate-200 hover:bg-slate-100 text-slate-600'}`}
+              className="p-2 rounded-xl border border-[var(--line)] hover:bg-[var(--surface-soft)] text-[var(--muted)]"
+              aria-label={darkMode ? "Zapnout světlý vzhled" : "Zapnout tmavý vzhled"}
+              aria-pressed={darkMode}
               title="Přepnout vzhled"
             >
-              {darkMode ? <Sun className="w-4 h-4 text-[#f5b82e]" /> : <Moon className="w-4 h-4" />}
+              {darkMode ? <Sun className="w-4 h-4 text-[var(--mustard-ink)]" /> : <Moon className="w-4 h-4" />}
             </button>
 
             {user ? (
               <div className="flex items-center gap-2.5">
                 <div className="hidden sm:flex flex-col text-right">
-                  <span className="text-xs font-bold text-slate-200">{user.username}</span>
-                  <span className="text-[10px] text-slate-400">{user.isGuest ? 'Anonymní účet' : user.email}</span>
+                  <span className="text-xs font-bold text-[var(--ink)]">{user.username}</span>
+                  <span className="text-[10px] text-[var(--muted)]">{user.isGuest ? 'Anonymní účet' : user.email}</span>
                 </div>
                 <button
                   onClick={handleLogout}
-                  className="p-2 rounded-xl text-slate-400 hover:text-[#ef6453] hover:bg-[#ef6453]/10 border border-slate-800/80 transition-colors"
+                  className="p-2 rounded-xl text-[var(--muted)] hover:text-[var(--coral-ink)] hover:bg-[var(--coral)]/10 border border-[var(--line)]/80 transition-colors"
                   title="Odhlásit se"
                 >
                   <LogOut className="w-4 h-4" />
@@ -688,7 +685,7 @@ export default function Home() {
             ) : (
               <button
                 onClick={() => setShowAuthModal(true)}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#f5b82e] hover:bg-[#e0a520] text-slate-950 font-bold text-xs transition-all shadow-sm"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--mustard)] hover:bg-[var(--mustard-hover)] text-[#293643] font-bold text-xs transition-all shadow-sm"
               >
                 <User className="w-3.5 h-3.5" />
                 Přihlásit se
@@ -699,7 +696,7 @@ export default function Home() {
       </header>
 
       {/* MOBILE BOTTOM NAV */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0f172a]/95 border-t border-slate-800/80 px-2 py-1.5 flex justify-around backdrop-blur-md">
+      <div className="xl:hidden fixed bottom-0 left-0 right-0 z-40 bg-[var(--page)]/95 border-t border-[var(--line)]/80 px-2 py-1.5 flex justify-around backdrop-blur-md">
         {[
           { id: 'dashboard', label: 'Přehled', icon: BarChart3 },
           { id: 'tests', label: 'Testy', icon: GraduationCap },
@@ -714,7 +711,7 @@ export default function Home() {
               key={tab.id}
               onClick={() => setActiveTab(tab.id as 'dashboard' | 'tests' | 'errors' | 'books' | 'resources')}
               className={`flex flex-col items-center gap-1 p-1.5 rounded-lg text-[10px] font-bold ${
-                active ? 'text-[#f5b82e]' : 'text-slate-400'
+                active ? 'text-[var(--mustard-ink)]' : 'text-[var(--muted)]'
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -725,87 +722,81 @@ export default function Home() {
       </div>
 
       {/* MAIN CONTAINER */}
-      <main className="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-8 space-y-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 py-6 lg:px-8 lg:py-10 space-y-8">
         {/* DASHBOARD TAB */}
         {activeTab === 'dashboard' && (
           <div className="space-y-8">
-            {/* HERO HERO BANNER */}
-            <div className="relative overflow-hidden rounded-2xl bg-slate-900 border border-slate-800/80 p-6 lg:p-10">
-              <div className="max-w-2xl space-y-4">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f5b82e]/10 text-[#f5b82e] border border-[#f5b82e]/20 text-xs font-semibold">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  Maturitní příprava 2025
-                </div>
-                <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight text-slate-100">
-                  Připrav se na maturitu z českého jazyka
-                </h1>
-                <p className="text-slate-400 text-sm lg:text-base leading-relaxed font-normal">
-                  Procvičuj originální CERMAT didaktické testy, odstraňuj své slabiny v inteligentním chybovníku a spravuj svůj maturitní seznam 20 knih s podrobnými rozbory a audiem zdarma.
-                </p>
-                <div className="flex flex-wrap gap-3 pt-2">
-                  <button
-                    onClick={() => setActiveTab('tests')}
-                    className="px-5 py-2.5 rounded-xl bg-[#f5b82e] hover:bg-[#e0a520] text-slate-950 font-extrabold text-xs flex items-center gap-2 transition-transform active:scale-95 shadow-sm"
-                  >
-                    <GraduationCap className="w-4 h-4" />
-                    Spustit Cermat Test
+            <section className="reading-hero" aria-labelledby="welcome-heading">
+              <div className="hero-copy">
+                <span className="eyebrow"><span className="inline-block h-2 w-2 rounded-full bg-[var(--sage)]" /> TVŮJ KLIDNÝ KOUTEK NA UČENÍ</span>
+                <h1 id="welcome-heading">Velké příběhy.<br />Malé kroky.<br /><em>Zvládnutá maturita.</em></h1>
+                <p>Udělej si pohodlí. Provedeme tě češtinou od prvního cvičného testu až po poslední knihu v maturitním seznamu.</p>
+                <div className="flex flex-wrap gap-3 mt-7">
+                  <button onClick={() => setActiveTab('tests')} className="hero-primary">
+                    Pustit se do přípravy <ChevronRight className="w-4 h-4" />
                   </button>
-                  <button
-                    onClick={() => setActiveTab('books')}
-                    className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700/80 text-slate-200 font-bold text-xs flex items-center gap-2 border border-slate-700/80 transition-colors"
-                  >
-                    <BookOpen className="w-4 h-4 text-[#68baaa]" />
-                    Moje maturitní četba ({userBookIds.length}/20)
+                  <button onClick={() => setActiveTab('books')} className="hero-secondary">
+                    <BookOpen className="w-4 h-4" /> Vybrat si četbu
                   </button>
                 </div>
+                <div className="hero-footnote"><CheckCircle className="h-4 w-4" /> Vlastním tempem <span aria-hidden="true">·</span> Na jednom místě <span aria-hidden="true">·</span> Zdarma</div>
               </div>
+              <figure className="hero-art">
+                <Image src={readingCorner} alt="Čtenářka s knihou a čajem v oranžovém křesle pod petrolejovou lampou" preload sizes="(max-width: 767px) 85vw, 460px" className="reading-illustration" />
+                <figcaption>Ještě jednu kapitolu…</figcaption>
+              </figure>
+            </section>
+
+            <div className="section-intro">
+              <div><span className="eyebrow">KAŽDÝ KROK SE POČÍTÁ</span><h2>Čím dnes začneme?</h2></div>
+              <p>Trocha procvičování, nebo chvíle s knihou?</p>
             </div>
 
             {/* DASHBOARD CARDS */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="dashboard-cards grid grid-cols-1 md:grid-cols-3 gap-5">
               <div className={`p-6 rounded-2xl ${cardClass} space-y-3`}>
-                <div className="w-10 h-10 rounded-xl bg-[#f5b82e]/10 border border-[#f5b82e]/20 text-[#f5b82e] flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-xl bg-[var(--mustard)]/10 border border-[var(--mustard)]/20 text-[var(--mustard-ink)] flex items-center justify-center font-bold">
                   <GraduationCap className="w-5 h-5" />
                 </div>
-                <h3 className="font-bold text-lg text-slate-100">CERMAT Didaktické Testy</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <h3 className="font-bold text-lg text-[var(--ink)]">O kousek blíž k maturitě</h3>
+                <p className="text-xs text-[var(--muted)] leading-relaxed">
                   Oficiální testovací sady s reálným časovačem 85 minut nebo neomezeným tréninkovým režimem.
                 </p>
                 <button
                   onClick={() => setActiveTab('tests')}
-                  className="text-xs font-extrabold text-[#f5b82e] hover:underline inline-flex items-center gap-1 pt-1"
+                  className="text-xs font-extrabold text-[var(--mustard-ink)] hover:underline inline-flex items-center gap-1 pt-1"
                 >
                   Otevřít testy <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
 
               <div className={`p-6 rounded-2xl ${cardClass} space-y-3`}>
-                <div className="w-10 h-10 rounded-xl bg-[#ef6453]/10 border border-[#ef6453]/20 text-[#ef6453] flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-xl bg-[var(--coral)]/10 border border-[var(--coral)]/20 text-[var(--coral-ink)] flex items-center justify-center font-bold">
                   <AlertCircle className="w-5 h-5" />
                 </div>
-                <h3 className="font-bold text-lg text-slate-100">Procvičování chyb</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <h3 className="font-bold text-lg text-[var(--ink)]">Z chyb se učíme</h3>
+                <p className="text-xs text-[var(--muted)] leading-relaxed">
                   Automatický chybovník ukládá nezvládnuté otázky a vrací je v opakovaných cyklech do plného naučení.
                 </p>
                 <button
                   onClick={() => setActiveTab('errors')}
-                  className="text-xs font-extrabold text-[#ef6453] hover:underline inline-flex items-center gap-1 pt-1"
+                  className="text-xs font-extrabold text-[var(--coral-ink)] hover:underline inline-flex items-center gap-1 pt-1"
                 >
                   Procvičit chyby ({errorQuestions.length}) <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
 
               <div className={`p-6 rounded-2xl ${cardClass} space-y-3`}>
-                <div className="w-10 h-10 rounded-xl bg-[#68baaa]/10 border border-[#68baaa]/20 text-[#68baaa] flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-xl bg-[var(--sage)]/10 border border-[var(--sage)]/20 text-[var(--sage-ink)] flex items-center justify-center font-bold">
                   <Headphones className="w-5 h-5" />
                 </div>
-                <h3 className="font-bold text-lg text-slate-100">Zdroje & Audioknihy</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <h3 className="font-bold text-lg text-[var(--ink)]">Příběhy do očí i do uší</h3>
+                <p className="text-xs text-[var(--muted)] leading-relaxed">
                   Legální e-knihy ke stažení (Městská knihovna v Praze) a nahrávky rozborů z Českého rozhlasu.
                 </p>
                 <button
                   onClick={() => setActiveTab('resources')}
-                  className="text-xs font-extrabold text-[#68baaa] hover:underline inline-flex items-center gap-1 pt-1"
+                  className="text-xs font-extrabold text-[var(--sage-ink)] hover:underline inline-flex items-center gap-1 pt-1"
                 >
                   Procházet zdroje <ChevronRight className="w-3.5 h-3.5" />
                 </button>
@@ -820,8 +811,8 @@ export default function Home() {
             {!activeTest ? (
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-extrabold tracking-tight text-slate-100">Didaktické testy CERMAT</h2>
-                  <p className="text-xs text-slate-400">Vyber si test k procvičení. Můžeš zvolit oficiální ostrý režim s časem nebo neomezený trénink.</p>
+                  <h2 className="text-2xl font-extrabold tracking-tight text-[var(--ink)]">Didaktické testy CERMAT</h2>
+                  <p className="text-xs text-[var(--muted)]">Vyber si test k procvičení. Můžeš zvolit oficiální ostrý režim s časem nebo neomezený trénink.</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -829,32 +820,32 @@ export default function Home() {
                     <div key={test.id} className={`p-6 rounded-2xl ${cardClass} space-y-4`}>
                       <div className="flex justify-between items-start">
                         <div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#f5b82e]/10 text-[#f5b82e] border border-[#f5b82e]/20">
+                          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[var(--mustard)]/10 text-[var(--mustard-ink)] border border-[var(--mustard)]/20">
                             {test.season} {test.year}
                           </span>
-                          <h3 className="text-lg font-bold mt-2 text-slate-100">{test.title}</h3>
+                          <h3 className="text-lg font-bold mt-2 text-[var(--ink)]">{test.title}</h3>
                         </div>
-                        <div className="flex items-center gap-1 text-xs text-slate-400 font-mono">
-                          <Clock className="w-3.5 h-3.5 text-[#f5b82e]" />
+                        <div className="flex items-center gap-1 text-xs text-[var(--muted)] font-mono">
+                          <Clock className="w-3.5 h-3.5 text-[var(--mustard-ink)]" />
                           {test.timeLimitMinutes} min
                         </div>
                       </div>
 
-                      <p className="text-xs text-slate-400 leading-relaxed">
+                      <p className="text-xs text-[var(--muted)] leading-relaxed">
                         Obsahuje {test.questions.length} kompletních úloh zaměřených na Pravopis, Literární historii, Mluvnici a Textovou návaznost.
                       </p>
 
                       <div className="pt-2 flex flex-col sm:flex-row items-center gap-2.5">
                         <button
                           onClick={() => startTest(test, 'timed')}
-                          className="w-full sm:flex-1 py-2.5 rounded-xl bg-[#ef6453] hover:bg-[#d84e3d] text-white font-extrabold text-xs transition-transform active:scale-95 flex items-center justify-center gap-2 shadow-sm"
+                          className="w-full sm:flex-1 py-2.5 rounded-xl bg-[var(--coral)] hover:bg-[var(--coral-hover)] text-[#293643] font-extrabold text-xs transition-transform active:scale-95 flex items-center justify-center gap-2 shadow-sm"
                         >
                           <Clock className="w-3.5 h-3.5" />
                           Ostrý test (85 min)
                         </button>
                         <button
                           onClick={() => startTest(test, 'untimed')}
-                          className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700/80 text-slate-300 font-bold text-xs border border-slate-700/80 transition-colors"
+                          className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[var(--surface-soft)] hover:bg-[var(--surface-hover)]/80 text-[var(--muted)] font-bold text-xs border border-[var(--line)]/80 transition-colors"
                         >
                           Trénink bez času
                         </button>
@@ -868,14 +859,14 @@ export default function Home() {
               <div className="max-w-3xl mx-auto space-y-6">
                 <div className={`p-4 rounded-2xl ${cardClass} flex items-center justify-between`}>
                   <div>
-                    <h3 className="font-bold text-sm text-slate-100">{activeTest.title}</h3>
-                    <p className="text-xs text-slate-400">
+                    <h3 className="font-bold text-sm text-[var(--ink)]">{activeTest.title}</h3>
+                    <p className="text-xs text-[var(--muted)]">
                       Otázka {currentQuestionIndex + 1} z {activeTest.questions.length}
                     </p>
                   </div>
 
                   {testMode === 'timed' && !isTestSubmitted && (
-                    <div className="flex items-center gap-1.5 font-mono font-bold text-sm px-3 py-1.5 rounded-xl bg-[#f5b82e]/10 text-[#f5b82e] border border-[#f5b82e]/20">
+                    <div className="flex items-center gap-1.5 font-mono font-bold text-sm px-3 py-1.5 rounded-xl bg-[var(--mustard)]/10 text-[var(--mustard-ink)] border border-[var(--mustard)]/20">
                       <Clock className="w-4 h-4 animate-pulse" />
                       {formatSeconds(timeLeft)}
                     </div>
@@ -883,7 +874,7 @@ export default function Home() {
 
                   <button
                     onClick={() => setActiveTest(null)}
-                    className="text-xs text-[#ef6453] hover:underline font-bold"
+                    className="text-xs text-[var(--coral-ink)] hover:underline font-bold"
                   >
                     Ukončit test
                   </button>
@@ -892,10 +883,10 @@ export default function Home() {
                 {!isTestSubmitted ? (
                   <div className={`p-6 lg:p-8 rounded-2xl ${cardClass} space-y-6`}>
                     <div className="space-y-2">
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#68baaa]/10 text-[#68baaa] border border-[#68baaa]/20">
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[var(--sage)]/10 text-[var(--sage-ink)] border border-[var(--sage)]/20">
                         {activeTest.questions[currentQuestionIndex].category}
                       </span>
-                      <h2 className="text-lg lg:text-xl font-bold leading-relaxed text-slate-100">
+                      <h2 className="text-lg lg:text-xl font-bold leading-relaxed text-[var(--ink)]">
                         {activeTest.questions[currentQuestionIndex].prompt}
                       </h2>
                     </div>
@@ -910,8 +901,8 @@ export default function Home() {
                             onClick={() => setSelectedAnswers({ ...selectedAnswers, [qId]: idx })}
                             className={`w-full text-left p-4 rounded-xl border text-xs lg:text-sm font-semibold transition-all ${
                               isSelected
-                                ? 'bg-[#f5b82e]/15 border-[#f5b82e] text-[#f5b82e]'
-                                : 'bg-slate-800/40 border-slate-800 hover:border-slate-700 text-slate-300'
+                                ? 'bg-[var(--mustard)]/15 border-[var(--mustard)] text-[var(--mustard-ink)]'
+                                : 'bg-[var(--surface-soft)]/40 border-[var(--line)] hover:border-[var(--line)] text-[var(--muted)]'
                             }`}
                           >
                             {opt}
@@ -920,11 +911,11 @@ export default function Home() {
                       })}
                     </div>
 
-                    <div className="flex justify-between items-center pt-4 border-t border-slate-800/80">
+                    <div className="flex justify-between items-center pt-4 border-t border-[var(--line)]/80">
                       <button
                         onClick={() => setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1))}
                         disabled={currentQuestionIndex === 0}
-                        className="px-4 py-2 rounded-xl bg-slate-800/60 disabled:opacity-40 text-xs font-bold text-slate-300 border border-slate-700/60"
+                        className="px-4 py-2 rounded-xl bg-[var(--surface-soft)]/60 disabled:opacity-40 text-xs font-bold text-[var(--muted)] border border-[var(--line)]/60"
                       >
                         Předchozí
                       </button>
@@ -932,14 +923,14 @@ export default function Home() {
                       {currentQuestionIndex < activeTest.questions.length - 1 ? (
                         <button
                           onClick={() => setCurrentQuestionIndex(currentQuestionIndex + 1)}
-                          className="px-5 py-2 rounded-xl bg-[#68baaa] hover:bg-[#52a393] text-slate-950 font-extrabold text-xs transition-colors"
+                          className="px-5 py-2 rounded-xl bg-[var(--sage)] hover:bg-[var(--sage-hover)] text-[#293643] font-extrabold text-xs transition-colors"
                         >
                           Další otázka
                         </button>
                       ) : (
                         <button
                           onClick={submitTest}
-                          className="px-5 py-2 rounded-xl bg-[#ef6453] hover:bg-[#d84e3d] text-white font-extrabold text-xs transition-transform active:scale-95 shadow-sm"
+                          className="px-5 py-2 rounded-xl bg-[var(--coral)] hover:bg-[var(--coral-hover)] text-[#293643] font-extrabold text-xs transition-transform active:scale-95 shadow-sm"
                         >
                           Vyhodnotit test
                         </button>
@@ -950,21 +941,21 @@ export default function Home() {
                   /* TEST RESULTS DISPLAY */
                   <div className={`p-6 lg:p-8 rounded-2xl ${cardClass} space-y-6`}>
                     <div className="text-center space-y-2">
-                      <div className="inline-flex p-3 rounded-2xl bg-[#f5b82e]/10 text-[#f5b82e] border border-[#f5b82e]/20">
+                      <div className="inline-flex p-3 rounded-2xl bg-[var(--mustard)]/10 text-[var(--mustard-ink)] border border-[var(--mustard)]/20">
                         <Award className="w-10 h-10" />
                       </div>
-                      <h2 className="text-2xl font-extrabold text-slate-100">Výsledky testu</h2>
-                      <div className="text-5xl font-black text-[#f5b82e]">
+                      <h2 className="text-2xl font-extrabold text-[var(--ink)]">Výsledky testu</h2>
+                      <div className="text-5xl font-black text-[var(--mustard-ink)]">
                         {testResult?.percentage}%
                       </div>
-                      <p className="text-slate-400 text-xs">
-                        Získali jste <strong className="text-slate-200">{testResult?.score}</strong> z{' '}
-                        <strong className="text-slate-200">{testResult?.totalQuestions}</strong> bodů.
+                      <p className="text-[var(--muted)] text-xs">
+                        Získali jste <strong className="text-[var(--ink)]">{testResult?.score}</strong> z{' '}
+                        <strong className="text-[var(--ink)]">{testResult?.totalQuestions}</strong> bodů.
                       </p>
                     </div>
 
-                    <div className="space-y-3 pt-4 border-t border-slate-800/80">
-                      <h3 className="font-bold text-sm text-slate-200">Přehled otázek:</h3>
+                    <div className="space-y-3 pt-4 border-t border-[var(--line)]/80">
+                      <h3 className="font-bold text-sm text-[var(--ink)]">Přehled otázek:</h3>
                       {activeTest.questions.map((q, idx) => {
                         const userAns = selectedAnswers[q.id];
                         const isCorrect = userAns === q.correctOption;
@@ -973,25 +964,25 @@ export default function Home() {
                             key={q.id}
                             className={`p-4 rounded-xl border text-xs space-y-2 ${
                               isCorrect
-                                ? 'border-[#68baaa]/40 bg-[#68baaa]/5'
-                                : 'border-[#ef6453]/40 bg-[#ef6453]/5'
+                                ? 'border-[var(--sage)]/40 bg-[var(--sage)]/5'
+                                : 'border-[var(--coral)]/40 bg-[var(--coral)]/5'
                             }`}
                           >
                             <div className="flex items-center justify-between">
-                              <span className="font-bold text-slate-200">
+                              <span className="font-bold text-[var(--ink)]">
                                 {idx + 1}. {q.prompt}
                               </span>
-                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${isCorrect ? 'bg-[#68baaa]/20 text-[#68baaa]' : 'bg-[#ef6453]/20 text-[#ef6453]'}`}>
+                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${isCorrect ? 'bg-[var(--sage)]/20 text-[var(--sage-ink)]' : 'bg-[var(--coral)]/20 text-[var(--coral-ink)]'}`}>
                                 {isCorrect ? 'Správně' : 'Chyba'}
                               </span>
                             </div>
-                            <p className="text-slate-400">
-                              Vaše odpověď: <strong className="text-slate-200">{userAns !== undefined ? q.options[userAns] : 'Nezodpovězeno'}</strong>
+                            <p className="text-[var(--muted)]">
+                              Vaše odpověď: <strong className="text-[var(--ink)]">{userAns !== undefined ? q.options[userAns] : 'Nezodpovězeno'}</strong>
                             </p>
                             {!isCorrect && (
-                              <div className="p-3 rounded-lg bg-slate-950/80 space-y-1 border border-slate-800/80">
-                                <span className="font-bold text-[#68baaa]">Správné řešení: {q.options[q.correctOption]}</span>
-                                <p className="text-slate-400 leading-relaxed">{q.explanation}</p>
+                              <div className="p-3 rounded-lg bg-[var(--surface-soft)]/80 space-y-1 border border-[var(--line)]/80">
+                                <span className="font-bold text-[var(--sage-ink)]">Správné řešení: {q.options[q.correctOption]}</span>
+                                <p className="text-[var(--muted)] leading-relaxed">{q.explanation}</p>
                               </div>
                             )}
                           </div>
@@ -1002,7 +993,7 @@ export default function Home() {
                     <div className="flex justify-center pt-2">
                       <button
                         onClick={() => setActiveTest(null)}
-                        className="px-6 py-2.5 rounded-xl bg-[#f5b82e] hover:bg-[#e0a520] text-slate-950 font-extrabold text-xs transition-transform active:scale-95 shadow-sm"
+                        className="px-6 py-2.5 rounded-xl bg-[var(--mustard)] hover:bg-[var(--mustard-hover)] text-[#293643] font-extrabold text-xs transition-transform active:scale-95 shadow-sm"
                       >
                         Zpět na přehled testů
                       </button>
@@ -1018,8 +1009,8 @@ export default function Home() {
         {activeTab === 'errors' && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-extrabold tracking-tight text-slate-100">Procvičování chyb (Chybovník)</h2>
-              <p className="text-xs text-slate-400">Otázky, ve kterých jsi v minulosti chyboval/a. Jakmile otázku zvládneš, vyřaď ji tlačítkem.</p>
+              <h2 className="text-2xl font-extrabold tracking-tight text-[var(--ink)]">Procvičování chyb (Chybovník)</h2>
+              <p className="text-xs text-[var(--muted)]">Otázky, ve kterých jsi v minulosti chyboval/a. Jakmile otázku zvládneš, vyřaď ji tlačítkem.</p>
             </div>
 
             {/* CATEGORY FILTER */}
@@ -1030,8 +1021,8 @@ export default function Home() {
                   onClick={() => setErrorCategory(cat)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                     errorCategory === cat
-                      ? 'bg-[#ef6453] text-white shadow-sm'
-                      : 'bg-slate-800/40 text-slate-400 hover:text-slate-200 border border-slate-800'
+                      ? 'bg-[var(--coral)] text-white shadow-sm'
+                      : 'bg-[var(--surface-soft)]/40 text-[var(--muted)] hover:text-[var(--ink)] border border-[var(--line)]'
                   }`}
                 >
                   {cat === 'vse' ? 'Všechny chyby' : cat}
@@ -1041,9 +1032,9 @@ export default function Home() {
 
             {!currentErrorQuestion ? (
               <div className={`p-10 text-center rounded-2xl ${cardClass} space-y-3`}>
-                <CheckCircle className="w-12 h-12 text-[#68baaa] mx-auto" />
-                <h3 className="font-bold text-lg text-slate-100">Žádné nevyřešené chyby!</h3>
-                <p className="text-slate-400 text-xs max-w-sm mx-auto leading-relaxed">
+                <CheckCircle className="w-12 h-12 text-[var(--sage-ink)] mx-auto" />
+                <h3 className="font-bold text-lg text-[var(--ink)]">Žádné nevyřešené chyby!</h3>
+                <p className="text-[var(--muted)] text-xs max-w-sm mx-auto leading-relaxed">
                   Skvělá práce! V této kategorii nemáš žádné nevyřešené chyby. Vyzkoušej nový Cermat test.
                 </p>
               </div>
@@ -1051,15 +1042,15 @@ export default function Home() {
               <div className="max-w-2xl mx-auto space-y-5">
                 <div className={`p-6 lg:p-8 rounded-2xl ${cardClass} space-y-5`}>
                   <div className="flex justify-between items-center">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[#ef6453]/10 text-[#ef6453] border border-[#ef6453]/20">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-[var(--coral)]/10 text-[var(--coral-ink)] border border-[var(--coral)]/20">
                       {currentErrorQuestion.category}
                     </span>
-                    <span className="text-xs text-slate-400 font-mono">
+                    <span className="text-xs text-[var(--muted)] font-mono">
                       {activeErrorIndex + 1} z {errorQuestions.length}
                     </span>
                   </div>
 
-                  <h3 className="text-base lg:text-lg font-bold leading-relaxed text-slate-100">
+                  <h3 className="text-base lg:text-lg font-bold leading-relaxed text-[var(--ink)]">
                     {currentErrorQuestion.prompt}
                   </h3>
 
@@ -1068,10 +1059,10 @@ export default function Home() {
                       const isCorrect = idx === currentErrorQuestion.correctOption;
                       const isSelected = errorSelectedAnswer === idx;
 
-                      let btnStyle = 'bg-slate-800/40 border-slate-800 hover:border-slate-700 text-slate-300';
+                      let btnStyle = 'bg-[var(--surface-soft)]/40 border-[var(--line)] hover:border-[var(--line)] text-[var(--muted)]';
                       if (errorSelectedAnswer !== null) {
-                        if (isCorrect) btnStyle = 'bg-[#68baaa]/20 border-[#68baaa] text-[#68baaa] font-bold';
-                        else if (isSelected) btnStyle = 'bg-[#ef6453]/20 border-[#ef6453] text-[#ef6453] font-bold';
+                        if (isCorrect) btnStyle = 'bg-[var(--sage)]/20 border-[var(--sage)] text-[var(--sage-ink)] font-bold';
+                        else if (isSelected) btnStyle = 'bg-[var(--coral)]/20 border-[var(--coral)] text-[var(--coral-ink)] font-bold';
                       }
 
                       return (
@@ -1090,18 +1081,18 @@ export default function Home() {
                   </div>
 
                   {errorShowExplanation && (
-                    <div className="p-4 rounded-xl bg-slate-950/80 space-y-1 text-xs border border-slate-800/80">
-                      <span className="font-bold text-[#f5b82e]">Vysvětlení:</span>
-                      <p className="text-slate-400 leading-relaxed font-normal">
+                    <div className="p-4 rounded-xl bg-[var(--surface-soft)]/80 space-y-1 text-xs border border-[var(--line)]/80">
+                      <span className="font-bold text-[var(--mustard-ink)]">Vysvětlení:</span>
+                      <p className="text-[var(--muted)] leading-relaxed font-normal">
                         {currentErrorQuestion.explanation}
                       </p>
                     </div>
                   )}
 
-                  <div className="flex justify-between items-center pt-4 border-t border-slate-800/80">
+                  <div className="flex justify-between items-center pt-4 border-t border-[var(--line)]/80">
                     <button
                       onClick={() => handleMasterErrorQuestion(currentErrorQuestion.id)}
-                      className="px-4 py-2 rounded-xl bg-[#68baaa]/20 hover:bg-[#68baaa]/30 text-[#68baaa] border border-[#68baaa]/30 text-xs font-bold transition-colors"
+                      className="px-4 py-2 rounded-xl bg-[var(--sage)]/20 hover:bg-[var(--sage)]/30 text-[var(--sage-ink)] border border-[var(--sage)]/30 text-xs font-bold transition-colors"
                     >
                       Označit jako zvládnuté ✓
                     </button>
@@ -1112,7 +1103,7 @@ export default function Home() {
                         setErrorSelectedAnswer(null);
                         setErrorShowExplanation(false);
                       }}
-                      className="px-5 py-2 rounded-xl bg-[#f5b82e] hover:bg-[#e0a520] text-slate-950 font-extrabold text-xs transition-colors"
+                      className="px-5 py-2 rounded-xl bg-[var(--mustard)] hover:bg-[var(--mustard-hover)] text-[#293643] font-extrabold text-xs transition-colors"
                     >
                       Další chyba
                     </button>
@@ -1128,28 +1119,28 @@ export default function Home() {
           <div className="space-y-6">
             <div className="flex flex-col md:flex-row justify-between md:items-end gap-4">
               <div>
-                <h2 className="text-2xl font-extrabold tracking-tight text-slate-100">Maturitní četba & Rozbory</h2>
-                <p className="text-xs text-slate-400">Vyber si svých 20 maturitních knih a procházej rozbory děl, děje a časoprostoru.</p>
+                <h2 className="text-2xl font-extrabold tracking-tight text-[var(--ink)]">Maturitní četba & Rozbory</h2>
+                <p className="text-xs text-[var(--muted)]">Vyber si svých 20 maturitních knih a procházej rozbory děl, děje a časoprostoru.</p>
               </div>
 
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-3" />
+                  <Search className="w-3.5 h-3.5 text-[var(--muted)] absolute left-3 top-3" />
                   <input
                     type="text"
                     value={bookSearchQuery}
                     onChange={(e) => setBookSearchQuery(e.target.value)}
                     placeholder="Hledat autora či knihu..."
-                    className="pl-8 pr-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-200 focus:outline-none focus:border-[#f5b82e] w-48 sm:w-64"
+                    className="pl-8 pr-3 py-2 rounded-xl bg-[var(--surface)] border border-[var(--line)] text-xs text-[var(--ink)] focus:outline-none focus:border-[var(--mustard)] w-48 sm:w-64"
                   />
                 </div>
 
-                <span className="text-xs font-bold px-3 py-2 rounded-xl bg-[#f5b82e]/10 text-[#f5b82e] border border-[#f5b82e]/20">
+                <span className="text-xs font-bold px-3 py-2 rounded-xl bg-[var(--mustard)]/10 text-[var(--mustard-ink)] border border-[var(--mustard)]/20">
                   Vybráno: {userBookIds.length} / 20
                 </span>
                 <button
                   onClick={() => window.print()}
-                  className="px-3 py-2 rounded-xl bg-slate-800/60 hover:bg-slate-700/80 text-slate-300 text-xs font-bold flex items-center gap-1.5 border border-slate-700/60"
+                  className="px-3 py-2 rounded-xl bg-[var(--surface-soft)]/60 hover:bg-[var(--surface-hover)]/80 text-[var(--muted)] text-xs font-bold flex items-center gap-1.5 border border-[var(--line)]/60"
                 >
                   <Printer className="w-3.5 h-3.5" />
                   Tisk
@@ -1176,8 +1167,8 @@ export default function Home() {
                     }}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all border ${
                       active
-                        ? 'bg-[#f5b82e] text-slate-950 border-[#f5b82e] shadow-sm font-extrabold'
-                        : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200 hover:border-slate-700'
+                        ? 'bg-[var(--mustard)] text-[#293643] border-[var(--mustard)] shadow-sm font-extrabold'
+                        : 'bg-[var(--surface)] text-[var(--muted)] border-[var(--line)] hover:text-[var(--ink)] hover:border-[var(--line)]'
                     }`}
                   >
                     {filter.label}
@@ -1187,7 +1178,7 @@ export default function Home() {
             </div>
 
             {/* RESULTS COUNTER */}
-            <div className="flex justify-between items-center text-xs text-slate-400">
+            <div className="flex justify-between items-center text-xs text-[var(--muted)]">
               <span>Nalezeno {filteredBooks.length} knih z celkem {catalogBooks.length}</span>
               {totalBookPages > 1 && (
                 <span>Stránka {bookPage} z {totalBookPages}</span>
@@ -1205,13 +1196,13 @@ export default function Home() {
                   >
                     <div className="space-y-2.5">
                       <div className="flex justify-between items-start">
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700/60">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[var(--surface-soft)] text-[var(--muted)] border border-[var(--line)]/60">
                           {book.genre}
                         </span>
                         <button
                           onClick={() => toggleBookSelection(book.id)}
                           className={`p-1.5 rounded-lg border transition-colors ${
-                            isSelected ? 'bg-[#68baaa]/20 text-[#68baaa] border-[#68baaa]/40' : 'bg-slate-800/40 text-slate-400 border-slate-700/60 hover:text-slate-200'
+                            isSelected ? 'bg-[var(--sage)]/20 text-[var(--sage-ink)] border-[var(--sage)]/40' : 'bg-[var(--surface-soft)]/40 text-[var(--muted)] border-[var(--line)]/60 hover:text-[var(--ink)]'
                           }`}
                           title={isSelected ? 'Odebrat ze seznamu' : 'Přidat do seznamu 20 knih'}
                         >
@@ -1220,11 +1211,11 @@ export default function Home() {
                       </div>
 
                       <div>
-                        <h3 className="text-base font-bold text-slate-100">{book.title}</h3>
-                        <p className="text-xs text-[#f5b82e] font-semibold">{book.author}</p>
+                        <h3 className="text-base font-bold text-[var(--ink)]">{book.title}</h3>
+                        <p className="text-xs text-[var(--mustard-ink)] font-semibold">{book.author}</p>
                       </div>
 
-                      <p className="text-[11px] text-slate-400 font-normal">{book.period}</p>
+                      <p className="text-[11px] text-[var(--muted)] font-normal">{book.period}</p>
                     </div>
 
                     <div className="pt-1">
@@ -1233,7 +1224,7 @@ export default function Home() {
                           setSelectedBookDetail(book);
                           setEditingNotes(userNotes[book.id] || '');
                         }}
-                        className="w-full py-2 rounded-xl bg-slate-800/60 hover:bg-slate-700/80 text-slate-200 font-bold text-xs transition-colors border border-slate-700/60"
+                        className="w-full py-2 rounded-xl bg-[var(--surface-soft)]/60 hover:bg-[var(--surface-hover)]/80 text-[var(--ink)] font-bold text-xs transition-colors border border-[var(--line)]/60"
                       >
                         Zobrazit podrobný rozbor
                       </button>
@@ -1249,17 +1240,17 @@ export default function Home() {
                 <button
                   disabled={bookPage <= 1}
                   onClick={() => setBookPage((p) => Math.max(1, p - 1))}
-                  className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-800 transition-colors"
+                  className="px-4 py-2 rounded-xl bg-[var(--surface)] border border-[var(--line)] text-xs font-bold text-[var(--ink)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[var(--surface-soft)] transition-colors"
                 >
                   Předchozí
                 </button>
-                <span className="text-xs font-bold text-slate-400">
+                <span className="text-xs font-bold text-[var(--muted)]">
                   Strana {bookPage} / {totalBookPages}
                 </span>
                 <button
                   disabled={bookPage >= totalBookPages}
                   onClick={() => setBookPage((p) => Math.min(totalBookPages, p + 1))}
-                  className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-800 transition-colors"
+                  className="px-4 py-2 rounded-xl bg-[var(--surface)] border border-[var(--line)] text-xs font-bold text-[var(--ink)] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[var(--surface-soft)] transition-colors"
                 >
                   Další
                 </button>
@@ -1269,58 +1260,58 @@ export default function Home() {
             {/* BOOK DETAIL MODAL */}
             {selectedBookDetail && (
               <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-                <div className={`max-w-xl w-full max-h-[85vh] overflow-y-auto p-6 lg:p-8 rounded-2xl ${cardClass} space-y-5 relative shadow-2xl bg-slate-900 border border-slate-800`}>
+                <div className={`max-w-xl w-full max-h-[85vh] overflow-y-auto p-6 lg:p-8 rounded-2xl ${cardClass} space-y-5 relative shadow-2xl bg-[var(--surface)] border border-[var(--line)]`}>
                   <button
                     onClick={() => setSelectedBookDetail(null)}
-                    className="absolute top-5 right-5 text-slate-400 hover:text-[#ef6453] p-1"
+                    className="absolute top-5 right-5 text-[var(--muted)] hover:text-[var(--coral-ink)] p-1"
                   >
                     <X className="w-5 h-5" />
                   </button>
 
                   <div>
-                    <span className="text-[10px] font-bold text-[#68baaa] uppercase tracking-wider">{selectedBookDetail.period}</span>
-                    <h2 className="text-2xl font-bold mt-0.5 text-slate-100">{selectedBookDetail.title}</h2>
-                    <p className="text-[#f5b82e] font-semibold text-sm">{selectedBookDetail.author}</p>
+                    <span className="text-[10px] font-bold text-[var(--sage-ink)] uppercase tracking-wider">{selectedBookDetail.period}</span>
+                    <h2 className="text-2xl font-bold mt-0.5 text-[var(--ink)]">{selectedBookDetail.title}</h2>
+                    <p className="text-[var(--mustard-ink)] font-semibold text-sm">{selectedBookDetail.author}</p>
                   </div>
 
-                  <div className="space-y-3 text-xs text-slate-300 font-normal">
-                    <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
-                      <strong className="text-slate-100 block mb-0.5 font-bold">Žánr & Druh:</strong>
+                  <div className="space-y-3 text-xs text-[var(--muted)] font-normal">
+                    <div className="p-3.5 rounded-xl bg-[var(--surface-soft)]/80 border border-[var(--line)]/80">
+                      <strong className="text-[var(--ink)] block mb-0.5 font-bold">Žánr & Druh:</strong>
                       {selectedBookDetail.genre}
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
-                      <strong className="text-slate-100 block mb-0.5 font-bold">Časoprostor:</strong>
+                    <div className="p-3.5 rounded-xl bg-[var(--surface-soft)]/80 border border-[var(--line)]/80">
+                      <strong className="text-[var(--ink)] block mb-0.5 font-bold">Časoprostor:</strong>
                       {selectedBookDetail.timeAndPlace}
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
-                      <strong className="text-slate-100 block mb-0.5 font-bold">Téma & Motivy:</strong>
+                    <div className="p-3.5 rounded-xl bg-[var(--surface-soft)]/80 border border-[var(--line)]/80">
+                      <strong className="text-[var(--ink)] block mb-0.5 font-bold">Téma & Motivy:</strong>
                       {selectedBookDetail.themeAndMotifs}
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
-                      <strong className="text-slate-100 block mb-0.5 font-bold">Hlavní postavy:</strong>
+                    <div className="p-3.5 rounded-xl bg-[var(--surface-soft)]/80 border border-[var(--line)]/80">
+                      <strong className="text-[var(--ink)] block mb-0.5 font-bold">Hlavní postavy:</strong>
                       {selectedBookDetail.characters}
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
-                      <strong className="text-slate-100 block mb-0.5 font-bold">Stručný děj:</strong>
+                    <div className="p-3.5 rounded-xl bg-[var(--surface-soft)]/80 border border-[var(--line)]/80">
+                      <strong className="text-[var(--ink)] block mb-0.5 font-bold">Stručný děj:</strong>
                       <p className="leading-relaxed">{selectedBookDetail.plotSummary}</p>
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
-                      <strong className="text-slate-100 block mb-0.5 font-bold">Jazyk & Styl:</strong>
+                    <div className="p-3.5 rounded-xl bg-[var(--surface-soft)]/80 border border-[var(--line)]/80">
+                      <strong className="text-[var(--ink)] block mb-0.5 font-bold">Jazyk & Styl:</strong>
                       {selectedBookDetail.languageAndStyle}
                     </div>
 
                     {/* DATABASE LOOKUP LINKS */}
-                    <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 space-y-3">
-                      <strong className="text-slate-100 block font-bold">Katalogové & Bibliografické databáze:</strong>
+                    <div className="p-3.5 rounded-xl bg-[var(--surface-soft)]/80 border border-[var(--line)]/80 space-y-3">
+                      <strong className="text-[var(--ink)] block font-bold">Katalogové & Bibliografické databáze:</strong>
 
                       {/* CZECH PRIMARY SOURCES */}
                       <div className="space-y-1.5">
-                        <span className="text-[10px] font-bold text-[#f5b82e] uppercase tracking-wider block">České primární databáze</span>
+                        <span className="text-[10px] font-bold text-[var(--mustard-ink)] uppercase tracking-wider block">České primární databáze</span>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           {getDatabaseLinksForBook(selectedBookDetail)
                             .filter(link => link.category === 'czech')
@@ -1330,13 +1321,13 @@ export default function Home() {
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition-all flex items-center justify-between text-xs group"
+                                className="p-2 rounded-lg bg-[var(--surface)] hover:bg-[var(--surface-soft)] border border-[var(--line)] hover:border-[var(--line)] transition-all flex items-center justify-between text-xs group"
                               >
                                 <div>
-                                  <div className="font-bold text-slate-200 group-hover:text-[#f5b82e] transition-colors">{link.name}</div>
-                                  <div className="text-[10px] text-slate-400">{link.note}</div>
+                                  <div className="font-bold text-[var(--ink)] group-hover:text-[var(--mustard-ink)] transition-colors">{link.name}</div>
+                                  <div className="text-[10px] text-[var(--muted)]">{link.note}</div>
                                 </div>
-                                <ChevronRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-[#f5b82e]" />
+                                <ChevronRight className="w-3.5 h-3.5 text-[var(--muted)] group-hover:text-[var(--mustard-ink)]" />
                               </a>
                             ))}
                         </div>
@@ -1344,7 +1335,7 @@ export default function Home() {
 
                       {/* INTERNATIONAL COMPLEMENTARY SOURCES */}
                       <div className="space-y-1.5 pt-1">
-                        <span className="text-[10px] font-bold text-[#68baaa] uppercase tracking-wider block">Mezinárodní bibliografické databáze</span>
+                        <span className="text-[10px] font-bold text-[var(--sage-ink)] uppercase tracking-wider block">Mezinárodní bibliografické databáze</span>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           {getDatabaseLinksForBook(selectedBookDetail)
                             .filter(link => link.category === 'international')
@@ -1354,13 +1345,13 @@ export default function Home() {
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition-all flex items-center justify-between text-xs group"
+                                className="p-2 rounded-lg bg-[var(--surface)] hover:bg-[var(--surface-soft)] border border-[var(--line)] hover:border-[var(--line)] transition-all flex items-center justify-between text-xs group"
                               >
                                 <div>
-                                  <div className="font-bold text-slate-200 group-hover:text-[#68baaa] transition-colors">{link.name}</div>
-                                  <div className="text-[10px] text-slate-400">{link.note}</div>
+                                  <div className="font-bold text-[var(--ink)] group-hover:text-[var(--sage-ink)] transition-colors">{link.name}</div>
+                                  <div className="text-[10px] text-[var(--muted)]">{link.note}</div>
                                 </div>
-                                <ChevronRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-[#68baaa]" />
+                                <ChevronRight className="w-3.5 h-3.5 text-[var(--muted)] group-hover:text-[var(--sage-ink)]" />
                               </a>
                             ))}
                         </div>
@@ -1369,17 +1360,17 @@ export default function Home() {
 
                     {user && (
                       <div className="pt-2">
-                        <strong className="text-slate-100 block mb-1 font-bold">Moje poznámky k dílu:</strong>
+                        <strong className="text-[var(--ink)] block mb-1 font-bold">Moje poznámky k dílu:</strong>
                         <textarea
                           value={editingNotes}
                           onChange={(e) => setEditingNotes(e.target.value)}
                           placeholder="Zadejte vlastní stručné poznámky k maturitní otázce..."
-                          className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs focus:outline-none focus:border-[#f5b82e] text-slate-200"
+                          className="w-full p-3 rounded-xl bg-[var(--surface-soft)] border border-[var(--line)] text-xs focus:outline-none focus:border-[var(--mustard)] text-[var(--ink)]"
                           rows={3}
                         />
                         <button
                           onClick={() => saveBookNotes(selectedBookDetail.id)}
-                          className="mt-2 px-4 py-1.5 rounded-xl bg-[#f5b82e] hover:bg-[#e0a520] text-slate-950 font-bold text-xs"
+                          className="mt-2 px-4 py-1.5 rounded-xl bg-[var(--mustard)] hover:bg-[var(--mustard-hover)] text-[#293643] font-bold text-xs"
                         >
                           Uložit poznámky
                         </button>
@@ -1396,8 +1387,8 @@ export default function Home() {
         {activeTab === 'resources' && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-extrabold tracking-tight text-slate-100">Zdroje četby & Audioknihy zdarma</h2>
-              <p className="text-xs text-slate-400">Stahuj e-knihy v PDF/EPUB nebo přehrávej audio rozbory z Českého rozhlasu a Městské knihovny v Praze.</p>
+              <h2 className="text-2xl font-extrabold tracking-tight text-[var(--ink)]">Zdroje četby & Audioknihy zdarma</h2>
+              <p className="text-xs text-[var(--muted)]">Stahuj e-knihy v PDF/EPUB nebo přehrávej audio rozbory z Českého rozhlasu a Městské knihovny v Praze.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -1408,19 +1399,19 @@ export default function Home() {
                 >
                   <div className="space-y-2.5">
                     <div className="flex justify-between items-center">
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${item.type === 'audiobook' ? 'bg-[#f5b82e]/10 text-[#f5b82e] border border-[#f5b82e]/20' : 'bg-[#68baaa]/10 text-[#68baaa] border border-[#68baaa]/20'}`}>
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${item.type === 'audiobook' ? 'bg-[var(--mustard)]/10 text-[var(--mustard-ink)] border border-[var(--mustard)]/20' : 'bg-[var(--sage)]/10 text-[var(--sage-ink)] border border-[var(--sage)]/20'}`}>
                         {item.type === 'audiobook' ? '🎧 Audiokniha' : '📖 E-Kniha'}
                       </span>
-                      <span className="text-[10px] text-slate-400 font-mono">{item.format}</span>
+                      <span className="text-[10px] text-[var(--muted)] font-mono">{item.format}</span>
                     </div>
 
                     <div>
-                      <h3 className="text-base font-bold text-slate-100">{item.title}</h3>
-                      <p className="text-xs text-slate-400">Autor: <strong className="text-slate-200">{item.author}</strong></p>
+                      <h3 className="text-base font-bold text-[var(--ink)]">{item.title}</h3>
+                      <p className="text-xs text-[var(--muted)]">Autor: <strong className="text-[var(--ink)]">{item.author}</strong></p>
                     </div>
 
-                    <p className="text-xs text-slate-400 leading-relaxed font-normal">{item.description}</p>
-                    <span className="text-[11px] text-[#68baaa] font-medium block">Zdroj: {item.sourceName}</span>
+                    <p className="text-xs text-[var(--muted)] leading-relaxed font-normal">{item.description}</p>
+                    <span className="text-[11px] text-[var(--sage-ink)] font-medium block">Zdroj: {item.sourceName}</span>
                   </div>
 
                   <div className="pt-1">
@@ -1434,7 +1425,7 @@ export default function Home() {
                             sourceName: item.sourceName
                           })
                         }
-                        className="w-full py-2.5 rounded-xl bg-[#ef6453] hover:bg-[#d84e3d] text-white font-bold text-xs flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-sm"
+                        className="w-full py-2.5 rounded-xl bg-[var(--coral)] hover:bg-[var(--coral-hover)] text-[#293643] font-bold text-xs flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-sm"
                       >
                         <Play className="w-3.5 h-3.5 fill-current" />
                         Přehrát v aplikaci
@@ -1444,7 +1435,7 @@ export default function Home() {
                         href={item.downloadUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="w-full py-2.5 rounded-xl bg-[#f5b82e] hover:bg-[#e0a520] text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-sm"
+                        className="w-full py-2.5 rounded-xl bg-[var(--mustard)] hover:bg-[var(--mustard-hover)] text-[#293643] font-bold text-xs flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-sm"
                       >
                         <Download className="w-3.5 h-3.5" />
                         Stáhnout e-knihu
@@ -1472,32 +1463,32 @@ export default function Home() {
       {/* AUTH MODAL */}
       {showAuthModal && (
         <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className={`max-w-sm w-full p-6 rounded-2xl ${cardClass} space-y-4 relative shadow-2xl bg-slate-900 border border-slate-800`}>
+          <div className={`max-w-sm w-full p-6 rounded-2xl ${cardClass} space-y-4 relative shadow-2xl bg-[var(--surface)] border border-[var(--line)]`}>
             <button
               onClick={() => setShowAuthModal(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-[#ef6453] p-1"
+              className="absolute top-4 right-4 text-[var(--muted)] hover:text-[var(--coral-ink)] p-1"
             >
               <X className="w-4 h-4" />
             </button>
 
             <div className="text-center space-y-1">
-              <h3 className="text-lg font-bold text-slate-100">
+              <h3 className="text-lg font-bold text-[var(--ink)]">
                 {authMode === 'login' ? 'Přihlášení do MaturYta' : 'Registrace nového účtu'}
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[var(--muted)]">
                 Ukládej si testy, chybovník a vybranou četbu.
               </p>
             </div>
 
             {authError && (
-              <div className="p-2.5 rounded-xl bg-[#ef6453]/10 border border-[#ef6453]/30 text-[#ef6453] text-xs font-semibold">
+              <div className="p-2.5 rounded-xl bg-[var(--coral)]/10 border border-[var(--coral)]/30 text-[var(--coral-ink)] text-xs font-semibold">
                 {authError}
               </div>
             )}
 
             <div className="space-y-3">
               <div>
-                <label className="text-[11px] font-bold text-slate-300 block mb-1">
+                <label className="text-[11px] font-bold text-[var(--muted)] block mb-1">
                   Uživatelské jméno {authMode === 'login' && '/ E-mail'}
                 </label>
                 <input
@@ -1505,44 +1496,44 @@ export default function Home() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="JanNovak"
-                  className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs focus:outline-none focus:border-[#f5b82e] text-slate-200"
+                  className="w-full p-2.5 rounded-xl bg-[var(--surface-soft)] border border-[var(--line)] text-xs focus:outline-none focus:border-[var(--mustard)] text-[var(--ink)]"
                 />
               </div>
 
               {authMode === 'register' && (
                 <div>
-                  <label className="text-[11px] font-bold text-slate-300 block mb-1">E-mail</label>
+                  <label className="text-[11px] font-bold text-[var(--muted)] block mb-1">E-mail</label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="student@skola.cz"
-                    className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs focus:outline-none focus:border-[#f5b82e] text-slate-200"
+                    className="w-full p-2.5 rounded-xl bg-[var(--surface-soft)] border border-[var(--line)] text-xs focus:outline-none focus:border-[var(--mustard)] text-[var(--ink)]"
                   />
                 </div>
               )}
 
               <div>
-                <label className="text-[11px] font-bold text-slate-300 block mb-1">Heslo</label>
+                <label className="text-[11px] font-bold text-[var(--muted)] block mb-1">Heslo</label>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs focus:outline-none focus:border-[#f5b82e] text-slate-200"
+                  className="w-full p-2.5 rounded-xl bg-[var(--surface-soft)] border border-[var(--line)] text-xs focus:outline-none focus:border-[var(--mustard)] text-[var(--ink)]"
                 />
               </div>
 
               <button
                 onClick={() => (authMode === 'login' ? handleLogin(false) : handleRegister())}
-                className="w-full py-2.5 rounded-xl bg-[#f5b82e] hover:bg-[#e0a520] text-slate-950 font-extrabold text-xs transition-transform active:scale-95 shadow-sm"
+                className="w-full py-2.5 rounded-xl bg-[var(--mustard)] hover:bg-[var(--mustard-hover)] text-[#293643] font-extrabold text-xs transition-transform active:scale-95 shadow-sm"
               >
                 {authMode === 'login' ? 'Přihlásit se' : 'Vytvořit účet'}
               </button>
 
               <button
                 onClick={() => handleLogin(true)}
-                className="w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-700/80 text-slate-300 font-bold text-xs border border-slate-700/60 transition-colors"
+                className="w-full py-2 rounded-xl bg-[var(--surface-soft)] hover:bg-[var(--surface-hover)]/80 text-[var(--muted)] font-bold text-xs border border-[var(--line)]/60 transition-colors"
               >
                 Vyzkoušet bez přihlášení (Demo)
               </button>
@@ -1551,7 +1542,7 @@ export default function Home() {
             <div className="text-center pt-1">
               <button
                 onClick={() => setAuthMode(authMode === 'login' ? 'register' : 'login')}
-                className="text-xs text-[#f5b82e] hover:underline font-bold"
+                className="text-xs text-[var(--mustard-ink)] hover:underline font-bold"
               >
                 {authMode === 'login' ? 'Nemáte účet? Zaregistrujte se' : 'Máte účet? Přihlaste se'}
               </button>

@@ -60,7 +60,7 @@ export default function AudioPlayer({ title, author, streamUrl, sourceName, onCl
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-[#0f172a]/95 border-t border-slate-800 p-3 lg:p-4 shadow-2xl z-50 backdrop-blur-md">
+    <div className="fixed bottom-0 left-0 right-0 bg-[var(--page)]/95 border-t border-[var(--line)] p-3 lg:p-4 shadow-2xl z-50 backdrop-blur-md">
       <audio
         ref={audioRef}
         key={streamUrl}
@@ -73,12 +73,12 @@ export default function AudioPlayer({ title, author, streamUrl, sourceName, onCl
       />
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
         <div className="flex items-center gap-3 w-full md:w-1/3">
-          <div className="w-9 h-9 rounded-xl bg-[#f5b82e]/10 border border-[#f5b82e]/20 text-[#f5b82e] flex items-center justify-center font-bold text-sm">
+          <div className="w-9 h-9 rounded-xl bg-[var(--mustard)]/10 border border-[var(--mustard)]/20 text-[var(--mustard-ink)] flex items-center justify-center font-bold text-sm">
             <Volume2 className="w-4 h-4" />
           </div>
           <div className="truncate">
-            <h4 className="font-bold text-xs text-slate-100 truncate">{title}</h4>
-            <p className="text-[11px] text-slate-400 truncate">{author} • <span className="text-[#68baaa] font-medium">{sourceName}</span></p>
+            <h4 className="font-bold text-xs text-[var(--ink)] truncate">{title}</h4>
+            <p className="text-[11px] text-[var(--muted)] truncate">{author} • <span className="text-[var(--sage-ink)] font-medium">{sourceName}</span></p>
           </div>
         </div>
 
@@ -88,7 +88,7 @@ export default function AudioPlayer({ title, author, streamUrl, sourceName, onCl
               onClick={() => {
                 if (audioRef.current) audioRef.current.currentTime -= 10;
               }}
-              className="p-1.5 text-slate-400 hover:text-slate-200 rounded-lg transition-colors"
+              className="p-1.5 text-[var(--muted)] hover:text-[var(--ink)] rounded-lg transition-colors"
               title="-10 sec"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -96,21 +96,21 @@ export default function AudioPlayer({ title, author, streamUrl, sourceName, onCl
 
             <button
               onClick={togglePlay}
-              className="w-9 h-9 bg-[#ef6453] hover:bg-[#d84e3d] text-white rounded-full transition-transform active:scale-95 shadow-sm flex items-center justify-center"
+              className="w-9 h-9 bg-[var(--coral)] hover:bg-[var(--coral-hover)] text-[#293643] rounded-full transition-transform active:scale-95 shadow-sm flex items-center justify-center"
             >
               {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
             </button>
 
             <button
               onClick={toggleSpeed}
-              className="px-2 py-0.5 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded text-[10px] font-bold text-[#f5b82e]"
+              className="px-2 py-0.5 bg-[var(--surface-soft)] hover:bg-[var(--surface-hover)]/80 border border-[var(--line)]/60 rounded text-[10px] font-bold text-[var(--mustard-ink)]"
               title="Rychlost přehrávání"
             >
               {playbackRate}x
             </button>
           </div>
 
-          <div className="flex items-center gap-2.5 w-full text-[10px] text-slate-400 font-mono">
+          <div className="flex items-center gap-2.5 w-full text-[10px] text-[var(--muted)] font-mono">
             <span>{formatTime(currentTime)}</span>
             <input
               type="range"
@@ -118,7 +118,7 @@ export default function AudioPlayer({ title, author, streamUrl, sourceName, onCl
               max={duration || 100}
               value={currentTime}
               onChange={handleSeek}
-              className="w-full accent-[#f5b82e] h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer"
+              className="w-full accent-[var(--mustard)] h-1 bg-[var(--surface-soft)] rounded-lg appearance-none cursor-pointer"
             />
             <span>{formatTime(duration)}</span>
           </div>
@@ -127,7 +127,7 @@ export default function AudioPlayer({ title, author, streamUrl, sourceName, onCl
         {onClose && (
           <button
             onClick={onClose}
-            className="hidden md:flex items-center gap-1 text-slate-400 hover:text-[#ef6453] text-xs font-medium transition-colors"
+            className="hidden md:flex items-center gap-1 text-[var(--muted)] hover:text-[var(--coral-ink)] text-xs font-medium transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
