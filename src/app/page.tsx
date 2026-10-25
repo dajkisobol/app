@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import readingCorner from '@/assets/reading-corner.webp';
+import customLogo from '../../public/IMG_2470 (1).jpeg';
+import customPattern from '../../public/IMG_2468.jpeg';
 import React, { useState, useEffect } from 'react';
 import {
   BookOpen,
@@ -429,24 +431,24 @@ export default function Home() {
 
   return (
     <div data-theme={darkMode ? "dark" : "light"} className="app-shell min-h-screen flex flex-col font-sans transition-colors duration-200 pb-28">
-      {/* SLIM ACCENT TOP STRIP */}
-      <div className="knit-border" aria-hidden="true" />
+      <div className="brand-masthead">
+        <div className="brand-masthead-inner">
+          <button type="button" aria-label="MaturYta – úvodní přehled" className="brand-lockup" onClick={() => setActiveTab('dashboard')}>
+            <Image src={customLogo} alt="" className="brand-logo" preload sizes="(max-width: 600px) 92px, 144px" />
+            <span className="brand-lettering">
+              <span className="brand-name">Matur<span>Yta</span></span>
+              <span className="brand-tagline">TVŮJ KOUTEK PRO ČEŠTINU</span>
+            </span>
+          </button>
+          <Image src={customPattern} alt="" aria-hidden="true" className="brand-pattern" preload sizes="(max-width: 600px) 100vw, (max-width: 1000px) 44vw, 600px" />
+        </div>
+      </div>
 
       {/* HEADER NAVBAR */}
       <header className={`sticky top-0 z-40 border-b bg-[var(--page)]/95 border-[var(--line)] backdrop-blur-md px-4 lg:px-8 py-3.5`}>
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <button type="button" aria-label="MaturYta – úvodní přehled" className="flex items-center gap-3 text-left" onClick={() => setActiveTab('dashboard')}>
-            <div className="w-10 h-10 rounded-xl bg-[var(--mustard)] text-[#293643] flex items-center justify-center font-black text-xl shadow-sm">
-              M
-            </div>
-            <div>
-              <span className="font-extrabold text-xl tracking-tight text-[var(--ink)]">
-                Matur<span className="text-[var(--mustard-ink)]">Yta</span>
-              </span>
-              <span className="hidden sm:inline-block ml-2 text-[10px] font-bold px-2 py-0.5 rounded-md bg-[var(--mustard)]/10 text-[var(--mustard-ink)] border border-[var(--mustard)]/20 uppercase tracking-wide">
-                Český Jazyk
-              </span>
-            </div>
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <button type="button" aria-label="MaturYta – zpět na přehled" className="brand-compact xl:hidden" onClick={() => setActiveTab('dashboard')}>
+            Matur<span>Yta</span>
           </button>
 
           {/* Navigation Links */}
