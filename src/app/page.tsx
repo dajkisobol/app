@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   BookOpen,
   GraduationCap,
@@ -13,7 +13,6 @@ import {
   Sun,
   Printer,
   Plus,
-  Trash2,
   Play,
   Download,
   ChevronRight,
@@ -23,9 +22,85 @@ import {
   Award
 } from 'lucide-react';
 import AudioPlayer from '@/components/AudioPlayer';
+import { supabase } from '@/lib/supabase';
+import { BOOK_CATALOG, CERMAT_TESTS } from '@/lib/data';
+import { FREE_RESOURCES } from '@/lib/resources';
+
+interface UserState {
+  id: string;
+  username: string;
+  email: string;
+  isGuest?: boolean;
+}
+
+interface Question {
+  id: string;
+  category: string;
+  prompt: string;
+  options: string[];
+  correctOption: number;
+  explanation: string;
+}
+
+interface DidacticTest {
+  id: string;
+  title: string;
+  year: string;
+  season: string;
+  timeLimitMinutes: number;
+  questions: Question[];
+}
+
+interface TestResult {
+  score: number;
+  totalQuestions: number;
+  percentage: number;
+  timeSpentSeconds: number;
+}
+
+interface MissedQuestion {
+  id: string;
+  missedRecordId?: string;
+  test_id?: string;
+  category: string;
+  prompt: string;
+  options: string[];
+  correctOption: number;
+  explanation: string;
+  timesFailed?: number;
+}
+
+interface Book {
+  id: string;
+  title: string;
+  author: string;
+  period: string;
+  genre: string;
+  timeAndPlace: string;
+  themeAndMotifs: string;
+  characters: string;
+  plotSummary: string;
+  languageAndStyle: string;
+  ebookUrl?: string;
+  audiobookUrl?: string;
+  audioSource?: string;
+}
+
+interface ResourceItem {
+  id: string;
+  title: string;
+  author: string;
+  type: 'ebook' | 'audiobook';
+  format: string;
+  sourceName: string;
+  downloadUrl?: string;
+  streamUrl?: string;
+  description: string;
+  coverColor: string;
+}
 
 export default function Home() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<UserState | null>(null);
   const [activeTab, setActiveTab] = useState<'dashboard' | 'tests' | 'errors' | 'books' | 'resources'>('dashboard');
   const [darkMode, setDarkMode] = useState(true);
 
@@ -38,31 +113,31 @@ export default function Home() {
   const [authError, setAuthError] = useState('');
 
   // Tests State
-  const [tests, setTests] = useState<any[]>([]);
-  const [activeTest, setActiveTest] = useState<any>(null);
+  const [tests, setTests] = useState<DidacticTest[]>([]);
+  const [activeTest, setActiveTest] = useState<DidacticTest | null>(null);
   const [testMode, setTestMode] = useState<'timed' | 'untimed'>('timed');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
   const [timeLeft, setTimeLeft] = useState(85 * 60);
   const [isTestSubmitted, setIsTestSubmitted] = useState(false);
-  const [testResult, setTestResult] = useState<any>(null);
+  const [testResult, setTestResult] = useState<TestResult | null>(null);
 
   // Weakness / Errors State
-  const [errorQuestions, setErrorQuestions] = useState<any[]>([]);
+  const [errorQuestions, setErrorQuestions] = useState<MissedQuestion[]>([]);
   const [errorCategory, setErrorCategory] = useState<string>('vse');
   const [activeErrorIndex, setActiveErrorIndex] = useState(0);
   const [errorSelectedAnswer, setErrorSelectedAnswer] = useState<number | null>(null);
   const [errorShowExplanation, setErrorShowExplanation] = useState(false);
 
   // Books State
-  const [catalogBooks, setCatalogBooks] = useState<any[]>([]);
+  const [catalogBooks, setCatalogBooks] = useState<Book[]>([]);
   const [userBookIds, setUserBookIds] = useState<string[]>([]);
   const [userNotes, setUserNotes] = useState<Record<string, string>>({});
-  const [selectedBookDetail, setSelectedBookDetail] = useState<any>(null);
+  const [selectedBookDetail, setSelectedBookDetail] = useState<Book | null>(null);
   const [editingNotes, setEditingNotes] = useState('');
 
   // Resources / Audio State
-  const [resources, setResources] = useState<any[]>([]);
+  const [resources, setResources] = useState<ResourceItem[]>([]);
   const [activeAudio, setActiveAudio] = useState<{
     title: string;
     author: string;
@@ -70,325 +145,144 @@ export default function Home() {
     sourceName: string;
   } | null>(null);
 
+  // Initial Data Load
   useEffect(() => {
-    fetchUser();
-    fetchBooks();
-    fetchResources();
-    fetchTests();
+    let isMounted = true;
+    const init = async () => {
+      setResources(FREE_RESOURCES as ResourceItem[]);
+      setTests(CERMAT_TESTS as DidacticTest[]);
+      setCatalogBooks(BOOK_CATALOG as Book[]);
+
+      // Auth Check
+      if (supabase) {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.user && isMounted) {
+          setUser({
+            id: session.user.id,
+            username: session.user.user_metadata?.username || session.user.email?.split('@')[0] || 'Student',
+            email: session.user.email || '',
+          });
+          return;
+        }
+      }
+
+      const localGuest = localStorage.getItem('maturyta_guest_user');
+      if (localGuest && isMounted) {
+        try {
+          setUser(JSON.parse(localGuest));
+        } catch {
+          // ignore
+        }
+      }
+    };
+    init();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  const fetchUser = async () => {
-    try {
-      const res = await fetch('/api/auth/me');
-      const data = await res.json();
-      if (data.user) {
-        setUser(data.user);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const fetchBooks = async () => {
-    try {
-      const res = await fetch('/api/books');
-      const data = await res.json();
-      setCatalogBooks(data.catalog || []);
-      setUserBookIds(data.userBookIds || []);
-      setUserNotes(data.userNotes || {});
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const fetchResources = async () => {
-    const res = [
-      {
-        id: 'res-rur-ebook',
-        title: 'R.U.R. (E-kniha zdarma)',
-        author: 'Karel Čapek',
-        type: 'ebook',
-        format: 'EPUB / PDF',
-        sourceName: 'Městská knihovna v Praze (mlp.cz)',
-        downloadUrl: 'https://www.mlp.cz/cz/katalog-sluzeb/eknihy/r.u.r./',
-        description: 'Oficiální e-kniha vydaná Městskou knihovnou v Praze zdarma ke stažení pro maturanty.',
-        coverColor: 'from-blue-600 to-indigo-800'
-      },
-      {
-        id: 'res-maj-ebook',
-        title: 'Máj (E-kniha zdarma)',
-        author: 'Karel Hynek Mácha',
-        type: 'ebook',
-        format: 'EPUB / PDF',
-        sourceName: 'Městská knihovna v Praze (mlp.cz)',
-        downloadUrl: 'https://www.mlp.cz/cz/katalog-sluzeb/eknihy/maj/',
-        description: 'Básnické vrcholné dílo českého romantismu k okamžitému stažení.',
-        coverColor: 'from-purple-600 to-pink-700'
-      },
-      {
-        id: 'res-1984-ocean',
-        title: '1984 (Světová literatura)',
-        author: 'George Orwell',
-        type: 'ebook',
-        format: 'PDF / EPUB',
-        sourceName: 'OceansofPDF',
-        downloadUrl: 'https://oceansofpdf.com/authors/george-orwell/pdf-epub-1984-download/',
-        description: 'Bezplatný přístup k digitálnímu vydání kultovního dystopického románu.',
-        coverColor: 'from-amber-600 to-red-800'
-      },
-      {
-        id: 'res-rur-audio',
-        title: 'R.U.R. Rozhlasová hra & Audiokniha',
-        author: 'Karel Čapek',
-        type: 'audiobook',
-        format: 'MP3 Audio Stream',
-        sourceName: 'Český rozhlas / MůjRozhlas',
-        streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-        description: 'Kultovní rozhlasové zpracování s výborným obsazením ČRo Vltava.',
-        coverColor: 'from-emerald-600 to-teal-800'
-      },
-      {
-        id: 'res-maj-audio',
-        title: 'Máj - Umělecký přednes',
-        author: 'Karel Hynek Mácha',
-        type: 'audiobook',
-        format: 'MP3 Audio Stream',
-        sourceName: 'Český rozhlas Vltava',
-        streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
-        description: 'Kompletní recitace a hudební doprovod v podání předních českých herců.',
-        coverColor: 'from-violet-600 to-purple-900'
-      },
-      {
-        id: 'res-kytice-audio',
-        title: 'Kytice - Vybrané balady',
-        author: 'Karel Jaromír Erben',
-        type: 'audiobook',
-        format: 'MP3 Audio Stream',
-        sourceName: 'Knihovny.cz / MůjRozhlas',
-        streamUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
-        description: 'Dramatizace vybraných balad vhodná k poslechu při studiu.',
-        coverColor: 'from-cyan-600 to-blue-800'
-      }
-    ];
-    setResources(res);
-  };
-
-  const fetchTests = () => {
-    const data = [
-      {
-        id: 'cermat-2023-jaro',
-        title: 'Didaktický test ČJL - Jaro 2023',
-        year: '2023',
-        season: 'Jaro',
-        timeLimitMinutes: 85,
-        questions: [
-          {
-            id: 'c2023j-1',
-            category: 'Pravopis',
-            prompt: 'Ve které z následujících větných dvojic jsou OBA pravopisy správné?',
-            options: [
-              'A) Byli jsme překvapeni výjimkami v pravidlech. / Na stěně visely starožitné hodiny.',
-              'B) Zhlédl se v zrcadle s úsměvem. / Shlédli jsme nový film v kině.',
-              'C) Běžel vústríc svému osudu. / Připravil vinný střik.',
-              'D) Děti se radovali z prázdnin. / Psi hlasitě štěkali na dvoře.'
-            ],
-            correctOption: 0,
-            explanation: 'Slovo "výjimka" se píše s dlouhým "ý" a krátkým "i". "Visely" má příčestí minulého času podle podmětu "hodiny" (ženský rod, Měkké i). Ve variantě B má být "zhlédli jsme film" (spatřili jsme). Ve variantě C "vstříc". Ve variantě D "děti se radovaly" (střední rod / ženský rod v množném čísle - děti).'
-          },
-          {
-            id: 'c2023j-2',
-            category: 'Literatura',
-            prompt: 'Která z následujících charakteristik nejlépe odpovídá dílu "RUR" od Karla Čapka?',
-            options: [
-              'A) Románová kronika sledování života na české vesnici v 19. století.',
-              'B) Vědeckofantastické drama varující před zneužitím techniky a umělé inteligence, ve kterém poprvé zaznělo slovo "robot".',
-              'C) Lyricko-epická báseň s tématem nešťastné lásky a tragické smrti mladého zbojníka.',
-              'D) Historický román popisující období vlády Karla IV.'
-            ],
-            correctOption: 1,
-            explanation: 'R.U.R. (Rossum’s Universal Robots) je utopické/sci-fi drama Karla Čapka z roku 1920, kde autor poprvé použil slovo "robot" (které mu doporučil bratr Josef Čapek).'
-          },
-          {
-            id: 'c2023j-3',
-            category: 'Mluvnice',
-            prompt: 'Určete větný člen podtržený ve větě: "Chlapec běžel rychle do školy."',
-            options: [
-              'A) Předmět',
-              'B) Příslovečné určení způsobu',
-              'C) Příslovečné určení místa',
-              'D) Přívlastek shodný'
-            ],
-            correctOption: 1,
-            explanation: 'Slovo "rychle" vyjadřuje, JAKÝM ZPŮSOBEM chlapec běžel, jedná se tedy o příslovečné určení způsobu (PUM).'
-          },
-          {
-            id: 'c2023j-4',
-            category: 'Textová návaznost',
-            prompt: 'Která věta nejlépe navazuje na myšlenku: "Karel Hynek Mácha byl významný český básník. Napsal Máj. [???] Byla přijata se značným pochopením až dalšími generacemi."',
-            options: [
-              'A) Ve své době však tato skladba nesklidila u soudobé kritiky velký ohlas.',
-              'B) Mácha velmi rád cestoval po českých hradech a zámcích.',
-              'C) Česká literatura 19. století byla velmi bohatá na různé žánry.',
-              'D) Vydal také několik dalších románů pro mládež.'
-            ],
-            correctOption: 0,
-            explanation: 'Následující věta začíná "Byla přijata se značným pochopením až dalšími generacemi...", což přirozeně navazuje na fakt, že ve své době byla nepochopena nebo kritizována.'
-          },
-          {
-            id: 'c2023j-5',
-            category: 'Pravopis',
-            prompt: 'Které slovo obsahuje chybu v psaní i/ý nebo ě/je?',
-            options: [
-              'A) Objednávka',
-              'B) Běsnění',
-              'C) Zapomnětlivý',
-              'D) Mětský'
-            ],
-            correctOption: 3,
-            explanation: 'Správně se píše "Městský" (od slova město -> měst-ský).'
-          }
-        ]
-      },
-      {
-        id: 'cermat-2022-jaro',
-        title: 'Didaktický test ČJL - Jaro 2022',
-        year: '2022',
-        season: 'Jaro',
-        timeLimitMinutes: 85,
-        questions: [
-          {
-            id: 'c2022j-1',
-            category: 'Literatura',
-            prompt: 'Kdo je autorem baladické sbírky "Kytice"?',
-            options: [
-              'A) Jan Neruda',
-              'B) Karel Jaromír Erben',
-              'C) Božena Němcová',
-              'D) Vítězslav Hálek'
-            ],
-            correctOption: 1,
-            explanation: 'Kytice z pověstí národních je jediná básnická sbírka Karla Jaromíra Erbena.'
-          },
-          {
-            id: 'c2022j-2',
-            category: 'Pravopis',
-            prompt: 'Ve které z možností je chyba v psaní velikosti písmen?',
-            options: [
-              'A) Město Praha, Severní moře, Základní škola v Brně',
-              'B) Tichý oceán, Karlovy Vary, ulice Na Příkopě',
-              'C) Vánoce, Velikonoce, Nový rok',
-              'D) Česká Republika, Pražský Hrad, Univerzita Karlova'
-            ],
-            correctOption: 3,
-            explanation: 'Správný zápis je "Česká republika" (republika s malým r) a "Pražský hrad" (hrad s malým h).'
-          }
-        ]
-      }
-    ];
-    setTests(data);
-  };
-
-  // Timer Effect
+  // Fetch Books Data when User changes
   useEffect(() => {
-    let timer: any;
-    if (activeTest && testMode === 'timed' && !isTestSubmitted && timeLeft > 0) {
-      timer = setInterval(() => {
-        setTimeLeft((prev) => {
-          if (prev <= 1) {
-            clearInterval(timer);
-            submitTest();
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-    return () => clearInterval(timer);
-  }, [activeTest, testMode, isTestSubmitted, timeLeft]);
+    let isMounted = true;
+    if (!user) return;
 
-  // Load Errors
+    const loadUserBooks = async () => {
+      if (supabase && !user.isGuest) {
+        const { data, error } = await supabase
+          .from('user_books')
+          .select('book_id, custom_notes')
+          .eq('user_id', user.id);
+
+        if (!error && data && isMounted) {
+          const ids = data.map((item) => item.book_id);
+          const notesMap: Record<string, string> = {};
+          data.forEach((item) => {
+            if (item.custom_notes) notesMap[item.book_id] = item.custom_notes;
+          });
+          setUserBookIds(ids);
+          setUserNotes(notesMap);
+          return;
+        }
+      }
+
+      const savedBooks = localStorage.getItem(`maturyta_user_books_${user.id}`);
+      const savedNotes = localStorage.getItem(`maturyta_user_notes_${user.id}`);
+      if (isMounted) {
+        if (savedBooks) setUserBookIds(JSON.parse(savedBooks));
+        if (savedNotes) setUserNotes(JSON.parse(savedNotes));
+      }
+    };
+
+    loadUserBooks();
+    return () => {
+      isMounted = false;
+    };
+  }, [user]);
+
+  // Load Errors Effect
   useEffect(() => {
+    let isMounted = true;
     if (activeTab === 'errors' && user) {
-      fetchErrorQuestions();
+      if (supabase && !user.isGuest) {
+        let query = supabase
+          .from('user_missed_questions')
+          .select('*')
+          .eq('user_id', user.id)
+          .eq('mastered', false);
+
+        if (errorCategory !== 'vse') {
+          query = query.eq('category', errorCategory);
+        }
+
+        query.then(({ data, error }) => {
+          if (!error && data && isMounted) {
+            const formatted: MissedQuestion[] = data.map((r) => ({
+              id: r.question_id,
+              missedRecordId: r.id,
+              test_id: r.test_id,
+              category: r.category,
+              prompt: r.prompt,
+              options: typeof r.options_json === 'string' ? JSON.parse(r.options_json) : r.options_json,
+              correctOption: r.correct_option,
+              explanation: r.explanation,
+              timesFailed: r.times_failed,
+            }));
+            setErrorQuestions(formatted);
+            setActiveErrorIndex(0);
+            setErrorSelectedAnswer(null);
+            setErrorShowExplanation(false);
+          }
+        });
+      } else {
+        const savedErrors = localStorage.getItem(`maturyta_missed_${user.id}`);
+        if (savedErrors && isMounted) {
+          const timer = setTimeout(() => {
+            if (isMounted) {
+              let allMissed: MissedQuestion[] = JSON.parse(savedErrors);
+              if (errorCategory !== 'vse') {
+                allMissed = allMissed.filter((q) => q.category === errorCategory);
+              }
+              setErrorQuestions(allMissed);
+              setActiveErrorIndex(0);
+              setErrorSelectedAnswer(null);
+              setErrorShowExplanation(false);
+            }
+          }, 0);
+          return () => clearTimeout(timer);
+        }
+      }
     }
+    return () => {
+      isMounted = false;
+    };
   }, [activeTab, errorCategory, user]);
 
-  const fetchErrorQuestions = async () => {
-    try {
-      const res = await fetch(`/api/tests/results?category=${errorCategory}`);
-      const data = await res.json();
-      setErrorQuestions(data.questions || []);
-      setActiveErrorIndex(0);
-      setErrorSelectedAnswer(null);
-      setErrorShowExplanation(false);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const handleLogin = async (isGuest = false) => {
-    setAuthError('');
-    try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ identifier: username, password, isGuest })
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setAuthError(data.error || 'Chyba přihlášení.');
-        return;
-      }
-      setUser(data.user);
-      setShowAuthModal(false);
-      fetchBooks();
-    } catch (e: any) {
-      setAuthError('Chyba přihlášení: ' + e.message);
-    }
-  };
-
-  const handleRegister = async () => {
-    setAuthError('');
-    try {
-      const res = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password })
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setAuthError(data.error || 'Chyba při registraci.');
-        return;
-      }
-      setUser(data.user);
-      setShowAuthModal(false);
-      fetchBooks();
-    } catch (e: any) {
-      setAuthError('Chyba při registraci: ' + e.message);
-    }
-  };
-
-  const handleLogout = async () => {
-    await fetch('/api/auth/me', { method: 'POST' });
-    setUser(null);
-  };
-
-  const startTest = (test: any, mode: 'timed' | 'untimed') => {
-    setActiveTest(test);
-    setTestMode(mode);
-    setCurrentQuestionIndex(0);
-    setSelectedAnswers({});
-    setTimeLeft((test.timeLimitMinutes || 85) * 60);
-    setIsTestSubmitted(false);
-    setTestResult(null);
-  };
-
-  const submitTest = async () => {
+  const submitTest = useCallback(async () => {
     if (!activeTest) return;
     let score = 0;
-    const missedQuestions: any[] = [];
+    const missedQuestions: Question[] = [];
 
-    activeTest.questions.forEach((q: any) => {
+    activeTest.questions.forEach((q) => {
       const userAns = selectedAnswers[q.id];
       if (userAns === q.correctOption) {
         score++;
@@ -409,23 +303,181 @@ export default function Home() {
     });
 
     if (user) {
-      try {
-        await fetch('/api/tests/results', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            testId: activeTest.id,
-            testTitle: activeTest.title,
-            score,
-            totalQuestions,
-            timeSpentSeconds,
-            missedQuestions
-          })
+      if (supabase && !user.isGuest) {
+        // Save test result
+        await supabase.from('test_results').insert({
+          user_id: user.id,
+          test_id: activeTest.id,
+          test_title: activeTest.title,
+          score,
+          total_questions: totalQuestions,
+          time_spent_seconds: timeSpentSeconds
         });
-      } catch (e) {
-        console.error(e);
+
+        // Save missed questions
+        for (const q of missedQuestions) {
+          const { data: existing } = await supabase
+            .from('user_missed_questions')
+            .select('id, times_failed')
+            .eq('user_id', user.id)
+            .eq('question_id', q.id)
+            .single();
+
+          if (existing) {
+            await supabase
+              .from('user_missed_questions')
+              .update({ times_failed: existing.times_failed + 1, mastered: false })
+              .eq('id', existing.id);
+          } else {
+            await supabase.from('user_missed_questions').insert({
+              user_id: user.id,
+              question_id: q.id,
+              test_id: activeTest.id,
+              category: q.category,
+              prompt: q.prompt,
+              options_json: JSON.stringify(q.options),
+              correct_option: q.correctOption,
+              explanation: q.explanation,
+              times_failed: 1,
+              mastered: false
+            });
+          }
+        }
+      } else {
+        // LocalStorage fallback
+        const savedErrorsKey = `maturyta_missed_${user.id}`;
+        const existingRaw = localStorage.getItem(savedErrorsKey);
+        const existingList: MissedQuestion[] = existingRaw ? JSON.parse(existingRaw) : [];
+
+        missedQuestions.forEach((q) => {
+          const idx = existingList.findIndex((item) => item.id === q.id);
+          if (idx >= 0) {
+            existingList[idx].timesFailed = (existingList[idx].timesFailed || 1) + 1;
+          } else {
+            existingList.push({ ...q, timesFailed: 1 });
+          }
+        });
+        localStorage.setItem(savedErrorsKey, JSON.stringify(existingList));
       }
     }
+  }, [activeTest, selectedAnswers, timeLeft, user]);
+
+  // Timer Effect
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (activeTest && testMode === 'timed' && !isTestSubmitted && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            submitTest();
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [activeTest, testMode, isTestSubmitted, timeLeft, submitTest]);
+
+  const handleLogin = async (isGuest = false) => {
+    setAuthError('');
+
+    if (isGuest) {
+      const guestUser: UserState = {
+        id: 'guest_' + Date.now(),
+        username: 'Host / Student',
+        email: 'host@maturyta.cz',
+        isGuest: true
+      };
+      localStorage.setItem('maturyta_guest_user', JSON.stringify(guestUser));
+      setUser(guestUser);
+      setShowAuthModal(false);
+      return;
+    }
+
+    if (!username || !password) {
+      setAuthError('Zadejte přihlašovací údaje.');
+      return;
+    }
+
+    if (supabase) {
+      const loginIdentifier = username.trim();
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: loginIdentifier,
+        password: password,
+      });
+
+      if (error) {
+        setAuthError('Chyba přihlášení: ' + error.message);
+        return;
+      }
+
+      if (data.user) {
+        setUser({
+          id: data.user.id,
+          username: data.user.user_metadata?.username || username,
+          email: data.user.email || '',
+        });
+        setShowAuthModal(false);
+      }
+    } else {
+      setAuthError('Supabase není nakonfigurován. Použijte možnost "Vyzkoušet bez přihlášení (Host / Demo)".');
+    }
+  };
+
+  const handleRegister = async () => {
+    setAuthError('');
+    if (!username || !email || !password) {
+      setAuthError('Vyplňte všechna pole.');
+      return;
+    }
+
+    if (supabase) {
+      const { data, error } = await supabase.auth.signUp({
+        email: email.trim(),
+        password: password,
+        options: {
+          data: { username: username }
+        }
+      });
+
+      if (error) {
+        setAuthError('Chyba při registraci: ' + error.message);
+        return;
+      }
+
+      if (data.user) {
+        setUser({
+          id: data.user.id,
+          username,
+          email,
+        });
+        setShowAuthModal(false);
+      }
+    } else {
+      setAuthError('Supabase není nakonfigurován. Použijte možnost "Vyzkoušet bez přihlášení (Host / Demo)".');
+    }
+  };
+
+  const handleLogout = async () => {
+    if (supabase) {
+      await supabase.auth.signOut();
+    }
+    localStorage.removeItem('maturyta_guest_user');
+    setUser(null);
+  };
+
+  const startTest = (test: DidacticTest, mode: 'timed' | 'untimed') => {
+    setActiveTest(test);
+    setTestMode(mode);
+    setCurrentQuestionIndex(0);
+    setSelectedAnswers({});
+    setTimeLeft((test.timeLimitMinutes || 85) * 60);
+    setIsTestSubmitted(false);
+    setTestResult(null);
   };
 
   const toggleBookSelection = async (bookId: string) => {
@@ -433,50 +485,61 @@ export default function Home() {
       setShowAuthModal(true);
       return;
     }
-    try {
-      const res = await fetch('/api/books', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ bookId, action: 'toggle' })
-      });
-      const data = await res.json();
-      if (data.added) {
-        setUserBookIds([...userBookIds, bookId]);
+
+    const isSelected = userBookIds.includes(bookId);
+    const newBookIds = isSelected ? userBookIds.filter((id) => id !== bookId) : [...userBookIds, bookId];
+    setUserBookIds(newBookIds);
+
+    if (supabase && !user.isGuest) {
+      if (isSelected) {
+        await supabase.from('user_books').delete().eq('user_id', user.id).eq('book_id', bookId);
       } else {
-        setUserBookIds(userBookIds.filter((id) => id !== bookId));
+        await supabase.from('user_books').insert({ user_id: user.id, book_id: bookId });
       }
-    } catch (e) {
-      console.error(e);
+    } else {
+      localStorage.setItem(`maturyta_user_books_${user.id}`, JSON.stringify(newBookIds));
     }
   };
 
   const saveBookNotes = async (bookId: string) => {
     if (!user) return;
-    try {
-      await fetch('/api/books', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ bookId, action: 'update_notes', notes: editingNotes })
+    const newNotes = { ...userNotes, [bookId]: editingNotes };
+    setUserNotes(newNotes);
+
+    if (supabase && !user.isGuest) {
+      await supabase.from('user_books').upsert({
+        user_id: user.id,
+        book_id: bookId,
+        custom_notes: editingNotes
       });
-      setUserNotes({ ...userNotes, [bookId]: editingNotes });
-    } catch (e) {
-      console.error(e);
+    } else {
+      localStorage.setItem(`maturyta_user_notes_${user.id}`, JSON.stringify(newNotes));
     }
   };
 
   const handleMasterErrorQuestion = async (qId: string) => {
     if (!user) return;
-    try {
-      await fetch('/api/tests/results', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId: qId, mastered: true })
-      });
-      setErrorQuestions(errorQuestions.filter((q) => q.id !== qId));
-      setErrorSelectedAnswer(null);
-      setErrorShowExplanation(false);
-    } catch (e) {
-      console.error(e);
+
+    const remaining = errorQuestions.filter((q) => q.id !== qId);
+    setErrorQuestions(remaining);
+    setActiveErrorIndex((prev) => (remaining.length > 0 ? prev % remaining.length : 0));
+    setErrorSelectedAnswer(null);
+    setErrorShowExplanation(false);
+
+    if (supabase && !user.isGuest) {
+      await supabase
+        .from('user_missed_questions')
+        .update({ mastered: true })
+        .eq('user_id', user.id)
+        .eq('question_id', qId);
+    } else {
+      const savedErrorsKey = `maturyta_missed_${user.id}`;
+      const existingRaw = localStorage.getItem(savedErrorsKey);
+      if (existingRaw) {
+        const existingList: MissedQuestion[] = JSON.parse(existingRaw);
+        const filtered = existingList.filter((q) => q.id !== qId);
+        localStorage.setItem(savedErrorsKey, JSON.stringify(filtered));
+      }
     }
   };
 
@@ -493,6 +556,8 @@ export default function Home() {
   const cardClass = darkMode
     ? 'bg-slate-900 border-slate-800'
     : 'bg-white border-slate-200 shadow-sm';
+
+  const currentErrorQuestion = errorQuestions[activeErrorIndex];
 
   return (
     <div className={`min-h-screen ${themeClass} flex flex-col font-sans transition-colors duration-200 pb-24`}>
@@ -527,7 +592,7 @@ export default function Home() {
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id as 'dashboard' | 'tests' | 'errors' | 'books' | 'resources')}
                   className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
                     active
                       ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
@@ -592,7 +657,7 @@ export default function Home() {
           return (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => setActiveTab(tab.id as 'dashboard' | 'tests' | 'errors' | 'books' | 'resources')}
               className={`flex flex-col items-center gap-1 p-2 rounded-lg text-xs font-medium ${
                 active ? 'text-indigo-400' : 'text-slate-400'
               }`}
@@ -839,17 +904,17 @@ export default function Home() {
                       </div>
                       <h2 className="text-3xl font-black">Výsledky Didaktického Testu</h2>
                       <div className="text-5xl font-black text-indigo-400">
-                        {testResult.percentage}%
+                        {testResult?.percentage}%
                       </div>
                       <p className="text-slate-400">
-                        Získali jste <strong className="text-white">{testResult.score}</strong> z{' '}
-                        <strong className="text-white">{testResult.totalQuestions}</strong> možných bodů.
+                        Získali jste <strong className="text-white">{testResult?.score}</strong> z{' '}
+                        <strong className="text-white">{testResult?.totalQuestions}</strong> možných bodů.
                       </p>
                     </div>
 
                     <div className="space-y-4 pt-4 border-t border-slate-800">
                       <h3 className="font-bold text-lg">Podrobný přehled odpovědí:</h3>
-                      {activeTest.questions.map((q: any, idx: number) => {
+                      {activeTest.questions.map((q, idx) => {
                         const userAns = selectedAnswers[q.id];
                         const isCorrect = userAns === q.correctOption;
                         return (
@@ -923,7 +988,7 @@ export default function Home() {
               ))}
             </div>
 
-            {errorQuestions.length === 0 ? (
+            {!currentErrorQuestion ? (
               <div className={`p-12 text-center rounded-2xl border ${cardClass} space-y-3`}>
                 <CheckCircle className="w-12 h-12 text-emerald-400 mx-auto" />
                 <h3 className="font-bold text-xl">Žádné nevyřešené chyby!</h3>
@@ -936,7 +1001,7 @@ export default function Home() {
                 <div className={`p-8 rounded-2xl border ${cardClass} space-y-6`}>
                   <div className="flex justify-between items-center">
                     <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-rose-500/10 text-rose-400">
-                      {errorQuestions[activeErrorIndex]?.category}
+                      {currentErrorQuestion.category}
                     </span>
                     <span className="text-xs text-slate-400 font-medium">
                       Chyba {activeErrorIndex + 1} z {errorQuestions.length}
@@ -944,12 +1009,12 @@ export default function Home() {
                   </div>
 
                   <h3 className="text-xl font-bold leading-relaxed">
-                    {errorQuestions[activeErrorIndex]?.prompt}
+                    {currentErrorQuestion.prompt}
                   </h3>
 
                   <div className="space-y-3">
-                    {errorQuestions[activeErrorIndex]?.options.map((opt: string, idx: number) => {
-                      const isCorrect = idx === errorQuestions[activeErrorIndex].correctOption;
+                    {currentErrorQuestion.options.map((opt: string, idx: number) => {
+                      const isCorrect = idx === currentErrorQuestion.correctOption;
                       const isSelected = errorSelectedAnswer === idx;
 
                       let btnStyle = `${darkMode ? 'bg-slate-800/40 border-slate-800 hover:bg-slate-800' : 'bg-slate-50 border-slate-200'}`;
@@ -977,14 +1042,14 @@ export default function Home() {
                     <div className="p-4 rounded-xl bg-slate-800/80 space-y-2 text-xs border border-slate-700">
                       <span className="font-bold text-indigo-400">Vysvětlení správného řešení:</span>
                       <p className="text-slate-300 leading-relaxed">
-                        {errorQuestions[activeErrorIndex]?.explanation}
+                        {currentErrorQuestion.explanation}
                       </p>
                     </div>
                   )}
 
                   <div className="flex justify-between items-center pt-4 border-t border-slate-800">
                     <button
-                      onClick={() => handleMasterErrorQuestion(errorQuestions[activeErrorIndex].id)}
+                      onClick={() => handleMasterErrorQuestion(currentErrorQuestion.id)}
                       className="px-4 py-2 rounded-xl bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-600/30 text-xs font-bold transition-colors"
                     >
                       Označit jako zvládnuté ✓
@@ -992,7 +1057,7 @@ export default function Home() {
 
                     <button
                       onClick={() => {
-                        setActiveErrorIndex((activeErrorIndex + 1) % errorQuestions.length);
+                        setActiveErrorIndex((prev) => (prev + 1) % errorQuestions.length);
                         setErrorSelectedAnswer(null);
                         setErrorShowExplanation(false);
                       }}
@@ -1178,13 +1243,13 @@ export default function Home() {
                   </div>
 
                   <div className="pt-2">
-                    {item.type === 'audiobook' ? (
+                    {item.type === 'audiobook' && item.streamUrl ? (
                       <button
                         onClick={() =>
                           setActiveAudio({
                             title: item.title,
                             author: item.author,
-                            streamUrl: item.streamUrl,
+                            streamUrl: item.streamUrl || '',
                             sourceName: item.sourceName
                           })
                         }
