@@ -14,8 +14,6 @@ import {
   Sun,
   Printer,
   Plus,
-  Play,
-  Download,
   ChevronRight,
   User,
   BarChart3,
@@ -24,10 +22,11 @@ import {
   X
 } from 'lucide-react';
 import AudioPlayer from '@/components/AudioPlayer';
+import type { AudioBook } from '@/components/AudioPlayer';
+import MediaLibrary, { BookMediaPanel } from '@/components/BookMedia';
 import CermatTests, { CermatMistakes } from '@/components/CermatTests';
 import { supabase } from '@/lib/supabase';
 import { BOOK_CATALOG, getDatabaseLinksForBook } from '@/lib/data';
-import { FREE_RESOURCES } from '@/lib/resources';
 
 interface UserState {
   id: string;
@@ -60,22 +59,6 @@ interface Book {
   characters: string;
   plotSummary: string;
   languageAndStyle: string;
-  ebookUrl?: string;
-  audiobookUrl?: string;
-  audioSource?: string;
-}
-
-interface ResourceItem {
-  id: string;
-  title: string;
-  author: string;
-  type: 'ebook' | 'audiobook';
-  format: string;
-  sourceName: string;
-  downloadUrl?: string;
-  streamUrl?: string;
-  description: string;
-  coverColor: string;
 }
 
 export default function Home() {
@@ -108,20 +91,12 @@ export default function Home() {
   const [selectedPeriodFilter, setSelectedPeriodFilter] = useState<string>('vse');
   const [bookPage, setBookPage] = useState<number>(1);
 
-  // Resources / Audio State
-  const [resources, setResources] = useState<ResourceItem[]>([]);
-  const [activeAudio, setActiveAudio] = useState<{
-    title: string;
-    author: string;
-    streamUrl: string;
-    sourceName: string;
-  } | null>(null);
+  const [activeAudio, setActiveAudio] = useState<AudioBook | null>(null);
 
   // Initial Data Load
   useEffect(() => {
     let isMounted = true;
     const init = async () => {
-      setResources(FREE_RESOURCES as ResourceItem[]);
       setCatalogBooks(BOOK_CATALOG as Book[]);
 
       if (supabase) {
@@ -638,7 +613,7 @@ export default function Home() {
                 </div>
                 <h3 className="font-bold text-lg text-[var(--ink)]">Příběhy do očí i do uší</h3>
                 <p className="text-xs text-[var(--muted)] leading-relaxed">
-                  Legální e-knihy ke stažení (Městská knihovna v Praze) a nahrávky rozborů z Českého rozhlasu.
+                  České e-knihy přímo v aplikaci, čtečka s předčítáním a přehrávač vlastních audioknih.
                 </p>
                 <button
                   onClick={() => setActiveTab('resources')}
@@ -972,6 +947,8 @@ export default function Home() {
                       {selectedBookDetail.languageAndStyle}
                     </div>
 
+                    <BookMediaPanel book={selectedBookDetail} owner={user?.id ?? 'anonymous'} onPlay={audio => { setActiveAudio(audio); setSelectedBookDetail(null); }} />
+
                     {/* DATABASE LOOKUP LINKS */}
                     <div className="p-3.5 rounded-xl bg-[var(--surface-soft)]/80 border border-[var(--line)]/80 space-y-3">
                       <strong className="text-[var(--ink)] block font-bold">Katalogové & Bibliografické databáze:</strong>
@@ -1050,82 +1027,11 @@ export default function Home() {
           </div>
         )}
 
-        {/* RESOURCES & AUDIO TAB */}
-        {activeTab === 'resources' && (
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-2xl font-extrabold tracking-tight text-[var(--ink)]">Zdroje četby & Audioknihy zdarma</h2>
-              <p className="text-xs text-[var(--muted)]">Stahuj e-knihy v PDF/EPUB nebo přehrávej audio rozbory z Českého rozhlasu a Městské knihovny v Praze.</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {resources.map((item) => (
-                <div
-                  key={item.id}
-                  className={`p-5 rounded-2xl ${cardClass} flex flex-col justify-between space-y-4`}
-                >
-                  <div className="space-y-2.5">
-                    <div className="flex justify-between items-center">
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${item.type === 'audiobook' ? 'bg-[var(--mustard)]/10 text-[var(--mustard-ink)] border border-[var(--mustard)]/20' : 'bg-[var(--sage)]/10 text-[var(--sage-ink)] border border-[var(--sage)]/20'}`}>
-                        {item.type === 'audiobook' ? '🎧 Audiokniha' : '📖 E-Kniha'}
-                      </span>
-                      <span className="text-[10px] text-[var(--muted)] font-mono">{item.format}</span>
-                    </div>
-
-                    <div>
-                      <h3 className="text-base font-bold text-[var(--ink)]">{item.title}</h3>
-                      <p className="text-xs text-[var(--muted)]">Autor: <strong className="text-[var(--ink)]">{item.author}</strong></p>
-                    </div>
-
-                    <p className="text-xs text-[var(--muted)] leading-relaxed font-normal">{item.description}</p>
-                    <span className="text-[11px] text-[var(--sage-ink)] font-medium block">Zdroj: {item.sourceName}</span>
-                  </div>
-
-                  <div className="pt-1">
-                    {item.type === 'audiobook' && item.streamUrl ? (
-                      <button
-                        onClick={() =>
-                          setActiveAudio({
-                            title: item.title,
-                            author: item.author,
-                            streamUrl: item.streamUrl || '',
-                            sourceName: item.sourceName
-                          })
-                        }
-                        className="w-full py-2.5 rounded-xl bg-[var(--coral)] hover:bg-[var(--coral-hover)] text-[#293643] font-bold text-xs flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-sm"
-                      >
-                        <Play className="w-3.5 h-3.5 fill-current" />
-                        Přehrát v aplikaci
-                      </button>
-                    ) : (
-                      <a
-                        href={item.downloadUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="w-full py-2.5 rounded-xl bg-[var(--mustard)] hover:bg-[var(--mustard-hover)] text-[#293643] font-bold text-xs flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-sm"
-                      >
-                        <Download className="w-3.5 h-3.5" />
-                        Stáhnout e-knihu
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        {/* Real book files, personal uploads and an honest availability catalog. */}
+        {activeTab === 'resources' && <MediaLibrary books={BOOK_CATALOG} owner={user?.id ?? 'anonymous'} onPlay={setActiveAudio} />}
       </main>
 
-      {/* AUDIO PLAYER BAR */}
-      {activeAudio && (
-        <AudioPlayer
-          title={activeAudio.title}
-          author={activeAudio.author}
-          streamUrl={activeAudio.streamUrl}
-          sourceName={activeAudio.sourceName}
-          onClose={() => setActiveAudio(null)}
-        />
-      )}
+      {activeAudio && <AudioPlayer key={`${activeAudio.title}:${activeAudio.tracks.map(t => t.title).join('|')}`} book={activeAudio} onClose={() => setActiveAudio(null)} />}
 
       {/* AUTH MODAL */}
       {showAuthModal && (

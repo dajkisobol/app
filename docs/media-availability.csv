@@ -1,0 +1,201 @@
+id,title,author,ebook_in_app,recorded_audio_in_app
+epos-o-gilgamesovi,Epos o Gilgamešovi,Neznámý autor,False,False
+homer-ilias,Ilias,Homér,True,False
+homer-odyssea,Odyssea,Homér,False,False
+sofokles-kral-oidipus,Král Oidipus,Sofoklés,False,False
+sofokles-antigona,Antigona,Sofoklés,False,False
+ovidius-promeny,Proměny,Ovidius,False,False
+dante-bozska-komedie,Božská komedie,Dante Alighieri,True,False
+boccaccio-dekameron,Dekameron,Giovanni Boccaccio,False,False
+chaucer-kanterburske-povidky,Kanterburské povídky,Geoffrey Chaucer,False,False
+villon-zavet,Závěť (Velký testament),François Villon,False,False
+cervantes-don-quijote,Důmyslný rytíř Don Quijote de la Mancha,Miguel de Cervantes y Saavedra,False,False
+shakespeare-hamlet,Hamlet,William Shakespeare,True,False
+shakespeare-othello,Othello,William Shakespeare,False,False
+shakespeare-macbeth,Macbeth,William Shakespeare,False,False
+shakespeare-romeo-a-julie,Romeo a Julie,William Shakespeare,True,False
+shakespeare-zkroceni-zle-zeny,Zkrocení zlé ženy,William Shakespeare,True,False
+shakespeare-sonety,Sonety,William Shakespeare,False,False
+moliere-lakomec,Lakomec,Molière,True,False
+moliere-tartuffe,Tartuffe,Molière,False,False
+moliere-misantrop,Misantrop,Molière,False,False
+defoe-robinson-crusoe,Robinson Crusoe,Daniel Defoe,True,False
+swift-gulliverovy-cesty,Gulliverovy cesty,Jonathan Swift,False,False
+voltaire-candide,Candide neboli Optimismus,Voltaire,False,False
+prevost-manon-lescaut,Manon Lescaut,Antoine François Prévost,False,False
+goethe-utrpeni-mladeho-werthera,Utrpení mladého Werthera,Johann Wolfgang von Goethe,False,False
+kristianova-legenda,Kristiánova legenda,Neznámý autor (Kristián),False,False
+kosmas-kronika-ceska,Kronika česká (Chronica Boemorum),Kosmas,False,False
+dalimilova-kronika,Dalimilova kronika,Neznámý autor (takzvaný Dalimil),True,False
+hus-knizky-o-svatokupectvi,Knížky o svatokupectví,Jan Hus,False,False
+komensky-labyrint-sveta,Labyrint světa a ráj srdce,Jan Amos Komenský,True,False
+komensky-orbis-pictus,Orbis pictus,Jan Amos Komenský,False,False
+bridel-co-boh-clovek,Co Bůh? Člověk?,Bedřich Bridel,True,False
+balbin-rozprava-na-obranu-jazyka,Rozprava na obranu jazyka slovanského,Bohuslav Balbín,False,False
+dobrovsky-dejiny-ceske-reci,Dějiny české řeči a literatury,Josef Dobrovský,False,False
+jungmann-slovesnost,Slovesnost,Josef Jungmann,False,False
+celakovsky-ohlas-pisni-ceskych,Ohlas písní českých,František Ladislav Čelakovský,False,False
+celakovsky-ohlas-pisni-ruskych,Ohlas písní ruských,František Ladislav Čelakovský,False,False
+klicpera-rohovin-ctverrohy,Rohovín Čtverrohý,Václav Kliment Klicpera,False,False
+havlicek-krest-svatého-vladimira,Křest svatého Vladimíra,Karel Havlíček Borovský,True,False
+havlicek-tirolske-elegie,Tirolské elegie,Karel Havlíček Borovský,True,False
+havlicek-epigramy,Epigramy,Karel Havlíček Borovský,True,False
+tyl-strakonicky-dudak,Strakonický dudák aneb Hody divokých žen,Josef Kajetán Tyl,True,False
+tyl-fidlovacka,Fidlovačka aneb Žádný hněv a žádná rvačka,Josef Kajetán Tyl,False,False
+nemcova-babicka,Babička,Božena Němcová,True,False
+nemcova-diva-bara,Divá Bára,Božena Němcová,True,False
+goethe-faust,Faust,Johann Wolfgang von Goethe,True,False
+byron-childe-haroldova-pout,Childe Haroldova pouť,George Gordon Byron,False,False
+puskin-evzen-onegin,Evžen Oněgin,Alexander Sergejevič Puškin,True,False
+puskin-kapitanska-dcerka,Kapitánská dcerka,Alexander Sergejevič Puškin,False,False
+lermontov-hrdina-nasi-doby,Hrdina naší doby,Mikhail Yuryevich Lermontov,False,False
+hugo-chram-matky-bozi-v-parizi,Chrám Matky Boží v Paříži,Victor Hugo,False,False
+hugo-bidnici,Bídníci (Ubožáci),Victor Hugo,False,False
+dumas-hrabe-monte-cristo,Hrabě Monte Cristo,Alexandre Dumas,False,False
+stendhal-cerveny-a-cerny,Červený a černý,Stendhal,True,False
+balzac-otec-goriot,Otec Goriot,Honoré de Balzac,False,False
+balzac-lesk-a-bida-kurtizan,Lesk a bída kurtizán,Honoré de Balzac,False,False
+flaubert-pani-bovaryova,Paní Bovaryová,Gustave Flaubert,False,False
+dickens-oliver-twist,Oliver Twist,Charles Dickens,False,False
+dickens-kronika-pickwickova-klubu,Kronika Pickwickova klubu,Charles Dickens,False,False
+bronteova-jana-eyrova,Jana Eyrová,Charlotte Brontëová,False,False
+bronteova-na-vetrne-hurce,Na Větrné hůrce,Emily Brontëová,False,False
+gogol-revizor,Revizor,Nikolai Vasilievich Gogol,False,False
+gogol-mrtve-duse,Mrtvé duše,Nikolai Vasilievich Gogol,False,False
+dostojevskij-zlocin-a-trest,Zločin a trest,Fyodor Dostoevsky,False,False
+dostojevskij-bratri-karamazovi,Bratři Karamazovi,Fyodor Dostoevsky,False,False
+tolstoj-vojna-a-mir,Vojna a mír,Leo Tolstoy,False,False
+tolstoj-anna-kareninova,Anna Kareninová,Leo Tolstoy,False,False
+cechov-visnovy-sad,Višňový sad,Anton Pavlovich Chekhov,False,False
+cechov-racek,Racek,Anton Pavlovich Chekhov,False,False
+zola-zabijak,Zabiják,Émile Zola,False,False
+zola-germinal,Germinal,Émile Zola,False,False
+maupassant-kulicka,Kulička,Guy de Maupassant,False,False
+maupassant-milacek,Miláček,Guy de Maupassant,False,False
+wilde-obraz-doriana-graye,Obraz Doriana Graye,Oscar Wilde,False,False
+wilde-jak-je-dulezite-miti-filipa,Jak je důležité míti Filipa,Oscar Wilde,False,False
+baudelaire-kvety-zla,Květy zla,Charles Baudelaire,False,False
+poe-havran,Havran a jiné básně,Edgar Allan Poe,True,False
+doyle-pes-baskervillsky,Pes baskervillsky,Arthur Conan Doyle,True,False
+twain-dobrodruzstvi-huckleberryho-finna,Dobrodružství Huckleberryho Finna,Mark Twain,False,False
+verne-20000-mil-pod-morem,Dvacet tisíc mil pod mořem,Jules Verne,False,False
+macha-maj,Máj,Karel Hynek Mácha,True,False
+erben-kytice,Kytice,Karel Jaromír Erben,True,False
+nemcova-v-zamku-a-v-podzamci,V zámku a v podzámčí,Božena Němcová,False,False
+neruda-povidky-malostranske,Povídky malostranské,Jan Neruda,True,False
+neruda-balady-a-romance,Balady a romance,Jan Neruda,True,False
+neruda-zpevy-patecni,Zpěvy páteční,Jan Neruda,False,False
+halek-vecerni-pisne,Večerní písně,Vítězslav Hálek,False,False
+cech-pravy-vylet-pana-broucka,Pravý výlet pana Broučka do Měsíce,Svatopluk Čech,False,False
+krasnohorska-hubicka,Hubička,Eliška Krásnohorská,False,False
+jirasek-stare-povesti-ceske,Staré pověsti české,Alois Jirásek,False,False
+jirasek-mezi-proudy,Mezi proudy,Alois Jirásek,False,False
+jirasek-f-l-vek,F. L. Věk,Alois Jirásek,False,False
+jirasek-temno,Temno,Alois Jirásek,True,False
+jirasek-lucerna,Lucerna,Alois Jirásek,False,False
+winter-mistr-kampanus,Mistr Kampanus,Zikmund Winter,False,False
+vrchlicky-noc-na-karlstejne,Noc na Karlštejně,Jaroslav Vrchlický,False,False
+vrchlicky-okna-v-bouri,Okna v bouři,Jaroslav Vrchlický,False,False
+machar-confiteor,Confiteor,Josef Svatopluk Machar,False,False
+sova-kvety-intimnich-nalad,Květy intimních nálad,Antonín Sva,False,False
+brezina-svitani-na-zapade,Svítání na západě,Otokar Březina,False,False
+hlavacek-mstiva-kantilena,Mstivá kantiléna,Karel Hlaváček,False,False
+mrstik-pohadka-maje,Pohádka máje,Vilém Mrštík,False,False
+mrstikove-marysa,Maryša,Alois a Vilém Mrštíkové,True,False
+rais-kalibuv-zlocin,Kalibův zločin,Karel Václav Rais,False,False
+novakova-jiri-smatlan,Jiří Šmatlán,Teréza Nováková,False,False
+herrmann-u-snedeneho-kramu,U snědeného krámu,Ignát Herrmann,False,False
+kvapil-princezna-pampeliska,Princezna Pampeliška,Jaroslav Kvapil,False,False
+slejhar-kure-melancholik,Kuře melancholik,Josef Karel Šlejhar,False,False
+arbes-svaty-xaverius,Svatý Xaverius,Jakub Arbes,False,False
+cech-pisne-otroka,Písně otroka,Svatopluk Čech,False,False
+apollinaire-kaligramy,Kaligramy / Alkohol,Guillaume Apollinaire,False,False
+rolland-petr-a-lucie,Petr a Lucie,Romain Rolland,False,False
+remarque-na-zapadni-fronte-klid,Na západní frontě klid,Erich Maria Remarque,False,False
+remarque-tri-kamaradi,Tři kamarádi,Erich Maria Remarque,False,False
+hemingway-starec-a-more,Stařec a moře,Ernest Hemingway,False,False
+hemingway-komu-zroni-hrana,Komu zvoní hrana,Ernest Hemingway,False,False
+hemingway-sbohem-armado,"Sbohem, armádo!",Ernest Hemingway,False,False
+fitzgerald-velky-gatsby,Velký Gatsby,Francis Scott Fitzgerald,False,False
+steinbeck-o-mysich-a-lidech,O myších a lidech,John Steinbeck,False,False
+steinbeck-hrozny-hnevu,Hrozny hněvu,John Steinbeck,False,False
+orwell-1984,1984,George Orwell,False,False
+orwell-farma-zvirat,Farma zvířat,George Orwell,False,False
+kafka-promena,Proměna,Franz Kafka,False,False
+kafka-proces,Proces,Franz Kafka,False,False
+kafka-zamek,Zámek,Franz Kafka,False,False
+exupery-maly-princ,Malý princ,Antoine de Saint-Exupéry,False,False
+exupery-citadela,Citadela,Antoine de Saint-Exupéry,False,False
+bulgakov-mistr-a-marketka,Mistr a Markétka,Mikhail Bulgakov,False,False
+mann-kouzelny-vrch,Kouzelný vrch,Thomas Mann,False,False
+hesse-stepni-vlk,Stepní vlk,Hermann Hesse,False,False
+joyce-odysseus,Odysseus,James Joyce,False,False
+woolf-k-majak u,K majáku,Virginia Woolf,False,False
+beckett-cekani-na-godota,Čekání na Godota,Samuel Beckett,False,False
+ionesco-plesata-zpevacka,Plešatá zpěvačka,Eugène Ionesco,False,False
+sartre-zed,Zeď,Jean-Paul Sartre,False,False
+camus-cizinec,Cizinec,Albert Camus,False,False
+camus-mor,Mor,Albert Camus,False,False
+marquez-sto-roku-samoty,Sto roků samoty,Gabriel García Márquez,False,False
+marquez-kronika-ohlásene-smrti,Kronika ohlášené smrti,Gabriel García Márquez,False,False
+styron-sophiina-volba,Sophiina volba,William Styron,False,False
+heller-hlava-xxii,Hlava XXII,Joseph Heller,False,False
+salinger-kdo-chyta-v-jite,Kdo chytá v žitě,J. D. Salinger,False,False
+bradbury-451-stupnu-fahrenheita,451 stupňů Fahrenheita,Ray Bradbury,False,False
+golding-pan-mouchy,Pán mouchy,William Golding,False,False
+burgess-mechanicky-pomeranc,Mechanický pomeranč,Anthony Burgess,False,False
+eco-jmeno-ruze,Jméno růže,Umberto Eco,False,False
+waltari-egyptan-sinuhet,Egypťan Sinuhet,Mika Waltari,False,False
+mccarthy-cesta,Cesta,Cormac McCarthy,False,False
+tolkien-hobit,Hobit aneb Cesta tam a zase zpátky,J. R. R. Tolkien,False,False
+tolkien-spolecenstvo-prstenu,Společenstvo Prstenu,J. R. R. Tolkien,False,False
+martin-hra-o-truny,Hra o trůny,George R. R. Martin,False,False
+coelho-alchymista,Alchymista,Paulo Coelho,False,False
+martel-pi-a-jeho-zivot,Pí a jeho život,Yann Martel,False,False
+hosseini-lovec-draku,Lovec draků,Khaled Hosseini,False,False
+atwood-pribeh-sluzebnice,Příběh služebnice,Margaret Atwood,False,False
+dyk-krysar,Krysař,Viktor Dyk,True,True
+bezruc-slezske-pisne,Slezské písně,Petr Bezruč,False,False
+sramek-stribrny-vitr,Stříbrný vítr,Fráňa Šrámek,False,False
+sramek-mesic-nad-rekou,Měsíc nad řekou,Fráňa Šrámek,False,False
+hasek-svejk,Osudy dobrého vojáka Švejka za světové války,Jaroslav Hašek,False,False
+capek-rur,R.U.R.,Karel Čapek,True,False
+capek-bila-nemoc,Bílá nemoc,Karel Čapek,False,False
+capek-matka,Matka,Karel Čapek,True,False
+capek-valka-s-mloky,Válka s Mloky,Karel Čapek,True,False
+capek-krakatit,Krakatit,Karel Čapek,True,False
+capek-povidky-z-jedne-a-druhe-kapsy,Povídky z jedné a druhé kapsy,Karel Čapek,False,False
+capek-j-stin-kapradiny,Stín kapradiny,Josef Čapek,False,False
+vancura-rozmarne-leto,Rozmarné léto,Vladislav Vančura,True,False
+vancura-marketa-lazarova,Markéta Lazarová,Vladislav Vančura,True,False
+olbracht-nikola-suhaj-loupeznik,Nikola Šuhaj loupežník,Ivan Olbracht,False,False
+seifert-maminka,Maminka,Jaroslav Seifert,False,False
+nezval-edison,Edison,Vítězslav Nezval,False,False
+nezval-manon-lescaut,Manon Lescaut,Vítězslav Nezval,False,False
+halas-torzo-nadeje,Torzo naděje,František Halas,False,False
+wolker-tezka-hodina,Těžká hodina,Jiří Wolker,True,False
+hostovsky-cizinec-hledat-byt,Cizinec hledá byt,Egon Hostovský,False,False
+havlicek-petrolejove-lampy,Petrolejové lampy,Jaroslav Havlíček,True,False
+havlicek-neviditelny,Neviditelný,Jaroslav Havlíček,False,False
+weil-zivot-s-hvezdou,Život s hvězdou,Jiří Weil,False,False
+drda-nema-barikada,Němá barikada,Jan Drda,False,False
+drda-hratky-s-certem,Hrátky s čertem,Jan Drda,False,False
+orten-elegie,Elegie,Jiří Orten,False,False
+skvorecky-zbabelci,Zbabělci,Josef Škvorecký,False,False
+skvorecky-tankovy-prapor,Tankový prapor,Josef Škvorecký,False,False
+hrabal-ostre-sledovane-vlaky,Ostře sledované vlaky,Bohumil Hrabal,False,False
+hrabal-obsluhoval-jsem-anglickeho-krale,Obsluhoval jsem anglického krále,Bohumil Hrabal,False,False
+hrabal-postriziny,Postřižiny,Bohumil Hrabal,False,False
+fuks-spalovac-mrtvol,Spalovač mrtvol,Ladislav Fuks,False,False
+pavel-smrt-krasnych-srncu,Smrt krásných srnců,Ota Pavel,False,False
+kundera-zert,Žert,Milan Kundera,False,False
+kundera-nesnesitelna-lehkost-byti,Nesnesitelná lehkost bytí,Milan Kundera,False,False
+havel-zahradni-slavnost,Zahradní slavnost,Václav Havel,False,False
+havel-audience,Audience,Václav Havel,False,False
+lustig-modlitba-pro-katerinu-horovitzovou,Modlitba pro Kateřinu Horovitzovou,Arnošt Lustig,False,False
+kohout-katyne,Katyně,Pavel Kohout,False,False
+jirotka-saturnin,Saturnin,Zdeněk Jirotka,False,False
+viewegh-bajecna-leta-pod-psa,Báječná léta pod psa,Michal Viewegh,False,False
+topol-sestra,Sestra,Jáchym Topol,False,False
+tuckova-zitkovske-bohyne,Žítkovské bohyně,Kateřina Tučková,False,False
+mornstajnova-hana,Hana,Alena Mornštajnová,False,False

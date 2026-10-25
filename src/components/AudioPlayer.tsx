@@ -1,138 +1,77 @@
-import React from 'react';
-import { Play, Pause, RotateCcw, Volume2, X } from 'lucide-react';
+'use client';
 
-interface AudioPlayerProps {
+import { useEffect, useRef, useState } from 'react';
+import { ChevronLeft, ChevronRight, Download, Pause, Play, RotateCcw, X } from 'lucide-react';
+
+export interface AudioBook {
   title: string;
   author: string;
-  streamUrl: string;
   sourceName: string;
-  onClose?: () => void;
+  sourceUrl?: string;
+  tracks: { title: string; url?: string; blob?: Blob }[];
 }
 
-export default function AudioPlayer({ title, author, streamUrl, sourceName, onClose }: AudioPlayerProps) {
-  const audioRef = React.useRef<HTMLAudioElement | null>(null);
-  const [isPlaying, setIsPlaying] = React.useState(false);
-  const [currentTime, setCurrentTime] = React.useState(0);
-  const [duration, setDuration] = React.useState(0);
-  const [playbackRate, setPlaybackRate] = React.useState(1.0);
+function time(seconds: number) {
+  if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+  const minutes = Math.floor(seconds / 60);
+  return `${minutes}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
+}
 
-  const togglePlay = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play().catch(() => {});
-      setIsPlaying(true);
+export default function AudioPlayer({ book, onClose }: { book: AudioBook; onClose: () => void }) {
+  const audio = useRef<HTMLAudioElement>(null);
+  const [track, setTrack] = useState(0);
+  const [url, setUrl] = useState('');
+  const [playing, setPlaying] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [position, setPosition] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [rate, setRate] = useState(1);
+  const [error, setError] = useState('');
+  const continuePlaying = useRef(false);
+
+  useEffect(() => {
+    const entry = book.tracks[track];
+    if (!entry) return;
+    const localUrl = entry.blob ? URL.createObjectURL(entry.blob) : '';
+    // Synchronize a new audio resource; object URLs exist only while in use.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setUrl(localUrl || entry.url || '');
+    setPosition(0); setDuration(0); setError(''); setPlaying(false); setLoading(false);
+    return () => { if (localUrl) URL.revokeObjectURL(localUrl); };
+  }, [book, track]);
+
+  const play = async () => {
+    if (!audio.current) return;
+    setError(''); setLoading(true);
+    try { await audio.current.play(); }
+    catch (e) {
+      setLoading(false); setPlaying(false);
+      if (e instanceof DOMException && e.name === 'AbortError') return;
+      setError(e instanceof DOMException && e.name === 'NotAllowedError' ? 'Prohlížeč přehrávání pozastavil. Zkus znovu stisknout Přehrát.' : 'Zvuk nelze přehrát. Ověř soubor nebo připojení; pro nejširší podporu použij MP3.');
     }
   };
+  const selectTrack = (index: number) => { continuePlaying.current = audio.current ? !audio.current.paused : false; audio.current?.pause(); setTrack(index); };
 
-  const handleTimeUpdate = () => {
-    if (audioRef.current) {
-      setCurrentTime(audioRef.current.currentTime);
-      setDuration(audioRef.current.duration || 0);
-    }
-  };
-
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseFloat(e.target.value);
-    if (audioRef.current) {
-      audioRef.current.currentTime = val;
-      setCurrentTime(val);
-    }
-  };
-
-  const toggleSpeed = () => {
-    const speeds = [1.0, 1.25, 1.5, 2.0];
-    const nextIdx = (speeds.indexOf(playbackRate) + 1) % speeds.length;
-    const nextSpeed = speeds[nextIdx];
-    setPlaybackRate(nextSpeed);
-    if (audioRef.current) {
-      audioRef.current.playbackRate = nextSpeed;
-    }
-  };
-
-  const formatTime = (secs: number) => {
-    if (isNaN(secs)) return '00:00';
-    const m = Math.floor(secs / 60);
-    const s = Math.floor(secs % 60);
-    return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
-  };
-
-  return (
-    <div className="fixed bottom-0 left-0 right-0 bg-[var(--page)]/95 border-t border-[var(--line)] p-3 lg:p-4 shadow-2xl z-50 backdrop-blur-md">
-      <audio
-        ref={audioRef}
-        key={streamUrl}
-        src={streamUrl}
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-        onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={handleTimeUpdate}
-        onEnded={() => setIsPlaying(false)}
-      />
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
-        <div className="flex items-center gap-3 w-full md:w-1/3">
-          <div className="w-9 h-9 rounded-xl bg-[var(--mustard)]/10 border border-[var(--mustard)]/20 text-[var(--mustard-ink)] flex items-center justify-center font-bold text-sm">
-            <Volume2 className="w-4 h-4" />
-          </div>
-          <div className="truncate">
-            <h4 className="font-bold text-xs text-[var(--ink)] truncate">{title}</h4>
-            <p className="text-[11px] text-[var(--muted)] truncate">{author} • <span className="text-[var(--sage-ink)] font-medium">{sourceName}</span></p>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-center gap-1.5 w-full md:w-1/2">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => {
-                if (audioRef.current) audioRef.current.currentTime -= 10;
-              }}
-              className="p-1.5 text-[var(--muted)] hover:text-[var(--ink)] rounded-lg transition-colors"
-              title="-10 sec"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-            </button>
-
-            <button
-              onClick={togglePlay}
-              className="w-9 h-9 bg-[var(--coral)] hover:bg-[var(--coral-hover)] text-[#293643] rounded-full transition-transform active:scale-95 shadow-sm flex items-center justify-center"
-            >
-              {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
-            </button>
-
-            <button
-              onClick={toggleSpeed}
-              className="px-2 py-0.5 bg-[var(--surface-soft)] hover:bg-[var(--surface-hover)]/80 border border-[var(--line)]/60 rounded text-[10px] font-bold text-[var(--mustard-ink)]"
-              title="Rychlost přehrávání"
-            >
-              {playbackRate}x
-            </button>
-          </div>
-
-          <div className="flex items-center gap-2.5 w-full text-[10px] text-[var(--muted)] font-mono">
-            <span>{formatTime(currentTime)}</span>
-            <input
-              type="range"
-              min={0}
-              max={duration || 100}
-              value={currentTime}
-              onChange={handleSeek}
-              className="w-full accent-[var(--mustard)] h-1 bg-[var(--surface-soft)] rounded-lg appearance-none cursor-pointer"
-            />
-            <span>{formatTime(duration)}</span>
-          </div>
-        </div>
-
-        {onClose && (
-          <button
-            onClick={onClose}
-            className="hidden md:flex items-center gap-1 text-[var(--muted)] hover:text-[var(--coral-ink)] text-xs font-medium transition-colors"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        )}
+  return <section className="audio-player" aria-label={`Přehrávač audioknihy ${book.title}`}>
+    <audio ref={audio} key={url} src={url || undefined} preload="metadata"
+      onPlay={() => { setPlaying(true); setLoading(false); }}
+      onPause={() => setPlaying(false)} onWaiting={() => setLoading(true)} onPlaying={() => setLoading(false)}
+      onTimeUpdate={() => setPosition(audio.current?.currentTime || 0)}
+      onLoadedMetadata={() => { const element = audio.current; if (!element) return; setDuration(Number.isFinite(element.duration) ? element.duration : 0); element.playbackRate = rate; if (continuePlaying.current) { continuePlaying.current = false; void play(); } }}
+      onEnded={() => { setPlaying(false); if (track < book.tracks.length - 1) { continuePlaying.current = true; setTrack(t => t + 1); } }}
+      onError={() => { setPlaying(false); setLoading(false); setError('Zvukový soubor není dostupný, je poškozený nebo jeho formát tento prohlížeč nepodporuje.'); }} />
+    <div className="audio-player-inner">
+      <div className="audio-description"><strong>{book.title}</strong><span>{book.author} · {book.sourceName}</span>{book.tracks.length > 1 && <label className="sr-only" htmlFor="audio-track">Kapitola audioknihy</label>}<select id="audio-track" aria-label="Kapitola audioknihy" value={track} onChange={e => selectTrack(Number(e.target.value))}>{book.tracks.map((t, i) => <option key={i} value={i}>{i + 1}. {t.title}</option>)}</select></div>
+      <div className="audio-controls"><div className="flex items-center justify-center gap-3">
+        <button aria-label="Předchozí zvuková kapitola" disabled={track === 0} onClick={() => selectTrack(track - 1)}><ChevronLeft size={18} /></button>
+        <button aria-label="Vrátit o 10 sekund" disabled={!duration} onClick={() => { if (audio.current) audio.current.currentTime = Math.max(0, audio.current.currentTime - 10); }}><RotateCcw size={17} /></button>
+        <button className="audio-play" aria-label={playing ? 'Pozastavit audioknihu' : 'Přehrát audioknihu'} disabled={!url} onClick={() => playing ? audio.current?.pause() : void play()}>{playing ? <Pause size={19} /> : <Play size={19} />}</button>
+        <select aria-label="Rychlost přehrávání" value={rate} onChange={e => { const speed = Number(e.target.value); setRate(speed); if (audio.current) audio.current.playbackRate = speed; }}>{[.75, 1, 1.25, 1.5, 2].map(r => <option key={r} value={r}>{r}×</option>)}</select>
+        <button aria-label="Další zvuková kapitola" disabled={track === book.tracks.length - 1} onClick={() => selectTrack(track + 1)}><ChevronRight size={18} /></button>
+      </div><div className="audio-progress"><span>{time(position)}</span><input aria-label="Pozice přehrávání" type="range" min={0} max={duration || 1} step={.1} value={Math.min(position, duration || 0)} disabled={!duration} onChange={e => { const target = Number(e.target.value); if (audio.current) audio.current.currentTime = target; setPosition(target); }} /><span>{time(duration)}</span></div>
+      {loading && <p role="status">Načítám zvuk…</p>}{error && <div role="alert" className="audio-error">{error}<button onClick={() => { audio.current?.load(); void play(); }}>Zkusit znovu</button>{book.sourceUrl && <a href={book.sourceUrl} target="_blank" rel="noopener noreferrer">Otevřít původní zdroj</a>}</div>}
       </div>
+      <div className="flex items-center gap-3">{url && <a href={url} download target="_blank" rel="noopener noreferrer" aria-label="Stáhnout zvukovou kapitolu"><Download size={18} /></a>}<button className="media-icon-button" aria-label="Zavřít přehrávač" onClick={() => { audio.current?.pause(); onClose(); }}><X size={22} /></button></div>
     </div>
-  );
+  </section>;
 }
