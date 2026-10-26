@@ -1,4 +1,5 @@
 import type { BookAnalysis } from './data';
+import { CATALOG_STUDY_GUIDES } from './catalog-study-guides';
 
 /**
  * Vlastní maturitní poznámky. Vybraná fakta byla porovnána s články
@@ -51,5 +52,5 @@ export const EXTENDED_BOOK_ANALYSES: Record<string, ExtendedBookAnalysis> = {
 
 /** Vrátí rozšíření pouze tehdy, pokud existuje konkrétní ověřený záznam. */
 export function getExtendedAnalysis(book: Pick<BookAnalysis, 'id'>): ExtendedBookAnalysis | undefined {
-  return EXTENDED_BOOK_ANALYSES[book.id];
+  return EXTENDED_BOOK_ANALYSES[book.id] ?? CATALOG_STUDY_GUIDES[book.id];
 }
