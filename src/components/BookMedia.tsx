@@ -6,6 +6,7 @@ import EbookReader from '@/components/EbookReader';
 import type { ReaderDocument } from '@/components/EbookReader';
 import type { AudioBook } from '@/components/AudioPlayer';
 import { FREE_AUDIOBOOK_LINKS } from '@/lib/free-audiobooks';
+import { AUDIOBOOK_PUBLICATIONS } from '@/lib/audiobook-publications';
 import { assetUrl, EXTERNAL_RECORDINGS, listeningForBook, MEDIA_ASSETS, mediaForBook, mediaSearchLinks } from '@/lib/media';
 import { addPersonalFiles, listPersonalMedia, removePersonalMedia } from '@/lib/media-files';
 import type { PersonalMedia, MediaKind } from '@/lib/media-files';
@@ -69,6 +70,11 @@ export function BookMediaPanel({ book, owner, onPlay, onFilesChanged }: PanelPro
         <strong>{source.title} <span className="media-badge">Zdarma · {source.language}</span></strong>
         <p>{source.provider} · Celý titul na webu poskytovatele; není uložený v aplikaci.</p>
         <a className="hero-secondary" href={source.url} target="_blank" rel="noopener noreferrer"><ExternalLink size={15} /> Poslouchat nebo stáhnout zdarma</a>
+      </div>)}
+      {(AUDIOBOOK_PUBLICATIONS[book.id] || []).map(source => <div key={source.url} className="media-source">
+        <strong>{source.title} <span className="media-badge">{source.availability === 'free' ? 'Zdarma' : source.availability === 'sample' ? 'Ukázka' : 'Placené vydání'}</span></strong>
+        <p>{source.provider} · {source.note}</p>
+        <a className="hero-secondary" href={source.url} target="_blank" rel="noopener noreferrer"><ExternalLink size={15} /> Zobrazit vydání</a>
       </div>)}
       {ownAudio.length > 0 && <div className="media-source"><strong>Vlastní audiokniha · {ownAudio.length} zvukových souborů</strong><button className="hero-primary" onClick={() => playOwn(ownAudio)}><Headphones size={15} /> Otevřít přehrávač</button><ul className="personal-track-list">{ownAudio.map(file => <li key={file.id}><span>{file.name}</span><button className="media-delete" aria-label={`Odebrat ${file.name}`} onClick={() => void remove(file)}><Trash2 size={14} /></button></li>)}</ul></div>}
       {externalRecordings.map(source => <div key={source.url} className="media-source">
