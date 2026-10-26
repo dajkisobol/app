@@ -5,6 +5,7 @@ import { BookOpen, Download, ExternalLink, Headphones, Search, Trash2, Upload, X
 import EbookReader from '@/components/EbookReader';
 import type { ReaderDocument } from '@/components/EbookReader';
 import type { AudioBook } from '@/components/AudioPlayer';
+import { FREE_AUDIOBOOK_LINKS } from '@/lib/free-audiobooks';
 import { assetUrl, EXTERNAL_RECORDINGS, listeningForBook, MEDIA_ASSETS, mediaForBook, mediaSearchLinks } from '@/lib/media';
 import { addPersonalFiles, listPersonalMedia, removePersonalMedia } from '@/lib/media-files';
 import type { PersonalMedia, MediaKind } from '@/lib/media-files';
@@ -64,6 +65,11 @@ export function BookMediaPanel({ book, owner, onPlay, onFilesChanged }: PanelPro
     </div>
     <div className="book-media-section"><h3><Headphones size={18} /> Audiokniha</h3>
       {recordings.map(source => <div key={source.id} className="media-source"><strong>{source.title} <span className="media-badge">Nahraná audiokniha · česky · v aplikaci</span></strong><p>{source.provider}{source.tracks ? ` · ${source.tracks.length} kapitol` : ''}{source.durationSeconds ? ` · ${Math.floor(source.durationSeconds / 3600)} h ${Math.floor(source.durationSeconds % 3600 / 60)} min` : ''}</p><button className="hero-primary" onClick={() => onPlay({ title: book.title, author: book.author, sourceName: source.provider, sourceUrl: source.sourceUrl, tracks: source.tracks?.map(t => ({ ...t, url: assetUrl(t.url) })) || [{ title: source.title, url: assetUrl(source.path) }] })}>Otevřít přehrávač</button><p className="media-note">{source.license} · <a href={source.sourceUrl} target="_blank" rel="noopener noreferrer">Zdroj nahrávky</a> · <a href={source.licenseUrl} target="_blank" rel="noopener noreferrer">Podmínky šíření</a></p></div>)}
+      {(FREE_AUDIOBOOK_LINKS[book.id] || []).map(source => <div key={source.url} className="media-source">
+        <strong>{source.title} <span className="media-badge">Zdarma · {source.language}</span></strong>
+        <p>{source.provider} · Celý titul na webu poskytovatele; není uložený v aplikaci.</p>
+        <a className="hero-secondary" href={source.url} target="_blank" rel="noopener noreferrer"><ExternalLink size={15} /> Poslouchat nebo stáhnout zdarma</a>
+      </div>)}
       {ownAudio.length > 0 && <div className="media-source"><strong>Vlastní audiokniha · {ownAudio.length} zvukových souborů</strong><button className="hero-primary" onClick={() => playOwn(ownAudio)}><Headphones size={15} /> Otevřít přehrávač</button><ul className="personal-track-list">{ownAudio.map(file => <li key={file.id}><span>{file.name}</span><button className="media-delete" aria-label={`Odebrat ${file.name}`} onClick={() => void remove(file)}><Trash2 size={14} /></button></li>)}</ul></div>}
       {externalRecordings.map(source => <div key={source.url} className="media-source">
         <strong>{source.title} <span className="media-badge">Český poslech · na webu poskytovatele</span></strong>
