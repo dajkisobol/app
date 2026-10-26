@@ -50,5 +50,6 @@ export function mediaSearchLinks(book: { title: string; author: string }) {
     ebook: `https://www.mlp.cz/katalog/?query=${query}`,
     audiobook: `https://www.palmknihy.cz/vyhledavani?query=${query}`,
     librivox: `https://librivox.org/search?title=${encodeURIComponent(book.title)}&search_form=advanced`,
+    naposlech: `https://www.google.com/search?q=${encodeURIComponent('site:naposlech.cz/audiokniha/ ' + book.title + ' ' + book.author)}`,
   };
 }
