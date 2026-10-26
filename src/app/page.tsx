@@ -1043,15 +1043,21 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {user && (
-                      <div className="pt-2">
-                        <strong className="text-[var(--ink)] block mb-1 font-bold">Moje poznámky k dílu:</strong>
+                    <div id="book-personal-notes" className="pt-4 mt-4 border-t border-[var(--line)] space-y-2">
+                      <h3 className="text-lg font-bold text-[var(--ink)]">📝 Moje vlastní poznámky</h3>
+                      <p className="text-xs text-[var(--muted)]">
+                        {user ? (user.isGuest ? 'Poznámky se ukládají do tohoto prohlížeče. Při vymazání dat prohlížeče mohou zmizet.' : 'Poznámky se ukládají k tvému účtu a můžeš je později upravit.') : 'Pro ukládání poznámek se nejprve přihlas nebo zvol režim hosta.'}
+                      </p>
+                      {user ? (
+                      <div className="space-y-2">
+                        <label htmlFor="personal-book-notes" className="text-[var(--ink)] block text-xs font-bold">Poznámky ke knize {selectedBookDetail.title}</label>
                         <textarea
+                          id="personal-book-notes"
                           value={editingNotes}
                           onChange={(e) => setEditingNotes(e.target.value)}
                           placeholder="Zadejte vlastní stručné poznámky k maturitní otázce..."
                           className="w-full p-3 rounded-xl bg-[var(--surface-soft)] border border-[var(--line)] text-xs focus:outline-none focus:border-[var(--mustard)] text-[var(--ink)]"
-                          rows={3}
+                          rows={7}
                         />
                         <button
                           onClick={() => saveBookNotes(selectedBookDetail.id)}
@@ -1060,7 +1066,10 @@ export default function Home() {
                           Uložit poznámky
                         </button>
                       </div>
-                    )}
+                      ) : (
+                        <button onClick={() => setShowAuthModal(true)} className="px-4 py-2 rounded-xl bg-[var(--mustard)] text-[#293643] font-bold text-xs">Přihlásit se a psát poznámky</button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
