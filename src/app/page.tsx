@@ -31,6 +31,7 @@ import MediaLibrary, { BookMediaPanel } from '@/components/BookMedia';
 import CermatTests, { CermatMistakes } from '@/components/CermatTests';
 import { supabase } from '@/lib/supabase';
 import { BOOK_CATALOG, getDatabaseLinksForBook } from '@/lib/data';
+import { getExtendedAnalysis } from '@/lib/book-analyses';
 
 interface UserState {
   id: string;
@@ -955,6 +956,37 @@ export default function Home() {
                       <strong className="text-[var(--ink)] block mb-0.5 font-bold">Jazyk & Styl:</strong>
                       {selectedBookDetail.languageAndStyle}
                     </div>
+
+                    {(() => {
+                      const analysis = getExtendedAnalysis(selectedBookDetail);
+                      if (!analysis) return null;
+                      const sections = [
+                        ['Literární druh a žánr', analysis.literaryType],
+                        ['Kompozice', analysis.composition],
+                        ['Vypravěč / promluvy', analysis.narrator],
+                        ['Hlavní myšlenka', analysis.mainIdea],
+                        ['Literárněhistorický kontext', analysis.historicalContext],
+                        ['Charakteristika postav', analysis.characterAnalysis],
+                        ['Podrobný děj', analysis.detailedPlot],
+                      ];
+                      return (
+                        <section className="space-y-3" aria-label="Rozšířený maturitní rozbor">
+                          <h3 className="text-lg font-bold text-[var(--ink)]">Rozšířený maturitní rozbor</h3>
+                          {sections.map(([heading, body]) => (
+                            <div key={heading} className="p-3.5 rounded-xl bg-[var(--surface-soft)]/80 border border-[var(--line)]/80 text-xs text-[var(--muted)]">
+                              <strong className="text-[var(--ink)] block mb-1 font-bold">{heading}</strong>
+                              <p className="leading-relaxed">{body}</p>
+                            </div>
+                          ))}
+                          <p className="text-xs text-[var(--muted)]">
+                            Vlastní studijní zpracování; použité podklady:{' '}
+                            <a href={analysis.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-[var(--mustard-ink)]">
+                              rozbor-dila.cz
+                            </a>. Doporučujeme porovnat se samotným dílem.
+                          </p>
+                        </section>
+                      );
+                    })()}
 
                     <BookMediaPanel book={selectedBookDetail} owner={user?.id ?? 'anonymous'} onPlay={audio => { setActiveAudio(audio); setSelectedBookDetail(null); }} />
 
